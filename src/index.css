@@ -1,20 +1,167 @@
-@font-face {
-  font-family: "SourceSans3-Italic";
-  src: url("../fonts/SourceSans3-Italic-VariableFont_wght.woff2")
-    format("woff2");
-}
-@font-face {
-  font-family: "SourceSans3-default";
-  src: url("../fonts/SourceSans3-VariableFont_wght.woff2") format("woff2");
-}
-
+/* Allgemeine Stile */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: "SourceSans3-Italic";
-  font-size: 16px;
+  font-family: Arial, sans-serif;
+  background-color: #e1dfdf;
+  color: #000000;
+}
+
+.logo {
+  letter-spacing: 5px;
+  padding-top: 1em;
+}
+
+/* Layout mit Grid */
+.app-layout {
+  display: grid;
+  grid-template-areas:
+    "header header "
+    "content content "
+    "footer footer";
+  grid-template-rows: auto 1fr auto;
+  height: 100vh; /* Vollbildhöhe */
+}
+
+/* Header */
+.header {
+  grid-area: header;
+  color: rgb(0, 0, 0);
+  background-color: #ffffff;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+/* Main Content */
+.content {
+  grid-area: content;
+  padding: 2rem;
+  background-color: #ffffff;
+  overflow-y: auto;
+  align-items: center;
+}
+
+/* Allgemeines Styling für die Navbar */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem; /* Abstände zwischen den Items */
+}
+
+li {
+  display: flex;
+  flex-direction: column; /* Stellt sicher, dass die Bilder oben und die Links darunter sind */
+  align-items: center; /* Zentriert die Inhalte horizontal */
+  text-align: center;
+}
+
+li img {
+  width: 25px; /* Größe der Icons anpassen */
+  height: 25px; /* Größe der Icons anpassen */
+  margin-bottom: 0.5rem; /* Abstand zwischen Icon und Link */
+}
+
+li a {
+  text-decoration: none;
+  color: #000000; /* Farbe der Links */
+  font-size: 1rem; /* Schriftgröße anpassen */
+}
+
+/* Navbar am unteren Rand */
+.navbar-bottom ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.navbar-bottom li {
+  margin: 0 1rem;
+}
+
+.navbar-bottom a {
+  color: #000000;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+.navbar-bottom a:hover {
+  text-decoration: none;
+  color: #e28f83;
+}
+
+.nav-icon {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Footer */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  grid-area: footer;
+  background-color: #fdfbfb;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1); /* Schlagschatten nach oben */
+  color: white;
+  text-align: center;
+  padding: 2.5rem;
+  text-align: center;
+  z-index: 1000; /* Sicherstellen, dass sie immer sichtbar ist */
+}
+
+/* Media Queries für mobile Geräte (z.B. iPhone 12 Plus) */
+
+@media (max-width: 932px) {
+  /* Anpassen der App-Layout für kleine Bildschirme */
+
+  .logo {
+    font-size: 1rem; /* Kleinere Schriftgröße für das Logo */
+  }
+  .app-layout {
+    grid-template-columns: 1fr; /* Nur eine Spalte, keine Sidebar */
+    grid-template-areas:
+      "header"
+      "content"
+      "footer";
+  }
+
+  /* Content-Layout */
+  .content {
+    padding: 1rem;
+    font-size: 14px; /* Kleinere Schrift für den Content */
+  }
+
+  /* Navbar am unteren Rand */
+  .navbar-bottom {
+    position: relative;
+    padding: 1rem;
+    text-align: center;
+    z-index: 1000; /* Immer sichtbar */
+  }
+
+  .navbar-bottom ul {
+    padding: 0;
+  }
+
+  .navbar-bottom li {
+    margin: 0.5rem 0; /* Weniger Abstand zwischen den Links */
+  }
+
+  .navbar-bottom a {
+    font-size: 1rem; /* Kleinere Schrift für Links */
+  }
+
+  /* Footer-Größe anpassen */
+  .footer {
+    padding: 0.8rem; /* Weniger Padding im Footer */
+  }
 }
