@@ -9,7 +9,123 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      categories: {
+        Row: {
+          id: number
+          name: string
+        }
+        Insert: {
+          id?: number
+          name: string
+        }
+        Update: {
+          id?: number
+          name?: string
+        }
+        Relationships: []
+      }
+      meditation: {
+        Row: {
+          audio_url: string | null
+          description: string | null
+          duration: number | null
+          id: number
+          name: string
+        }
+        Insert: {
+          audio_url?: string | null
+          description?: string | null
+          duration?: number | null
+          id?: number
+          name: string
+        }
+        Update: {
+          audio_url?: string | null
+          description?: string | null
+          duration?: number | null
+          id?: number
+          name?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          first_name: string | null
+          id: string
+          last_name: string | null
+        }
+        Insert: {
+          first_name?: string | null
+          id: string
+          last_name?: string | null
+        }
+        Update: {
+          first_name?: string | null
+          id?: string
+          last_name?: string | null
+        }
+        Relationships: []
+      }
+      yoga: {
+        Row: {
+          description: string | null
+          difficulty: string | null
+          duration: number | null
+          id: number
+          image_url: string | null
+          name: string
+          video_url: string | null
+        }
+        Insert: {
+          description?: string | null
+          difficulty?: string | null
+          duration?: number | null
+          id?: number
+          image_url?: string | null
+          name: string
+          video_url?: string | null
+        }
+        Update: {
+          description?: string | null
+          difficulty?: string | null
+          duration?: number | null
+          id?: number
+          image_url?: string | null
+          name?: string
+          video_url?: string | null
+        }
+        Relationships: []
+      }
+      yoga_categories: {
+        Row: {
+          category_id: number
+          yoga_id: number
+        }
+        Insert: {
+          category_id: number
+          yoga_id: number
+        }
+        Update: {
+          category_id?: number
+          yoga_id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "yoga_categories_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "yoga_categories_yoga_id_fkey"
+            columns: ["yoga_id"]
+            isOneToOne: false
+            referencedRelation: "yoga"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
