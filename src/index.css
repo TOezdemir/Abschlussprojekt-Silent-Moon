@@ -1,0 +1,20 @@
+@font-face {
+  font-family: "SourceSans3-Italic";
+  src: url("../fonts/SourceSans3-Italic-VariableFont_wght.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "SourceSans3-default";
+  src: url("../fonts/SourceSans3-VariableFont_wght.woff2") format("woff2");
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "SourceSans3-Italic";
+  font-size: 16px;
+}

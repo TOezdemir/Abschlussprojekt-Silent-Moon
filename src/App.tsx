@@ -1,76 +1,75 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import LoginPage from "./pages/LoginPage"
-import SignUpPage from "./pages/SignUpPage"
-import WelcomePage from "./pages/WelcomePage"
-import RemindersPage from "./pages/RemindersPage"
-import HomePage from "./pages/HomePage"
-import YogaDetailPage from "./pages/YogaDetailPage"
-import MeditationDetailPage from "./pages/MeditationDetailPage"
-import YogaPosesPage from "./pages/YogaPosesPage"
-import MeditationsPage from "./pages/MeditationsPage"
-import MusicPage from "./pages/MusicPage"
-import ProfilePage from "./pages/ProfilePage"
-import Layout from "./components/Layout"
-
-
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
+import SignUpPage from "./pages/SignUpPage";
+import WelcomePage from "./pages/WelcomePage";
+import RemindersPage from "./pages/RemindersPage";
+import HomePage from "./pages/HomePage";
+import YogaDetailPage from "./pages/YogaDetailPage";
+import MeditationDetailPage from "./pages/MeditationDetailPage";
+import YogaPosesPage from "./pages/YogaPosesPage";
+import MeditationsPage from "./pages/MeditationsPage";
+import MusicPage from "./pages/MusicPage";
+import ProfilePage from "./pages/ProfilePage";
+import Layout from "./components/Layout";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout/>,
+    element: <Layout />,
     children: [
       {
         path: "/login",
-        element: <LoginPage/>
+        element: <LoginPage />,
       },
       {
         path: "/signup",
-        element: <SignUpPage/>
+        element: <SignUpPage />,
       },
       {
         path: "/welcome",
-        element: <WelcomePage/>
+        element: <WelcomePage />,
       },
       {
         path: "/reminders",
-        element: <RemindersPage/>
+        element: <RemindersPage />,
       },
       {
         path: "/home",
-        element: <HomePage/>
+        element: <HomePage />,
       },
       {
         path: "/yoga/:name/:id",
-        element: <YogaDetailPage/>
+        element: <YogaDetailPage />,
       },
       {
         path: "/meditation/:name/:id",
-        element: <MeditationDetailPage/>,
+        element: <MeditationDetailPage />,
       },
       {
         path: "/yoga",
-        element: <YogaPosesPage/>
+        element: <YogaPosesPage />,
       },
       {
         path: "/meditation",
-        element: <MeditationsPage/>
+        element: <MeditationsPage />,
       },
       {
         path: "/music",
-        element: <MusicPage/>
+        element: <MusicPage />,
       },
       {
         path: "/profile",
-        element: <ProfilePage/>
-      }
-    ]
-  }
-])
+        element: <ProfilePage />,
+      },
+    ],
+  },
+]);
 
 export default function App() {
   return (
     <div>
-      <RouterProvider router={router}/>
+      <RouterProvider router={router} />
+      <HomePage />
     </div>
-  )
+  );
 }
