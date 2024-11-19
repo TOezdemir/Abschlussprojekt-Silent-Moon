@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { supabaseClient } from "../lib/supabaseClient";
+import { supabase } from "../lib/supabaseClient";
 import { useUserContext } from "../context/userContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";  

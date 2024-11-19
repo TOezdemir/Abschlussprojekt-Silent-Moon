@@ -11,6 +11,7 @@ import MeditationsPage from "./pages/MeditationsPage"
 import MusicPage from "./pages/MusicPage"
 import ProfilePage from "./pages/ProfilePage"
 import Layout from "./components/Layout"
+import { UserContextProvider } from "./context/userContext"
 
 
 
@@ -70,7 +71,9 @@ const router = createBrowserRouter([
 export default function App() {
   return (
     <div>
+      <UserContextProvider>
       <RouterProvider router={router}/>
+      </UserContextProvider>
     </div>
   )
 }
