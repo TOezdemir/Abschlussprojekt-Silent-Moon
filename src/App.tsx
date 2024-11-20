@@ -1,16 +1,17 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import SignUpPage from "./pages/SignUpPage";
-import WelcomePage from "./pages/WelcomePage";
-import RemindersPage from "./pages/RemindersPage";
-import HomePage from "./pages/HomePage";
-import YogaDetailPage from "./pages/YogaDetailPage";
-import MeditationDetailPage from "./pages/MeditationDetailPage";
-import YogaPosesPage from "./pages/YogaPosesPage";
-import MeditationsPage from "./pages/MeditationsPage";
-import MusicPage from "./pages/MusicPage";
-import ProfilePage from "./pages/ProfilePage";
-import Layout from "./components/Layout";
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import LoginPage from "./pages/LoginPage"
+import SignUpPage from "./pages/SignUpPage"
+import WelcomePage from "./pages/WelcomePage"
+import RemindersPage from "./pages/RemindersPage"
+import HomePage from "./pages/HomePage"
+import YogaDetailPage from "./pages/YogaDetailPage"
+import MeditationDetailPage from "./pages/MeditationDetailPage"
+import YogaPosesPage from "./pages/YogaPosesPage"
+import MeditationsPage from "./pages/MeditationsPage"
+import MusicPage from "./pages/MusicPage"
+import ProfilePage from "./pages/ProfilePage"
+import Layout from "./components/Layout"
+import { UserContextProvider } from "./context/userContext"
 
 const router = createBrowserRouter([
   {
@@ -68,7 +69,9 @@ const router = createBrowserRouter([
 export default function App() {
   return (
     <div>
-      <RouterProvider router={router} />
+      <UserContextProvider>
+      <RouterProvider router={router}/>
+      </UserContextProvider>
     </div>
   );
 }
