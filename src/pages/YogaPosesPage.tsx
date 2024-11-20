@@ -3,9 +3,7 @@ import { supabase } from "../lib/supabaseClient"
 import type { QueryData } from "@supabase/supabase-js"
 
 const getAllYogaPoses = async() => {
-        const result = await supabase
-        .from("yoga")
-        .select("*")
+        const result = await supabase.from("yoga").select("*")
         console.log({result});
         return result
     }
