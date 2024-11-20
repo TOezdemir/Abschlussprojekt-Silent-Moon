@@ -13,60 +13,58 @@ import ProfilePage from "./pages/ProfilePage"
 import Layout from "./components/Layout"
 import { UserContextProvider } from "./context/userContext"
 
-
-
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout/>,
+    element: <Layout />,
     children: [
       {
         path: "/login",
-        element: <LoginPage/>
+        element: <LoginPage />,
       },
       {
         path: "/signup",
-        element: <SignUpPage/>
+        element: <SignUpPage />,
       },
       {
         path: "/welcome",
-        element: <WelcomePage/>
+        element: <WelcomePage />,
       },
       {
         path: "/reminders",
-        element: <RemindersPage/>
+        element: <RemindersPage />,
       },
       {
         path: "/home",
-        element: <HomePage/>
+        element: <HomePage />,
       },
       {
         path: "/yoga/:name/:id",
-        element: <YogaDetailPage/>
+        element: <YogaDetailPage />,
       },
       {
         path: "/meditation/:name/:id",
-        element: <MeditationDetailPage/>,
+        element: <MeditationDetailPage />,
       },
       {
         path: "/yoga",
-        element: <YogaPosesPage/>
+        element: <YogaPosesPage />,
       },
       {
         path: "/meditation",
-        element: <MeditationsPage/>
+        element: <MeditationsPage />,
       },
       {
         path: "/music",
-        element: <MusicPage/>
+        element: <MusicPage />,
       },
       {
         path: "/profile",
-        element: <ProfilePage/>
-      }
-    ]
-  }
-])
+        element: <ProfilePage />,
+      },
+    ],
+  },
+]);
 
 export default function App() {
   return (
@@ -75,5 +73,5 @@ export default function App() {
       <RouterProvider router={router}/>
       </UserContextProvider>
     </div>
-  )
+  );
 }
