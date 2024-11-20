@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import Searchbar from "../components/Searchbar";
 
 export default function HomePage() {
@@ -19,6 +20,11 @@ export default function HomePage() {
         <section className="meditation-section">
           <p>Recomended Meditation for you</p>
           <div>Hier werden alle verfügbaren Meditations Videos gerendert</div>
+        </section>
+        <section>
+          <li>
+            <NavLink to="/reminders">Test Link zur Reminder Site</NavLink>
+          </li>
         </section>
       </div>
     </>
