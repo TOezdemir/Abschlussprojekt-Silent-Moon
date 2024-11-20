@@ -9,41 +9,176 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      categories: {
+      favorites: {
         Row: {
-          id: number
-          name: string
+          created_at: string
+          id: string
+          mediation_id: string
+          user_id: string
+          yoga_id: string
         }
         Insert: {
-          id?: number
-          name: string
+          created_at?: string
+          id?: string
+          mediation_id: string
+          user_id?: string
+          yoga_id: string
         }
         Update: {
-          id?: number
-          name?: string
+          created_at?: string
+          id?: string
+          mediation_id?: string
+          user_id?: string
+          yoga_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "favorites_mediation_id_fkey"
+            columns: ["mediation_id"]
+            isOneToOne: false
+            referencedRelation: "meditation"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "favorites_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "favorites_yoga_id_fkey"
+            columns: ["yoga_id"]
+            isOneToOne: false
+            referencedRelation: "yoga"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       meditation: {
         Row: {
           audio_url: string | null
-          description: string | null
+          category_id: string | null
+          created_at: string
+          description: string
           duration: number | null
-          id: number
+          id: string
+          image_url: string | null
           name: string
+          video_url: string | null
         }
         Insert: {
           audio_url?: string | null
-          description?: string | null
+          category_id?: string | null
+          created_at?: string
+          description: string
           duration?: number | null
-          id?: number
+          id?: string
+          image_url?: string | null
           name: string
+          video_url?: string | null
         }
         Update: {
           audio_url?: string | null
-          description?: string | null
+          category_id?: string | null
+          created_at?: string
+          description?: string
           duration?: number | null
-          id?: number
+          id?: string
+          image_url?: string | null
+          name?: string
+          video_url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "meditation_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "meditation_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      meditation_categories: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      meditation_category_english: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      meditation_category_german: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      meditation_category_nature: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
           name?: string
         }
         Relationships: []
@@ -68,63 +203,131 @@ export type Database = {
       }
       yoga: {
         Row: {
-          description: string | null
-          difficulty: string | null
+          category_id: string | null
+          created_at: string
+          description: string
+          difficulty: string
           duration: number | null
-          id: number
+          id: string
           image_url: string | null
           name: string
           video_url: string | null
         }
         Insert: {
-          description?: string | null
-          difficulty?: string | null
+          category_id?: string | null
+          created_at?: string
+          description: string
+          difficulty: string
           duration?: number | null
-          id?: number
+          id?: string
           image_url?: string | null
           name: string
           video_url?: string | null
         }
         Update: {
-          description?: string | null
-          difficulty?: string | null
+          category_id?: string | null
+          created_at?: string
+          description?: string
+          difficulty?: string
           duration?: number | null
-          id?: number
+          id?: string
           image_url?: string | null
           name?: string
           video_url?: string | null
         }
-        Relationships: []
-      }
-      yoga_categories: {
-        Row: {
-          category_id: number
-          yoga_id: number
-        }
-        Insert: {
-          category_id: number
-          yoga_id: number
-        }
-        Update: {
-          category_id?: number
-          yoga_id?: number
-        }
         Relationships: [
           {
-            foreignKeyName: "yoga_categories_category_id_fkey"
+            foreignKeyName: "yoga_category_id_fkey"
             columns: ["category_id"]
             isOneToOne: false
-            referencedRelation: "categories"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "yoga_categories_yoga_id_fkey"
-            columns: ["yoga_id"]
-            isOneToOne: false
-            referencedRelation: "yoga"
+            referencedRelation: "yoga_categories"
             referencedColumns: ["id"]
           },
         ]
+      }
+      yoga_categories: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      yoga_category_binaural: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      yoga_category_mantra: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      yoga_category_piano: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: []
       }
     }
     Views: {
