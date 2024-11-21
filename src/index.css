@@ -9,6 +9,11 @@ body {
   font-family: Arial, sans-serif;
   background-color: #e1dfdf;
   color: #000000;
+  overflow: hidden; /* Deaktiviert Scrollen für die gesamte Seite */
+  height: 100vh; /* Vollbildhöhe */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .logo {
@@ -16,15 +21,28 @@ body {
   padding-top: 1em;
 }
 
+/* Phone-Rahmen */
+.phone-frame {
+  width: 400px; /* Breite des Rahmens, z.B. iPhone */
+  height: 800px; /* Höhe des Rahmens */
+  margin: 0 auto; /* Zentriere den Rahmen */
+  border: 5px solid #000; /* Rahmen */
+  border-radius: 30px; /* Abgerundete Ecken */
+  background-color: #fff; /* Hintergrundfarbe des "Screens" */
+  overflow: hidden; /* Inhalt, der aus dem Rahmen herausragt, ausblenden */
+  position: relative; /* Wichtiger Bezugspunkt für Positionierung */
+}
+
 /* Layout mit Grid */
 .app-layout {
   display: grid;
   grid-template-areas:
-    "header header "
-    "content content "
-    "footer footer";
+    "header"
+    "content  "
+    "footer ";
   grid-template-rows: auto 1fr auto;
-  height: 100vh; /* Vollbildhöhe */
+  height: 100%; /* Vollbildhöhe */
+  max-width: 400px;
 }
 
 /* Header */
@@ -40,10 +58,11 @@ body {
 /* Main Content */
 .content {
   grid-area: content;
-  padding: 2rem;
+  padding: 4rem;
   background-color: #ffffff;
   overflow-y: auto;
   align-items: center;
+  overflow-y: auto;
 }
 
 .choose-time {
@@ -126,7 +145,6 @@ ul {
   margin: 0;
   display: flex;
   justify-content: center;
-  gap: 2rem; /* Abstände zwischen den Items */
 }
 
 li {
@@ -137,8 +155,8 @@ li {
 }
 
 li img {
-  width: 25px; /* Größe der Icons anpassen */
-  height: 25px; /* Größe der Icons anpassen */
+  width: 20px; /* Größe der Icons anpassen */
+  height: 20px; /* Größe der Icons anpassen */
   margin-bottom: 0.5rem; /* Abstand zwischen Icon und Link */
 }
 
@@ -149,6 +167,7 @@ li a {
 }
 
 /* Navbar am unteren Rand */
+
 .navbar-bottom ul {
   list-style: none;
   display: flex;
@@ -181,9 +200,11 @@ li a {
   position: fixed;
   bottom: 0;
   width: 100%;
+  max-width: 400px;
   grid-area: footer;
   background-color: #fdfbfb;
   box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1); /* Schlagschatten nach oben */
+  position: absolute; /* Innerhalb des Phone-Rahmens fixieren */
   color: white;
   text-align: center;
   padding: 2.5rem;
@@ -223,6 +244,7 @@ li a {
 
   .navbar-bottom ul {
     padding: 0;
+    gap: 1rem; /* Abstand zwischen den Elementen */
   }
 
   .navbar-bottom li {

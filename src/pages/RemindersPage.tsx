@@ -8,7 +8,7 @@ export default function RemindersPage() {
           Any time you can choose but We recommend first thing in th morning.
         </p>
       </div>
-      <div className="choose-time"> Hier kommt der Time Selector hin</div>
+      <div className=""> Hier kommt der Time Selector hin</div>
       <div>
         <h2>Which day would you like to meditate?</h2>
         <p>Everyday is best, but we recommend picking at least five.</p>
