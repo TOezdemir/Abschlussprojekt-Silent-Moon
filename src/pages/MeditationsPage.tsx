@@ -4,6 +4,7 @@ import type { QueryData } from "@supabase/supabase-js"
 import { Link } from "react-router-dom"
 import slugify from "slugify"
 import { useQueryClient } from "@tanstack/react-query"
+import { useUserContext } from "../context/userContext"
 
 
 export default function MeditationsPage(){
@@ -40,16 +41,21 @@ export default function MeditationsPage(){
     }, [searchText])
 
     const queryClient = useQueryClient()
-    
+    const { user } = useUserContext()
     
 
     const handleFavoriteClick = async (meditationId: string) => {
+        if(!user){
+            console.error("User not signed in!")
+        }
+
         const isFavorited = meditation.some((m: GetMeditationData[0])=> m.favorites.some((f)=> f.id === meditationId))
         if(!isFavorited){
             await supabase.from("favorites").insert({meditation_id: meditationId })
         } else {
             await supabase.from("favorites").delete().eq("meditation_id", meditationId )
         }
+        console.log({handleFavoriteClick})
         queryClient.invalidateQueries({queryKey: ["supabase", "articles"]})
     }
 
