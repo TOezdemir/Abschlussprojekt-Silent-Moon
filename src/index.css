@@ -7,13 +7,25 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #e1dfdf;
   color: #000000;
+  background-color: #e0dde7;
   overflow: hidden; /* Deaktiviert Scrollen für die gesamte Seite */
   height: 100vh; /* Vollbildhöhe */
   display: flex;
   justify-content: center;
   align-items: center;
+  /* background-image: url("https://images.pexels.com/photos/1242348/pexels-photo-1242348.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; */
+}
+
+.test-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  margin-top: 1em;
 }
 
 .logo {
@@ -26,11 +38,12 @@ body {
   width: 400px; /* Breite des Rahmens, z.B. iPhone */
   height: 800px; /* Höhe des Rahmens */
   margin: 0 auto; /* Zentriere den Rahmen */
-  border: 5px solid #000; /* Rahmen */
+  border: 6px solid #000; /* Rahmen */
   border-radius: 30px; /* Abgerundete Ecken */
   background-color: #fff; /* Hintergrundfarbe des "Screens" */
   overflow: hidden; /* Inhalt, der aus dem Rahmen herausragt, ausblenden */
   position: relative; /* Wichtiger Bezugspunkt für Positionierung */
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }
 
 /* Layout mit Grid */
@@ -52,7 +65,7 @@ body {
   background-color: #ffffff;
   padding: 1rem;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 0.5rem;
 }
 
 /* Main Content */
@@ -62,18 +75,106 @@ body {
   background-color: #ffffff;
   overflow-y: auto;
   align-items: center;
-  overflow-y: auto;
+  overflow-y: auto; /* Scrollen innerhalb des Phone-Frames aktivieren */
+  height: fit-content;
 }
 
+/* Login Page css */
+
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  font-size: small;
+}
+
+.login span {
+  font-weight: bold;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.login-btn {
+  background-color: #73ba86;
+  color: white;
+  padding: 14px 30px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/*signup page css */
+
+.signup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  font-size: small;
+}
+
+.signup h1 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.signup-input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.signup-btn {
+  background-color: #73ba86;
+  color: white;
+  padding: 14px 30px;
+  margin: 2rem 0 0 0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.signup-btn:hover {
+  background-color: #b9ddc2;
+}
+
+/*Reminder Page css */
+
 .choose-time {
-  background-color: #8273ba;
+  background-color: #73ba86;
   border-radius: 10px;
   color: white;
   padding: 5em;
 }
 
 .choose-days button {
-  background-color: #8273ba;
+  background-color: #73ba86;
+
   color: white;
   border: none;
   border-radius: 100px;
@@ -87,7 +188,7 @@ body {
 }
 
 .choose-days button:hover {
-  background-color: #cec1fb;
+  background-color: #b9ddc2;
 }
 
 .btn-style {
@@ -134,8 +235,8 @@ body {
 }
 
 .no-thanks:hover {
-  text-decoration: blueviolet;
-  color: blueviolet;
+  text-decoration: rgb(88, 144, 23);
+  color: rgb(88, 144, 23);
 }
 
 /* Allgemeines Styling für die Navbar */
@@ -180,14 +281,14 @@ li a {
 }
 
 .navbar-bottom a {
-  color: #000000;
+  color: #ffffff;
   text-decoration: none;
   font-size: 1.1rem;
 }
 
 .navbar-bottom a:hover {
   text-decoration: none;
-  color: #e28f83;
+  color: rgb(88, 144, 23);
 }
 
 .nav-icon {
@@ -202,12 +303,12 @@ li a {
   width: 100%;
   max-width: 400px;
   grid-area: footer;
-  background-color: #fdfbfb;
+  background-color: #73ba86;
   box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1); /* Schlagschatten nach oben */
   position: absolute; /* Innerhalb des Phone-Rahmens fixieren */
   color: white;
   text-align: center;
-  padding: 2.5rem;
+  padding: 2rem;
   text-align: center;
   z-index: 1000; /* Sicherstellen, dass sie immer sichtbar ist */
 }
@@ -274,7 +375,7 @@ li a {
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box;3
 }
 
 html {

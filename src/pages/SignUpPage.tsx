@@ -2,7 +2,7 @@ import { useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 import { useUserContext } from "../context/userContext";
 import { useNavigate } from "react-router-dom";
-import ReactPlayer from "react-player";
+// import ReactPlayer from "react-player";
 import React from "react";
 
 export default function RegistrationPage() {
@@ -10,14 +10,13 @@ export default function RegistrationPage() {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null); 
+  const [error, setError] = useState<string | null>(null);
   const { setUser } = useUserContext();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    
     setError(null);
 
     try {
@@ -30,10 +29,10 @@ export default function RegistrationPage() {
       });
 
       if (error) {
-        setError(error.message); 
+        setError(error.message);
       } else {
         setUser(data.user);
-        navigate("/login"); 
+        navigate("/login");
       }
     } catch (err) {
       setError("An error occurred during registration.");
@@ -41,18 +40,19 @@ export default function RegistrationPage() {
     }
   };
 
-
   return (
-    <div>
+    <div className="signup">
       <h1>Create your account!</h1>
-      <form onSubmit={handleSubmit}>
+      <form className="signup-form" onSubmit={handleSubmit}>
         <input
+          className="signup-input"
           type="text"
           placeholder="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
+          className="signup-input"
           type="password"
           placeholder="password"
           value={password}
@@ -60,26 +60,27 @@ export default function RegistrationPage() {
         />
         <br />
         <input
+          className="signup-input"
           type="text"
           placeholder="First Name"
           value={firstname}
           onChange={(e) => setFirstname(e.target.value)}
         />
         <input
+          className="signup-input"
           type="text"
           placeholder="Last Name"
           value={lastname}
           onChange={(e) => setLastname(e.target.value)}
         />
-        <button type="submit">REGISTER</button>
       </form>
+      <button className="signup-btn" type="submit">
+        REGISTER
+      </button>
 
       {error && <p style={{ color: "red" }}>{error}</p>}
 
-      
-
-
-<ReactPlayer url='https://www.youtube.com/watch?v=LXb3EKWsInQ' />
+      {/* <ReactPlayer url="https://www.youtube.com/watch?v=LXb3EKWsInQ" /> */}
     </div>
   );
 }

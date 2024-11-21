@@ -21,9 +21,18 @@ export default function HomePage() {
           <p>Recomended Meditation for you</p>
           <div>Hier werden alle verfügbaren Meditations Videos gerendert</div>
         </section>
-        <section>
+        <section className="test-links">
           <li>
-            <NavLink to="/reminders">Test Link zur Reminder Site</NavLink>
+            <NavLink to="/reminders">Reminder Site</NavLink>
+          </li>
+          <li>
+            <NavLink to="/login">Login Site</NavLink>
+          </li>
+          <li>
+            <NavLink to="/signup">Signup Site</NavLink>
+          </li>
+          <li>
+            <NavLink to="/signup">Welcome Site</NavLink>
           </li>
         </section>
       </div>
