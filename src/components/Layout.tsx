@@ -4,7 +4,7 @@ import Logo from "./Logo";
 
 export default function Layout() {
   return (
-    <div className="table">
+    <div className="phone-frame">
       <div className="app-layout">
         {/* Header */}
         <header className="header">
