@@ -12,6 +12,9 @@ import MusicPage from "./pages/MusicPage"
 import ProfilePage from "./pages/ProfilePage"
 import Layout from "./components/Layout"
 import { UserContextProvider } from "./context/userContext"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+
+const client = new QueryClient()
 
 const router = createBrowserRouter([
   {
@@ -69,9 +72,11 @@ const router = createBrowserRouter([
 export default function App() {
   return (
     <div>
+      <QueryClientProvider client={client}>
       <UserContextProvider>
       <RouterProvider router={router}/>
       </UserContextProvider>
+      </QueryClientProvider>
     </div>
   );
 }
