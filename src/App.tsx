@@ -6,7 +6,11 @@ import RemindersPage from "./pages/RemindersPage"
 import HomePage from "./pages/HomePage"
 import YogaDetailPage from "./pages/YogaDetailPage"
 import MeditationDetailPage from "./pages/MeditationDetailPage"
-import YogaPosesPage from "./pages/YogaPosesPage"
+import YogaPage from "./pages/YogaPage"
+import YogaMantra from "./pages/YogaMantra"
+import YogaPiano from "./pages/YogaPiano"
+import YogaBinaural from "./pages/YogaBinaural"
+import YogaVideo from "./pages/YogaVideo"
 import MeditationsPage from "./pages/MeditationsPage"
 import MusicPage from "./pages/MusicPage"
 import ProfilePage from "./pages/ProfilePage"
@@ -51,7 +55,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/yoga",
-        element: <YogaPosesPage />,
+        element: <YogaPage />,
       },
       {
         path: "/meditation",
@@ -64,6 +68,22 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <ProfilePage />,
+      },
+      {
+        path: "/yogabinaural",
+        element: <YogaBinaural />,
+      },
+      {
+        path: "/yogapiano",
+        element: <YogaPiano />,
+      },
+      {
+        path: "/yogamantra",
+        element: <YogaMantra />,
+      },
+      {
+        path: "/yogavideo",
+        element: <YogaVideo />,
       },
     ],
   },
