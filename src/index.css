@@ -79,6 +79,17 @@ body {
   height: fit-content;
 }
 
+/* First Page css */
+
+.first-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  font-size: small;
+}
+
 /* Login Page css */
 
 .login {
@@ -161,6 +172,18 @@ body {
 
 .signup-btn:hover {
   background-color: #b9ddc2;
+}
+
+/* Welcome Page css */
+
+.welcome-btn {
+  background-color: #73ba86;
+  color: white;
+  padding: 14px 30px;
+  margin: 2rem 0 0 0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 /*Reminder Page css */

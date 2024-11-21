@@ -23,7 +23,7 @@ export default function HomePage() {
         </section>
         <section className="test-links">
           <li>
-            <NavLink to="/reminders">Reminder Site</NavLink>
+            <NavLink to="/firstpage">First Site</NavLink>
           </li>
           <li>
             <NavLink to="/login">Login Site</NavLink>
@@ -32,7 +32,10 @@ export default function HomePage() {
             <NavLink to="/signup">Signup Site</NavLink>
           </li>
           <li>
-            <NavLink to="/signup">Welcome Site</NavLink>
+            <NavLink to="/welcome">Welcome Site</NavLink>
+          </li>
+          <li>
+            <NavLink to="/reminders">Reminder Site</NavLink>
           </li>
         </section>
       </div>

@@ -1,24 +1,25 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import LoginPage from "./pages/LoginPage"
-import SignUpPage from "./pages/SignUpPage"
-import WelcomePage from "./pages/WelcomePage"
-import RemindersPage from "./pages/RemindersPage"
-import HomePage from "./pages/HomePage"
-import YogaDetailPage from "./pages/YogaDetailPage"
-import MeditationDetailPage from "./pages/MeditationDetailPage"
-import YogaPage from "./pages/YogaPage"
-import YogaMantra from "./pages/YogaMantra"
-import YogaPiano from "./pages/YogaPiano"
-import YogaBinaural from "./pages/YogaBinaural"
-import YogaVideo from "./pages/YogaVideo"
-import MeditationsPage from "./pages/MeditationsPage"
-import MusicPage from "./pages/MusicPage"
-import ProfilePage from "./pages/ProfilePage"
-import Layout from "./components/Layout"
-import { UserContextProvider } from "./context/userContext"
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
+import SignUpPage from "./pages/SignUpPage";
+import WelcomePage from "./pages/WelcomePage";
+import RemindersPage from "./pages/RemindersPage";
+import HomePage from "./pages/HomePage";
+import YogaDetailPage from "./pages/YogaDetailPage";
+import MeditationDetailPage from "./pages/MeditationDetailPage";
+import YogaPage from "./pages/YogaPage";
+import YogaMantra from "./pages/YogaMantra";
+import YogaPiano from "./pages/YogaPiano";
+import YogaBinaural from "./pages/YogaBinaural";
+import YogaVideo from "./pages/YogaVideo";
+import MeditationsPage from "./pages/MeditationsPage";
+import MusicPage from "./pages/MusicPage";
+import ProfilePage from "./pages/ProfilePage";
+import Layout from "./components/Layout";
+import FirstPage from "./pages/FirstPage";
+import { UserContextProvider } from "./context/userContext";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-const client = new QueryClient()
+const client = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -85,6 +86,10 @@ const router = createBrowserRouter([
         path: "/yogavideo",
         element: <YogaVideo />,
       },
+      {
+        path: "/firstpage",
+        element: <FirstPage />,
+      },
     ],
   },
 ]);
@@ -93,9 +98,9 @@ export default function App() {
   return (
     <div>
       <QueryClientProvider client={client}>
-      <UserContextProvider>
-      <RouterProvider router={router}/>
-      </UserContextProvider>
+        <UserContextProvider>
+          <RouterProvider router={router} />
+        </UserContextProvider>
       </QueryClientProvider>
     </div>
   );
