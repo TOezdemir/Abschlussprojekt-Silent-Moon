@@ -13,28 +13,28 @@ export type Database = {
         Row: {
           created_at: string
           id: string
-          mediation_id: string
+          meditation_id: string | null
           user_id: string
-          yoga_id: string
+          yoga_id: string | null
         }
         Insert: {
           created_at?: string
           id?: string
-          mediation_id: string
+          meditation_id?: string | null
           user_id?: string
-          yoga_id: string
+          yoga_id?: string | null
         }
         Update: {
           created_at?: string
           id?: string
-          mediation_id?: string
+          meditation_id?: string | null
           user_id?: string
-          yoga_id?: string
+          yoga_id?: string | null
         }
         Relationships: [
           {
             foreignKeyName: "favorites_mediation_id_fkey"
-            columns: ["mediation_id"]
+            columns: ["meditation_id"]
             isOneToOne: false
             referencedRelation: "meditation"
             referencedColumns: ["id"]
@@ -126,18 +126,21 @@ export type Database = {
           description: string | null
           id: string
           name: string
+          url: string | null
         }
         Insert: {
           created_at?: string
           description?: string | null
           id?: string
           name: string
+          url?: string | null
         }
         Update: {
           created_at?: string
           description?: string | null
           id?: string
           name?: string
+          url?: string | null
         }
         Relationships: []
       }
@@ -147,18 +150,21 @@ export type Database = {
           description: string | null
           id: string
           name: string
+          url: string | null
         }
         Insert: {
           created_at?: string
           description?: string | null
           id?: string
           name: string
+          url?: string | null
         }
         Update: {
           created_at?: string
           description?: string | null
           id?: string
           name?: string
+          url?: string | null
         }
         Relationships: []
       }
@@ -168,18 +174,45 @@ export type Database = {
           description: string | null
           id: string
           name: string
+          url: string | null
         }
         Insert: {
           created_at?: string
           description?: string | null
           id?: string
           name: string
+          url?: string | null
         }
         Update: {
           created_at?: string
           description?: string | null
           id?: string
           name?: string
+          url?: string | null
+        }
+        Relationships: []
+      }
+      meditation_videos: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          url: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          url?: string
         }
         Relationships: []
       }
@@ -272,18 +305,21 @@ export type Database = {
           description: string | null
           id: string
           name: string
+          url: string | null
         }
         Insert: {
           created_at?: string
           description?: string | null
           id?: string
           name: string
+          url?: string | null
         }
         Update: {
           created_at?: string
           description?: string | null
           id?: string
           name?: string
+          url?: string | null
         }
         Relationships: []
       }
@@ -293,18 +329,21 @@ export type Database = {
           description: string | null
           id: string
           name: string
+          url: string | null
         }
         Insert: {
           created_at?: string
           description?: string | null
           id?: string
           name: string
+          url?: string | null
         }
         Update: {
           created_at?: string
           description?: string | null
           id?: string
           name?: string
+          url?: string | null
         }
         Relationships: []
       }
@@ -314,18 +353,45 @@ export type Database = {
           description: string | null
           id: string
           name: string
+          url: string | null
         }
         Insert: {
           created_at?: string
           description?: string | null
           id?: string
           name: string
+          url?: string | null
         }
         Update: {
           created_at?: string
           description?: string | null
           id?: string
           name?: string
+          url?: string | null
+        }
+        Relationships: []
+      }
+      yoga_videos: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          url: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          url?: string
         }
         Relationships: []
       }
