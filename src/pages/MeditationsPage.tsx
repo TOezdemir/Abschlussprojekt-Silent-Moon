@@ -79,17 +79,20 @@ export default function MeditationsPage(){
             </form>
             
             {meditation.map((e) =>(
+                <div>
              <Link to={`/yoga/${slugify(e.name, {lower: true})}/${e.id}`}>   
                 <div key={e.id}>
                     <h2>{e.name}</h2>
                     <p>{e.meditation_categories?.name}</p>
                     <p>{e.description}</p>
                     <p>{e.duration}</p>
-                    <button onClick={() => handleFavoriteClick(e.id)}>
+                    
+                </div>
+            </Link>
+                <button onClick={() => handleFavoriteClick(e.id)}>
                         {e.favorites.some((f) => f.id === e.id) ? "❤️" : "♡"}
                     </button>
                 </div>
-            </Link>
             ))}
             
 
