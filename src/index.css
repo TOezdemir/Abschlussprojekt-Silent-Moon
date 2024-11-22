@@ -20,6 +20,21 @@ body {
   background-repeat: no-repeat; */
 }
 
+.default-btn {
+  background-color: #73ba86;
+  color: white;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 1em;
+  width: 100%;
+}
+
+.default-btn:hover {
+  background-color: #439457;
+}
+
 .test-links {
   display: flex;
   flex-direction: column;
@@ -90,6 +105,62 @@ body {
   font-size: small;
 }
 
+.first-page p {
+  margin-top: 1em;
+}
+.first-page span {
+  font-weight: bold;
+}
+
+.fp-headline {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: small;
+  margin-top: 15em;
+}
+
+.fp-headline p {
+  margin-top: 1em;
+}
+
+.fp-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.fp-signup-btn {
+  background-color: #73ba86;
+  color: white;
+  padding: 10px 30px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 5em;
+  width: 100%;
+}
+
+.fp-signup-btn:hover {
+  background-color: #439457;
+}
+
+.fp-guest-btn {
+  background-color: #73ba86;
+  color: white;
+  padding: 10px 30px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 0.1em;
+}
+
+.fp-guest-btn:hover {
+  background-color: #439457;
+}
+
 /* Login Page css */
 
 .login {
@@ -97,40 +168,29 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1em;
   font-size: small;
+  text-align: center;
 }
 
 .login span {
   font-weight: bold;
 }
-
-.login-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1em;
+.login p {
+  margin-top: 1em;
 }
 
-.login-form input {
+.login-form {
+  margin-top: 1em;
+}
+
+.input {
   width: 100%;
   padding: 12px 20px;
-  margin: 8px 0;
+  margin: 0.5em 0;
   display: inline-block;
   border-radius: 5px;
   border: 1px solid #ccc;
   box-sizing: border-box;
-}
-
-.login-btn {
-  background-color: #73ba86;
-  color: white;
-  padding: 14px 30px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 /*signup page css */
@@ -160,21 +220,11 @@ body {
   box-sizing: border-box;
 }
 
-.signup-btn {
-  background-color: #73ba86;
-  color: white;
-  padding: 14px 30px;
-  margin: 2rem 0 0 0;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.signup-btn:hover {
-  background-color: #b9ddc2;
-}
-
 /* Welcome Page css */
+
+.welcome button {
+  margin-top: 30em;
+}
 
 .welcome-btn {
   background-color: #73ba86;
@@ -188,65 +238,57 @@ body {
 
 /*Reminder Page css */
 
-.choose-time {
-  background-color: #73ba86;
+.reminder {
+  padding: 1em;
+  font-size: small;
+}
+
+.r-headline p {
+  margin-top: 1em;
+}
+
+.r-headline {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: small;
+}
+
+.time {
+  margin: 1em 0;
+  padding: 3em 5em;
   border-radius: 10px;
+  background-color: #73ba86;
   color: white;
-  padding: 5em;
+}
+
+.choose-days div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em;
+  font-size: small;
+  background-color: #73ba86;
+  border-radius: 100%;
+  margin: 1em 0;
+  width: 3em;
+  height: 3em;
+  box-shadow: 0px 0px 10px 0px #73ba86;
+}
+
+.choose-days div:hover {
+  background-color: #439457;
 }
 
 .choose-days button {
-  background-color: #73ba86;
-
   color: white;
   border: none;
-  border-radius: 100px;
-  padding: 10px 20px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
+  font-size: small;
   cursor: pointer;
-}
-
-.choose-days button:hover {
-  background-color: #b9ddc2;
-}
-
-.btn-style {
-  background-color: #000000;
-  border-radius: 50px;
-  border-style: none;
-  box-sizing: border-box;
-  color: #ffffff;
-  cursor: pointer;
-  display: inline-block;
-  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial,
-    sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  height: 40px;
-  line-height: 20px;
-  list-style: none;
-  margin: 0;
-  outline: none;
-  padding: 10px 16px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  transition: color 100ms;
-  vertical-align: baseline;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.btn-style:hover,
-.btn-style:focus {
-  background-color: white;
-  color: black;
-  border: black solid 1px;
+  background: none;
 }
 
 .no-thanks {
@@ -255,11 +297,12 @@ body {
   border: none;
   color: black;
   cursor: pointer;
+  text-align: center;
 }
 
 .no-thanks:hover {
-  text-decoration: rgb(88, 144, 23);
-  color: rgb(88, 144, 23);
+  text-decoration: #439457;
+  color: #439457;
 }
 
 /* Allgemeines Styling für die Navbar */

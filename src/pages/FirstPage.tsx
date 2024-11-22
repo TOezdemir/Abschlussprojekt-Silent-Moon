@@ -3,24 +3,26 @@ import { Link } from "react-router-dom";
 function FirstPage() {
   return (
     <div className="first-page">
-      <div>
+      <div className="fp-headline">
         <h1>We are what we do</h1>
+        <p>
+          Thousands of people are using zen for meditation and yoga classes.
+        </p>
       </div>
-      <p>
-        Thousand of people are using silent moon for meditation and yoga
-        classes.
-      </p>
-
-      <button>SIGN UP</button>
+      <div className="fp-btn">
+        <Link to="/signup">
+          <button className="fp-signup-btn">SIGN UP</button>
+        </Link>
+        <Link to="/welcome">
+          <button className="fp-guest-btn">LOGIN FOR GUESTS</button>
+        </Link>
+      </div>
       <p>
         Already have an account?{" "}
         <span>
-          <Link to="/signup">Login</Link>
+          <Link to="/login">Login</Link>
         </span>
       </p>
-      <Link to="/welcome">
-        <button className="welcome-btn">LOGIN FOR GUESTS</button>
-      </Link>
     </div>
   );
 }
