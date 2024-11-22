@@ -68,86 +68,111 @@
 
 
 
-
-
-
-
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
-import { Link } from "react-router-dom";
-import slugify from "slugify";
 import ReactPlayer from "react-player";
 
 type YogaVideo = {
-  id: string; 
-  name: string; 
+  id: string;
+  name: string;
   description: string | null;
-  url: string; 
+  url: string;
 };
 
 export default function YogaVideos() {
   const [yogaVideos, setYogaVideos] = useState<YogaVideo[]>([]);
+  const [selectedVideo, setSelectedVideo] = useState<YogaVideo | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  
+  // Abrufen der Yoga-Videos
   const getYogaVideos = async () => {
     try {
-      const { data, error } = await supabase
-        .from("yoga_videos") 
-        .select("*"); 
-
-      if (error) {
-        throw new Error(error.message);
-      }
-
-      setYogaVideos(data || []); 
+      const { data, error } = await supabase.from("yoga_videos").select("*");
+      if (error) throw new Error(error.message);
+      setYogaVideos(data || []);
     } catch (err) {
-      setError("Fehler");
+      setError("Fehler beim Abrufen der Yoga-Videos.");
     } finally {
       setLoading(false);
     }
   };
 
- 
   useEffect(() => {
     getYogaVideos();
   }, []);
 
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-
-  if (error) {
-    return <div>{error}</div>;
-  }
-
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
-    <div>
-      <h1>Yoga Videos</h1>
-      {yogaVideos.map((video) => (
-        <div key={video.id}>
-          <Link to={`/yoga-video/${slugify(video.name, { lower: true })}/${video.id}`}>
-            <h2>{video.name}</h2>
-            <p>{video.description}</p>
-            {video.url && (
-              <div>
-                <ReactPlayer url={video.url} controls width="100%" height="auto" />
+    <div className="layout">
+      <div className="phone-frame">
+        <div className="screen">
+          <h1>Yoga Videos</h1>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
+            {yogaVideos.map((video) => (
+              <div
+                key={video.id}
+                style={{
+                  border: "1px solid #ccc",
+                  borderRadius: "8px",
+                  padding: "16px",
+                  maxWidth: "200px",
+                  cursor: "pointer",
+                  textAlign: "center",
+                }}
+                onClick={() => setSelectedVideo(video)}
+              >
+                <h3>{video.name}</h3>
+                <p style={{ fontSize: "14px", color: "#666" }}>
+                  {video.description || "Keine Beschreibung"}
+                </p>
               </div>
-            )}
-          </Link>
+            ))}
+          </div>
+
+          {/* Modal für Popup-Video */}
+          {selectedVideo && (
+            <div
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                backgroundColor: "#fff",
+                padding: "16px",
+                borderRadius: "12px",
+                width: "90%",
+                maxWidth: "400px",
+                boxShadow: "0 4px 10px rgba(0, 0, 0, 0.3)",
+              }}
+            >
+              <h2>{selectedVideo.name}</h2>
+              <ReactPlayer
+                url={selectedVideo.url}
+                controls
+                width="100%"
+                height="200px"
+              />
+              <button
+                style={{
+                  marginTop: "16px",
+                  padding: "8px 16px",
+                  backgroundColor: "#f00",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                }}
+                onClick={() => setSelectedVideo(null)}
+              >
+                Schließen
+              </button>
+            </div>
+          )}
         </div>
-      ))}
+      </div>
     </div>
   );
 }
-
-
-
-
-
-
-
