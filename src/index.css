@@ -262,6 +262,17 @@ body {
   color: rgb(88, 144, 23);
 }
 
+/* Home Page css */
+
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  font-size: small;
+}
+
 /* Allgemeines Styling für die Navbar */
 ul {
   list-style: none;
