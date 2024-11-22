@@ -7,10 +7,10 @@ import HomePage from "./pages/HomePage";
 import YogaDetailPage from "./pages/YogaDetailPage";
 import MeditationDetailPage from "./pages/MeditationDetailPage";
 import YogaPage from "./pages/YogaPage";
-import YogaMantra from "./pages/YogaMantra";
-import YogaPiano from "./pages/YogaPiano";
-import YogaBinaural from "./pages/YogaBinaural";
-import YogaVideo from "./pages/YogaVideo";
+import YogaMantra from "./toBeRevisited/YogaMantra";
+import YogaPiano from "./toBeRevisited/YogaPiano";
+import YogaBinaural from "./toBeRevisited/YogaBinaural";
+import YogaVideo from "./toBeRevisited/YogaVideo";
 import MeditationsPage from "./pages/MeditationsPage";
 import MusicPage from "./pages/MusicPage";
 import ProfilePage from "./pages/ProfilePage";
@@ -48,11 +48,34 @@ const router = createBrowserRouter([
       },
       {
         path: "/yoga/:name/:id",
-        element: <YogaDetailPage />,
+        element: <YogaDetailPage yoga={{
+          category_id: null,
+          created_at: "",
+          description: "",
+          difficulty: "",
+          duration: null,
+          id: "",
+          image_url: null,
+          name: "",
+          video_url: null,
+          favorites: [],
+          profiles: null
+        }} />,
       },
       {
         path: "/meditation/:name/:id",
-        element: <MeditationDetailPage />,
+        element: <MeditationDetailPage meditation={{
+          audio_url: null,
+          category_id: null,
+          created_at: "",
+          description: "",
+          duration: null,
+          id: "",
+          image_url: null,
+          name: "",
+          video_url: null,
+          meditation_categories: null
+        }} />,
       },
       {
         path: "/yoga",
