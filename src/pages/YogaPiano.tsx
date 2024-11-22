@@ -1,62 +1,68 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { supabase } from "../lib/supabaseClient";
 import { Link } from "react-router-dom";
 import slugify from "slugify";
 import ReactPlayer from "react-player";
+import './YogaPiano.css';
 
-type YogaCategoryPiano = {
-  id: number;
+type YogaPiano = {
+  id: string;
   name: string;
-  description: string;
   url: string | null;
+  thumbnail: string | null;
 };
 
-export default function YogaCategoryPiano() {
-  const [yogaCategoryPiano, setYogaCategoryPiano] = useState<YogaCategoryPiano[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+const fetchYogaPiano = async (): Promise<YogaPiano[]> => {
+  const { data, error } = await supabase
+    .from("yoga_category_piano")
+    .select("*");
 
-  const getYogaCategoryPiano = async () => {
-    try {
-      const { data, error } = await supabase
-        .from("yoga_category_piano")
-        .select("*");
+  if (error) {
+    throw new Error(error.message);
+  }
 
-      if (error) {
-        throw new Error(error.message);
-      }
+  return data
+};
 
-      setYogaCategoryPiano(data);
-    } catch (err) {
-      setError("Fehler");
-    } finally {
-      setLoading(false);
-    }
-  };
+export default function YogaPiano() {
+  const { data: yogaPiano, isLoading, isError, error } = useQuery<YogaPiano[]>({
+    queryKey: ["yogaPiano"],
+    queryFn: fetchYogaPiano,
+  });
 
-  useEffect(() => {
-    getYogaCategoryPiano();
-  }, []);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error: {error instanceof Error ? error.message : 'Unknown error'}</div>;
+  }
 
   return (
     <div>
       <h1>Yoga Piano Tracks</h1>
-
-      <div>
-        {yogaCategoryPiano.map((category) => (
-          <div key={category.id}>
-            <Link to={`/yoga/${slugify(category.name, { lower: true })}/${category.id}`}>
-              <h2>{category.name}</h2>
-              <p>{category.description}</p>
+      <div className="music-list">
+        {yogaPiano?.map((category) => (
+          <div key={category.id} className="music-item">
+            <Link
+              to={`/yoga/${slugify(category.name, { lower: true })}/${category.id}`}
+              className="music-link"
+            >
+              <h2 className="music-title">{category.name}</h2>
+              {category.thumbnail && (
+                <img
+                  src={category.thumbnail}
+                  alt={category.name}
+                  className="music-thumbnail"
+                />
+              )}
               {category.url && (
-                <div>
-                  <h3>MP3-Datei:</h3>
-                  <ReactPlayer 
-                    url={category.url} 
-                    controls={true} 
-                    width="100%" 
-                    height="30px" 
-                    playing={false} 
+                <div className="music-player">
+                  <ReactPlayer
+                    url={category.url}
+                    controls={true}
+                    width="100%"
+                    height="60px"
                   />
                 </div>
               )}
