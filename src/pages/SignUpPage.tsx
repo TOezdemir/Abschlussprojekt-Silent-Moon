@@ -74,7 +74,7 @@ export default function RegistrationPage() {
           onChange={(e) => setLastname(e.target.value)}
         />
       </form>
-      <button className="signup-btn" type="submit">
+      <button className="default-btn" type="submit">
         REGISTER
       </button>
 
