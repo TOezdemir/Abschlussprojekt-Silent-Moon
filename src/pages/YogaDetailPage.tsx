@@ -2,27 +2,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { supabase } from "../lib/supabaseClient"
 import { Link, useParams } from "react-router-dom"
 
-interface YogaDetailProps {
-    yoga: {
-        category_id: string | null;
-        created_at: string;
-        description: string;
-        difficulty: string;
-        duration: number | null;
-        id: string;
-        image_url: string | null;
-        name: string;
-        video_url: string | null;
-        favorites: {id: number}[]
-        profiles: {
-            id: string
-            first_name: string
-        }   | null
-    }
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default function YogaDetailPage({yoga}: YogaDetailProps){
+export default function YogaDetailPage(){
     const { id } = useParams()
 
     const queryClient = useQueryClient()
@@ -64,9 +44,7 @@ export default function YogaDetailPage({yoga}: YogaDetailProps){
         }
         if(yogaPose.favorites.length > 0){
             await supabase.from("favorites").delete().eq("yoga_id", id)
-            // await supabase.from("favorites").insert({yoga_id: id})
         } else {
-            // await supabase.from("favorites").delete().eq("yoga_id", id)
             await supabase.from("favorites").insert({yoga_id: id})
         }
         queryClient.invalidateQueries({queryKey: ["supabase", "yoga"]})

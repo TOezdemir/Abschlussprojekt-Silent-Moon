@@ -48,34 +48,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/yoga/:name/:id",
-        element: <YogaDetailPage yoga={{
-          category_id: null,
-          created_at: "",
-          description: "",
-          difficulty: "",
-          duration: null,
-          id: "",
-          image_url: null,
-          name: "",
-          video_url: null,
-          favorites: [],
-          profiles: null
-        }} />,
+        element: <YogaDetailPage/>,
       },
       {
         path: "/meditation/:name/:id",
-        element: <MeditationDetailPage meditation={{
-          audio_url: null,
-          category_id: null,
-          created_at: "",
-          description: "",
-          duration: null,
-          id: "",
-          image_url: null,
-          name: "",
-          video_url: null,
-          meditation_categories: null
-        }} />,
+        element: <MeditationDetailPage/>,
       },
       {
         path: "/yoga",
