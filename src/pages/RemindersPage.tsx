@@ -7,13 +7,14 @@ export default function RemindersPage() {
         <div className="r-headline">
           <h2>What time would you like to meditate ?</h2>
           <p>
-            Any time you can choose but We recommend first thing in the morning.
+            We recommend to start your lessons <br />
+            in the morning.
           </p>
         </div>
         <div className="time"> Hier kommt der Time Selector hin</div>
         <div className="r-headline">
           <h2>Which day would you like to meditate?</h2>
-          <p>Everyday is best, but we recommend picking at least five.</p>
+          <p>We recommend to start with 3 days a week.</p>
         </div>
         <div className="choose-days">
           <div>

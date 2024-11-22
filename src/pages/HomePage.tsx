@@ -166,9 +166,14 @@ export default function HomePage() {
       </section>
       <section className="searchbar">
         <form onSubmit={handleSearch}>
-          <input ref={inputRef} type="text" />
-          {searchText && <button onClick={handleReset}>X</button>}
-          <button>Suche</button>
+          <div className="search-container">
+            <img
+              src="/src/assets/img/ph--flower-lotus-bold.svg"
+              alt="search-icon"
+            />
+            <input ref={inputRef} type="text" placeholder="Zen Search" />
+            {searchText && <button onClick={handleReset}>X</button>}
+          </div>
         </form>
       </section>
       <section className="yoga-section">
