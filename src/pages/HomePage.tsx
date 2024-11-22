@@ -14,13 +14,12 @@ export default function HomePage() {
   const inputRef = useRef<ElementRef<"input">>(null)
 
   const highlightYogaQuery = useQuery({
-    queryKey: ["supabase", "yoga", searchText],
+    queryKey: ["supabase", "yoga", "highlights"],
     queryFn: async () =>{
       const result = await supabase
       .from("yoga")
       .select("*")
       .limit(1)
-      .ilike("name", `%${searchText}%`)
 
         if(result.error){
           throw result.error
@@ -30,7 +29,7 @@ export default function HomePage() {
   })
 
   const highlightMeditationQuery = useQuery({
-    queryKey: ["supabase", "meditation", searchText],
+    queryKey: ["supabase", "meditation", "highlights"],
     queryFn: async () =>{
       const result = await supabase
       .from("meditation")
@@ -39,7 +38,6 @@ export default function HomePage() {
         meditation_categories(
         name)`)
       .limit(1)
-      .ilike("name", `%${searchText}%`)
 
         if(result.error){
           throw result.error
@@ -83,25 +81,25 @@ export default function HomePage() {
       return "...loading Yoga"
   }
   if(highlightYogaQuery.isError || !highlightYogaQuery.data){
-    return "...cant fetch Yoga data!"
+    return "...can't fetch Yoga data!"
   }
   if(highlightMeditationQuery.isPending){
       return "...loading Meditation"
   }
   if(highlightMeditationQuery.isError || !highlightMeditationQuery.data){
-      return "...cant fetch Meditation!"
+      return "...can't fetch Meditation!"
   }
   if(allYogaQuery.isPending){
     return "...loading Yoga"
   }
   if(allYogaQuery.isError || !allYogaQuery.data){
-    return "...cant fetch Yoga data!"
+    return "...can't fetch Yoga data!"
   }
   if(allMeditationQuery.isPending){
     return "...loading Meditation"
   }
   if(allMeditationQuery.isError || !allMeditationQuery.data){
-    return "...cant fetch Meditation!"
+    return "...can't fetch Meditation!"
   }
   
 
@@ -136,7 +134,7 @@ export default function HomePage() {
         {highlightYogaPoses.map((yoga) =>(
           <Link key={yoga.id} to={`/yoga/${slugify(yoga.name, { lower: true })}/${yoga.id}`}>
             <div>
-              <img src="" alt="yoga_bgimage" />
+              <img src={yoga.image_url!} alt="yoga_bgimage" />
               <h2>{yoga.name}</h2>
               <p>{yoga.difficulty}</p>
               <p>{yoga.duration}</p>
@@ -148,7 +146,7 @@ export default function HomePage() {
         {highlightMeditations.map((meditation) =>(
           <Link key={meditation.id} to={`/meditation/${slugify(meditation.name, { lower: true })}/${meditation.id}`}>
             <div>
-              <img src="" alt="meditation_bgimage" />
+              <img src={meditation.image_url!} alt="meditation_bgimage" />
               <h2>{meditation.name}</h2>
               <p>{meditation.meditation_categories?.name}</p>
               <p>{meditation.duration}</p>
@@ -169,7 +167,7 @@ export default function HomePage() {
         {allYogaPoses.map((allYoga) =>(
           <Link key={allYoga.id} to={`/yoga/${slugify(allYoga.name, { lower: true })}/${allYoga.id}`}>
             <div>
-              <img src="" alt="yoga_bgimage" />
+              <img src={allYoga.image_url!} alt="yoga_bgimage" />
               <h2>{allYoga.name}</h2>
               <p>{allYoga.difficulty}</p>
               <p>{allYoga.duration}</p>
@@ -184,7 +182,7 @@ export default function HomePage() {
         {allMeditations.map((allMeditation) =>(
           <Link key={allMeditation.id} to={`/meditation/${slugify(allMeditation.name, { lower: true })}/${allMeditation.id}`}>
             <div>
-              <img src="" alt="meditation_bgimage" />
+              <img src={allMeditation.image_url!} alt="meditation_bgimage" />
               <h2>{allMeditation.name}</h2>
               <p>{allMeditation.meditation_categories?.name}</p>
               <p>{allMeditation.duration}</p>
