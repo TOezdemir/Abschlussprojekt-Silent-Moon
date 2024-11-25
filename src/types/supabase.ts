@@ -57,35 +57,35 @@ export type Database = {
       }
       meditation: {
         Row: {
-          audio_url: string | null
+          audio_url: string
           category_id: string | null
           created_at: string
           description: string
-          duration: number | null
+          duration: string
           id: string
-          image_url: string | null
+          image_url: string
           name: string
           video_url: string | null
         }
         Insert: {
-          audio_url?: string | null
+          audio_url: string
           category_id?: string | null
           created_at?: string
           description: string
-          duration?: number | null
+          duration: string
           id?: string
-          image_url?: string | null
+          image_url: string
           name: string
           video_url?: string | null
         }
         Update: {
-          audio_url?: string | null
+          audio_url?: string
           category_id?: string | null
           created_at?: string
           description?: string
-          duration?: number | null
+          duration?: string
           id?: string
-          image_url?: string | null
+          image_url?: string
           name?: string
           video_url?: string | null
         }
@@ -117,87 +117,6 @@ export type Database = {
           description?: string | null
           id?: string
           name?: string
-        }
-        Relationships: []
-      }
-      meditation_category_english: {
-        Row: {
-          created_at: string
-          description: string | null
-          id: string
-          name: string
-          thumbnail: string | null
-          url: string | null
-        }
-        Insert: {
-          created_at?: string
-          description?: string | null
-          id?: string
-          name: string
-          thumbnail?: string | null
-          url?: string | null
-        }
-        Update: {
-          created_at?: string
-          description?: string | null
-          id?: string
-          name?: string
-          thumbnail?: string | null
-          url?: string | null
-        }
-        Relationships: []
-      }
-      meditation_category_german: {
-        Row: {
-          created_at: string
-          description: string | null
-          id: string
-          name: string
-          thumbnail: string | null
-          url: string | null
-        }
-        Insert: {
-          created_at?: string
-          description?: string | null
-          id?: string
-          name: string
-          thumbnail?: string | null
-          url?: string | null
-        }
-        Update: {
-          created_at?: string
-          description?: string | null
-          id?: string
-          name?: string
-          thumbnail?: string | null
-          url?: string | null
-        }
-        Relationships: []
-      }
-      meditation_category_nature: {
-        Row: {
-          created_at: string
-          description: string | null
-          id: string
-          name: string
-          thumbnail: string | null
-          url: string | null
-        }
-        Insert: {
-          created_at?: string
-          description?: string | null
-          id?: string
-          name: string
-          thumbnail?: string | null
-          url?: string | null
-        }
-        Update: {
-          created_at?: string
-          description?: string | null
-          id?: string
-          name?: string
-          thumbnail?: string | null
-          url?: string | null
         }
         Relationships: []
       }
