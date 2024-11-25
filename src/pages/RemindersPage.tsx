@@ -41,7 +41,7 @@ export default function RemindersPage() {
             <button>S</button>
           </div>
         </div>
-        <div>
+        <div className="save">
           <button className="default-btn">SAVE</button>
         </div>
         <div className="no-thanks">

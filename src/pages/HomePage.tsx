@@ -4,7 +4,6 @@ import { ElementRef, useRef, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 import slugify from "slugify";
 import { Link } from "react-router-dom";
-import Cards from "../components/Cards";
 // import RecommendedYoga from "../components/RecommendedYoga";
 // import RecommendedMeditation from "../components/RecommendedMeditation";
 
@@ -167,10 +166,6 @@ export default function HomePage() {
       <section className="searchbar">
         <form onSubmit={handleSearch}>
           <div className="search-container">
-            <img
-              src="/src/assets/img/ph--flower-lotus-bold.svg"
-              alt="search-icon"
-            />
             <input ref={inputRef} type="text" placeholder="Zen Search" />
             {searchText && <button onClick={handleReset}>X</button>}
           </div>
@@ -235,7 +230,6 @@ export default function HomePage() {
           <Link to="/reminders">Reminder Site</Link>{" "}
         </li>{" "}
       </section>
-      <Cards />
     </div>
   );
 }

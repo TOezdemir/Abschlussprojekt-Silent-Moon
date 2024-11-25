@@ -44,9 +44,7 @@ body {
 
 .searchbar {
   text-align: center;
-  margin-top: 50px;
-  /* margin: 2rem auto;
-  max-width: 100%; */
+  margin-top: 1em;
 }
 
 /* Stil für das Input-Feld */
@@ -182,7 +180,7 @@ body {
   flex-direction: column;
   text-align: center;
   font-size: small;
-  margin-top: 15em;
+  margin-top: 0;
 }
 
 .fp-headline p {
@@ -203,7 +201,7 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 5em;
+  margin-top: 3em;
   width: 100%;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }
@@ -237,14 +235,6 @@ body {
   align-items: center;
   font-size: small;
   text-align: center;
-  /* background-image: url("src/assets/img/namaste.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 400px;
-  height: 800px;
-  max-width: 100%;
-  max-height: 100%; */
 }
 
 .login span {
@@ -299,7 +289,7 @@ body {
 /* Welcome Page css */
 
 .welcome button {
-  margin-top: 30em;
+  margin-top: 3em;
 }
 
 .welcome-btn {
@@ -312,10 +302,14 @@ body {
   cursor: pointer;
 }
 
+.welcome img {
+  width: 100%;
+  margin-top: 1em;
+}
 /*Reminder Page css */
 
 .r-headline p {
-  margin-top: 1em;
+  margin-top: 0.5em;
 }
 
 .r-headline {
@@ -372,6 +366,10 @@ body {
   cursor: pointer;
 }
 
+.save {
+  margin-top: 1em;
+}
+
 .choose-days button {
   color: #ffffff;
   border: none;
@@ -400,6 +398,26 @@ body {
 
 .no-thanks button:hover {
   text-decoration: underline;
+}
+
+/* Home Page css */
+
+.home-headline h2 {
+  margin-bottom: 1em;
+}
+
+.home-headline p {
+  margin-bottom: 1em;
+}
+
+.yoga-section h4 {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.meditation-section h4 {
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 /* Allgemeines Styling für die Navbar */
