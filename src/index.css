@@ -7,21 +7,22 @@
 
 body {
   font-family: Arial, sans-serif;
-  color: #000000;
-  background-color: #e0dde7;
+  color: #ffffff;
+  background-color: #7e7e7e;
   overflow: hidden; /* Deaktiviert Scrollen für die gesamte Seite */
   height: 100vh; /* Vollbildhöhe */
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-image: url("https://images.pexels.com/photos/1242348/pexels-photo-1242348.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat; */
+  background-color: #a1dfb1;
 }
 
+/* default styling */
+
+/*!Buttons*/
+
 .default-btn {
-  background-color: #73ba86;
+  background-color: #ff8800;
   color: white;
   padding: 14px 30px;
   border: none;
@@ -29,11 +30,67 @@ body {
   cursor: pointer;
   margin-top: 1em;
   width: 100%;
+  transition: color 0.3s ease;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }
 
 .default-btn:hover {
+  background-color: #ff8800;
+}
+
+/*!Searchbar*/
+
+/* Container für die Searchbar */
+
+.searchbar {
+  text-align: center;
+  margin-top: 1em;
+}
+
+/* Stil für das Input-Feld */
+.searchbar input {
+  width: 100%;
+  padding: 0.5rem 0.5rem;
+  font-size: small;
+  border: 1px solid #73ba86;
+  box-shadow: 0 0 8px rgba(129, 206, 151, 0.3);
+  border-radius: 5px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+/* Button zum Reset (X) */
+.searchbar button:first-child {
+  background-color: transparent;
+  border: none;
+  color: #888;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.searchbar button:first-child:hover {
+  color: #73ba86;
+}
+
+/* Button zum Absenden (Suche) */
+.searchbar button:last-child {
+  background-color: #73ba86;
+  color: white;
+  border: none;
+  padding: 1rem 1rem;
+  border-radius: 5px;
+  font-size: small;
+  cursor: pointer;
+  margin-left: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.searchbar button:last-child:hover {
   background-color: #439457;
 }
+
+/*!Testlinks*/
 
 .test-links {
   display: flex;
@@ -42,6 +99,8 @@ body {
   align-items: left;
   margin-top: 1em;
 }
+
+/*!Logo*/
 
 .logo {
   letter-spacing: 5px;
@@ -53,12 +112,17 @@ body {
   width: 400px; /* Breite des Rahmens, z.B. iPhone */
   height: 800px; /* Höhe des Rahmens */
   margin: 0 auto; /* Zentriere den Rahmen */
-  border: 6px solid #000; /* Rahmen */
-  border-radius: 30px; /* Abgerundete Ecken */
-  background-color: #fff; /* Hintergrundfarbe des "Screens" */
+  border: 7px solid #000; /* Rahmen */
+  border-radius: 55px; /* Abgerundete Ecken */
   overflow: hidden; /* Inhalt, der aus dem Rahmen herausragt, ausblenden */
   position: relative; /* Wichtiger Bezugspunkt für Positionierung */
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  background-image: url("src/assets/img/namaste.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 /* Layout mit Grid */
@@ -76,8 +140,8 @@ body {
 /* Header */
 .header {
   grid-area: header;
-  color: rgb(0, 0, 0);
-  background-color: #ffffff;
+  color: rgb(255, 255, 255);
+  background-color: none;
   padding: 1rem;
   text-align: center;
   font-size: 0.5rem;
@@ -86,12 +150,11 @@ body {
 /* Main Content */
 .content {
   grid-area: content;
-  padding: 4rem;
-  background-color: #ffffff;
+  padding: 3rem;
+  background-color: none;
   overflow-y: auto;
   align-items: center;
   overflow-y: auto; /* Scrollen innerhalb des Phone-Frames aktivieren */
-  height: fit-content;
 }
 
 /* First Page css */
@@ -117,7 +180,7 @@ body {
   flex-direction: column;
   text-align: center;
   font-size: small;
-  margin-top: 15em;
+  margin-top: 0;
 }
 
 .fp-headline p {
@@ -131,23 +194,24 @@ body {
 }
 
 .fp-signup-btn {
-  background-color: #73ba86;
+  background-color: #ff8800;
   color: white;
   padding: 10px 30px;
   margin: 8px 0;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 5em;
+  margin-top: 3em;
   width: 100%;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }
 
 .fp-signup-btn:hover {
-  background-color: #439457;
+  background-color: #ffb330;
 }
 
 .fp-guest-btn {
-  background-color: #73ba86;
+  background-color: #ff8800;
   color: white;
   padding: 10px 30px;
   margin: 8px 0;
@@ -155,10 +219,11 @@ body {
   border-radius: 5px;
   cursor: pointer;
   margin-top: 0.1em;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }
 
 .fp-guest-btn:hover {
-  background-color: #439457;
+  background-color: #ffb330;
 }
 
 /* Login Page css */
@@ -218,12 +283,13 @@ body {
   border-radius: 5px;
   border: 1px solid #ccc;
   box-sizing: border-box;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }
 
 /* Welcome Page css */
 
 .welcome button {
-  margin-top: 30em;
+  margin-top: 3em;
 }
 
 .welcome-btn {
@@ -236,15 +302,14 @@ body {
   cursor: pointer;
 }
 
+.welcome img {
+  width: 100%;
+  margin-top: 1em;
+}
 /*Reminder Page css */
 
-.reminder {
-  padding: 1em;
-  font-size: small;
-}
-
 .r-headline p {
-  margin-top: 1em;
+  margin-top: 0.5em;
 }
 
 .r-headline {
@@ -254,12 +319,31 @@ body {
   font-size: small;
 }
 
+.r-headline h2 {
+  color: #ff8800;
+  width: 100%;
+}
+
 .time {
   margin: 1em 0;
   padding: 3em 5em;
+  background-color: #15775b5c;
+  border: 1px solid #15775b;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
   border-radius: 10px;
-  background-color: #73ba86;
   color: white;
+}
+
+.choose-days {
+  display: flex;
+  flex-direction: row;
+  gap: 0.2em;
+  background-color: #15775b5c;
+  border: 1px solid #15775b;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 10px;
+  margin-top: 1em;
+  padding: 0 1em;
 }
 
 .choose-days div {
@@ -267,22 +351,27 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 0.5em;
   font-size: small;
-  background-color: #73ba86;
-  border-radius: 100%;
-  margin: 1em 0;
-  width: 3em;
-  height: 3em;
-  box-shadow: 0px 0px 10px 0px #73ba86;
+  background-color: none;
+  border: solid 1px #ffffff;
+  border-radius: 50%;
+  margin: 3em 0;
+  padding: 0;
+  width: 4em;
+  height: 2.7em;
 }
 
 .choose-days div:hover {
-  background-color: #439457;
+  border: solid 1px #ff8800;
+  cursor: pointer;
+}
+
+.save {
+  margin-top: 1em;
 }
 
 .choose-days button {
-  color: white;
+  color: #ffffff;
   border: none;
   text-align: center;
   text-decoration: none;
@@ -291,18 +380,44 @@ body {
   background: none;
 }
 
-.no-thanks {
-  text-decoration: underline;
-  background: none;
-  border: none;
-  color: black;
-  cursor: pointer;
-  text-align: center;
+.choose-days button:hover {
+  color: #ffffff;
 }
 
-.no-thanks:hover {
-  text-decoration: #439457;
-  color: #439457;
+.no-thanks {
+  text-align: center;
+  margin-top: 0.5em;
+}
+
+.no-thanks button {
+  background: none;
+  border: none;
+  color: #ffa100;
+  cursor: pointer;
+}
+
+.no-thanks button:hover {
+  text-decoration: underline;
+}
+
+/* Home Page css */
+
+.home-headline h2 {
+  margin-bottom: 1em;
+}
+
+.home-headline p {
+  margin-bottom: 1em;
+}
+
+.yoga-section h4 {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.meditation-section h4 {
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 /* Allgemeines Styling für die Navbar */
@@ -334,6 +449,19 @@ li a {
 }
 
 /* Navbar am unteren Rand */
+
+.nav-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  gap: 2rem;
+}
+
+.nav-links img {
+  width: 30px;
+  height: 30px;
+}
 
 .navbar-bottom ul {
   list-style: none;
@@ -369,7 +497,7 @@ li a {
   width: 100%;
   max-width: 400px;
   grid-area: footer;
-  background-color: #73ba86;
+  background-color: #15775b;
   box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1); /* Schlagschatten nach oben */
   position: absolute; /* Innerhalb des Phone-Rahmens fixieren */
   color: white;
@@ -377,6 +505,123 @@ li a {
   padding: 2rem;
   text-align: center;
   z-index: 1000; /* Sicherstellen, dass sie immer sichtbar ist */
+}
+
+/*Components*/
+
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap");
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.card-container {
+  width: 90%; /* 90% der Breite des übergeordneten Containers */
+  height: auto; /* Dynamische Höhe basierend auf dem Inhalt */
+  margin: 1rem auto; /* Zentrieren innerhalb des Containers */
+}
+
+.card-list {
+  width: 90%;
+  max-width: 400px;
+}
+
+.card {
+  width: 100%; /* Nimmt die gesamte Breite des Containers ein */
+  max-width: 90%; /* Maximal 90% der Breite des `phone-frame` */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optische Anpassung */
+  padding: 1rem; /* Innenabstand */
+  margin: 1rem auto; /* Abstand zum nächsten Element */
+  border-radius: 10px; /* Abgerundete Ecken */
+}
+
+.card-image {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card-header {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  a {
+    font-weight: 600;
+    font-size: 1.375rem;
+    line-height: 1.25;
+    padding-right: 1rem;
+    text-decoration: none;
+    color: inherit;
+    will-change: transform;
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+}
+
+.icon-button {
+  border: 0;
+  background-color: #fff;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  font-size: 1.25rem;
+  transition: 0.25s ease;
+  box-shadow: 0 0 0 1px rgba(#000, 0.05), 0 3px 8px 0 rgba(#000, 0.15);
+  z-index: 1;
+  cursor: pointer;
+  color: #565656;
+
+  svg {
+    width: 1em;
+    height: 1em;
+  }
+  &:hover,
+  &:focus {
+    background-color: #5aaa58;
+    color: #fff;
+  }
+}
+
+.card-footer {
+  margin-top: 1.25rem;
+  border-top: 1px solid #ddd;
+  padding-top: 1.25rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  color: #787878;
+  &:first-child:after {
+    display: block;
+    content: "";
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: currentcolor;
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+  }
+  svg {
+    flex-shrink: 0;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.25em;
+  }
 }
 
 /* Media Queries für mobile Geräte (z.B. iPhone 12 Plus) */

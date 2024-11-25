@@ -2,27 +2,35 @@ import { NavLink } from "react-router-dom";
 
 function Navbar() {
   return (
-    <ul>
-      <li>
-        <img src="/src/assets/img/Yoga.png" alt="Yoga Icon" />
-        <NavLink to="/yoga">Yoga</NavLink>
-      </li>
-      <li>
-        <img src="/src/assets/img/Meditate.png" alt="Meditate Icon" />
-        <NavLink to="/meditation">Meditate</NavLink>
-      </li>
-      <li>
-        <img src="/src/assets/img/Home.png" alt="Home Icon" />
-        <NavLink to="/home">Home</NavLink>
-      </li>
-      <li>
-        <img src="/src/assets/img/Music.png" alt="Music Icon" />
-        <NavLink to="/music">Music</NavLink>
-      </li>
-      <li>
-        <img src="/src/assets/img/Profile.png" alt="Profile Icon" />
-        <NavLink to="/profile">Profile</NavLink>
-      </li>
+    <ul className="nav-links">
+      <NavLink to="/yoga">
+        <img src="/src/assets/img/hugeicons--yoga-mat.svg" alt="Yoga Icon" />
+      </NavLink>
+
+      <NavLink to="/meditation">
+        <img
+          src="/src/assets/img/ph--flower-lotus-bold.svg"
+          alt="Meditate Icon"
+        />
+      </NavLink>
+
+      <NavLink to="/home">
+        <img
+          src="/src/assets/img/solar--home-smile-bold-2.svg"
+          alt="Home Icon"
+        />
+      </NavLink>
+
+      <NavLink to="/music">
+        <img
+          src="/src/assets/img/solar--music-note-bold.svg"
+          alt="Music Icon"
+        />
+      </NavLink>
+
+      <NavLink to="/profile">
+        <img src="/src/assets/img/gg--profile.svg" alt="Profile Icon" />
+      </NavLink>
     </ul>
   );
 }

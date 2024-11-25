@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function RemindersPage() {
   return (
     <>
@@ -5,29 +7,29 @@ export default function RemindersPage() {
         <div className="r-headline">
           <h2>What time would you like to meditate ?</h2>
           <p>
-            Any time you can choose but We recommend first thing in th morning.
+            We recommend to start your lessons <br />
+            in the morning.
           </p>
         </div>
         <div className="time"> Hier kommt der Time Selector hin</div>
         <div className="r-headline">
           <h2>Which day would you like to meditate?</h2>
-          <p>Everyday is best, but we recommend picking at least five.</p>
+          <p>We recommend to start with 3 days a week.</p>
         </div>
         <div className="choose-days">
           <div>
-            <button>SU</button>
-          </div>
-          <div>
+            {" "}
+            {/*Hier muss noch etwas geändert werden */}
             <button>M</button>
           </div>
           <div>
-            <button>TU</button>
+            <button>T</button>
           </div>
           <div>
             <button>W</button>
           </div>
           <div>
-            <button>TH</button>
+            <button>T</button>
           </div>
           <div>
             <button>F</button>
@@ -35,12 +37,17 @@ export default function RemindersPage() {
           <div>
             <button>S</button>
           </div>
+          <div>
+            <button>S</button>
+          </div>
         </div>
-        <div>
+        <div className="save">
           <button className="default-btn">SAVE</button>
         </div>
-        <div>
-          <button className="no-thanks">No Thanks</button>
+        <div className="no-thanks">
+          <Link to="/home">
+            <button>No Thanks</button>
+          </Link>
         </div>
       </div>
     </>
