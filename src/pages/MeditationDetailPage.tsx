@@ -1,6 +1,8 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { supabase } from "../lib/supabaseClient"
 import { Link, useParams } from "react-router-dom"
+import ReactPlayer from "react-player"
+import { useState } from "react"
 
 // interface MeditaionDetailProps {
 //     meditation: {
@@ -24,6 +26,7 @@ import { Link, useParams } from "react-router-dom"
 
 export default function MeditationDetailPage(){
     const { id } = useParams()
+    const [isPlaying, setIsPlaying] = useState(false)
 
     const queryClient = useQueryClient()
 
@@ -72,6 +75,9 @@ export default function MeditationDetailPage(){
         queryClient.invalidateQueries({queryKey: ["supabase", "meditation"]})
     }
 
+    const handlePlayPause = () => {
+        setIsPlaying(!isPlaying)
+    }
 
     const meditationTechnique = singleMeditationQuery.data
 
@@ -90,8 +96,26 @@ export default function MeditationDetailPage(){
                     <h1>{meditationTechnique.name}</h1>
                     <p>{meditationTechnique.meditation_categories?.name}</p>
                     <p>{meditationTechnique.description}</p>
-                    <p>Designey Elemente? Hier wären Favorites und Listenings aber das ist quatsch. </p>
-                    <p>Hier ein Player mit hinterlegter Audiodatei</p>
+                    <div>
+                       <button onClick={handlePlayPause}>
+                        <ReactPlayer 
+                            url={meditationTechnique.audio_url}
+                            playing={isPlaying}
+                            width="100px"
+                            height="100px"
+                            style={{ display: 'block' }}
+                            config={{ file: { 
+                                attributes: {
+                                    controlsList: 'nodownload'
+                                }
+                            }}}
+                        />
+                    </button>
+                    <p>{meditationTechnique.name}</p>  
+                    <p>{meditationTechnique.duration}</p>
+                    </div>
+                   
+                    
                 </div>
             </div>
         </div>
