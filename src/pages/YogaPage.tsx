@@ -67,10 +67,10 @@ export default function YogaPage() {
       {allYogaPoses.map((allYoga) =>(
           <Link key={allYoga.id} to={`/yoga/${slugify(allYoga.name, { lower: true })}/${allYoga.id}`}>
             <div>
-              <img src={allYoga.image_url!} alt="yoga_bgimage" />
+              <img src={allYoga.image_url} alt="yoga_bgimage" />
               <h2>{allYoga.name}</h2>
-              <p>{allYoga.difficulty}</p>
-              <p>{allYoga.duration}</p>
+              {/* <p>{allYoga.difficulty}</p>
+              <p>{allYoga.duration}</p> */}
               </div>
           </Link>
         ))}

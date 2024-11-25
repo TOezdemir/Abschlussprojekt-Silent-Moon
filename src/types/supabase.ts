@@ -126,6 +126,7 @@ export type Database = {
           description: string | null
           id: string
           name: string
+          thumbnail: string | null
           url: string | null
         }
         Insert: {
@@ -133,6 +134,7 @@ export type Database = {
           description?: string | null
           id?: string
           name: string
+          thumbnail?: string | null
           url?: string | null
         }
         Update: {
@@ -140,6 +142,7 @@ export type Database = {
           description?: string | null
           id?: string
           name?: string
+          thumbnail?: string | null
           url?: string | null
         }
         Relationships: []
@@ -150,6 +153,7 @@ export type Database = {
           description: string | null
           id: string
           name: string
+          thumbnail: string | null
           url: string | null
         }
         Insert: {
@@ -157,6 +161,7 @@ export type Database = {
           description?: string | null
           id?: string
           name: string
+          thumbnail?: string | null
           url?: string | null
         }
         Update: {
@@ -164,6 +169,7 @@ export type Database = {
           description?: string | null
           id?: string
           name?: string
+          thumbnail?: string | null
           url?: string | null
         }
         Relationships: []
@@ -174,6 +180,7 @@ export type Database = {
           description: string | null
           id: string
           name: string
+          thumbnail: string | null
           url: string | null
         }
         Insert: {
@@ -181,6 +188,7 @@ export type Database = {
           description?: string | null
           id?: string
           name: string
+          thumbnail?: string | null
           url?: string | null
         }
         Update: {
@@ -188,6 +196,7 @@ export type Database = {
           description?: string | null
           id?: string
           name?: string
+          thumbnail?: string | null
           url?: string | null
         }
         Relationships: []
@@ -198,6 +207,7 @@ export type Database = {
           description: string | null
           id: string
           name: string
+          thumbnail: string | null
           url: string
         }
         Insert: {
@@ -205,6 +215,7 @@ export type Database = {
           description?: string | null
           id?: string
           name: string
+          thumbnail?: string | null
           url: string
         }
         Update: {
@@ -212,6 +223,7 @@ export type Database = {
           description?: string | null
           id?: string
           name?: string
+          thumbnail?: string | null
           url?: string
         }
         Relationships: []
@@ -240,33 +252,33 @@ export type Database = {
           created_at: string
           description: string
           difficulty: string
-          duration: number | null
+          duration: string | null
           id: string
-          image_url: string | null
+          image_url: string
           name: string
-          video_url: string | null
+          video_url: string
         }
         Insert: {
           category_id?: string | null
           created_at?: string
           description: string
           difficulty: string
-          duration?: number | null
+          duration?: string | null
           id?: string
-          image_url?: string | null
+          image_url: string
           name: string
-          video_url?: string | null
+          video_url: string
         }
         Update: {
           category_id?: string | null
           created_at?: string
           description?: string
           difficulty?: string
-          duration?: number | null
+          duration?: string | null
           id?: string
-          image_url?: string | null
+          image_url?: string
           name?: string
-          video_url?: string | null
+          video_url?: string
         }
         Relationships: [
           {
@@ -305,6 +317,7 @@ export type Database = {
           description: string | null
           id: string
           name: string
+          thumbnail: string | null
           url: string | null
         }
         Insert: {
@@ -312,6 +325,7 @@ export type Database = {
           description?: string | null
           id?: string
           name: string
+          thumbnail?: string | null
           url?: string | null
         }
         Update: {
@@ -319,6 +333,7 @@ export type Database = {
           description?: string | null
           id?: string
           name?: string
+          thumbnail?: string | null
           url?: string | null
         }
         Relationships: []
@@ -329,6 +344,7 @@ export type Database = {
           description: string | null
           id: string
           name: string
+          thumbnail: string | null
           url: string | null
         }
         Insert: {
@@ -336,6 +352,7 @@ export type Database = {
           description?: string | null
           id?: string
           name: string
+          thumbnail?: string | null
           url?: string | null
         }
         Update: {
@@ -343,6 +360,7 @@ export type Database = {
           description?: string | null
           id?: string
           name?: string
+          thumbnail?: string | null
           url?: string | null
         }
         Relationships: []
@@ -353,6 +371,7 @@ export type Database = {
           description: string | null
           id: string
           name: string
+          thumbnail: string | null
           url: string | null
         }
         Insert: {
@@ -360,6 +379,7 @@ export type Database = {
           description?: string | null
           id?: string
           name: string
+          thumbnail?: string | null
           url?: string | null
         }
         Update: {
@@ -367,6 +387,7 @@ export type Database = {
           description?: string | null
           id?: string
           name?: string
+          thumbnail?: string | null
           url?: string | null
         }
         Relationships: []
@@ -377,6 +398,7 @@ export type Database = {
           description: string | null
           id: string
           name: string
+          thumbnail: string | null
           url: string
         }
         Insert: {
@@ -384,6 +406,7 @@ export type Database = {
           description?: string | null
           id?: string
           name: string
+          thumbnail?: string | null
           url: string
         }
         Update: {
@@ -391,6 +414,7 @@ export type Database = {
           description?: string | null
           id?: string
           name?: string
+          thumbnail?: string | null
           url?: string
         }
         Relationships: []

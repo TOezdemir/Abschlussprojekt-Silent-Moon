@@ -1,6 +1,7 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { supabase } from "../lib/supabaseClient"
 import { Link, useParams } from "react-router-dom"
+import ReactPlayer from "react-player"
 
 export default function YogaDetailPage(){
     const { id } = useParams()
@@ -59,6 +60,12 @@ export default function YogaDetailPage(){
                     <Link to={"/yoga"}>Zurück Pfeil</Link>
                     <button onClick={handleFavoriteClick}>
                         {yogaPose.favorites.length > 0 ? "❤️" : "♡"}</button>
+                    <ReactPlayer
+                    url={yogaPose.video_url}
+                    controls={false}
+                    loop={true}
+                    playing={true}
+                    />
                 </div>
                 <div>
                     Hier wird das Video abgespielt!
