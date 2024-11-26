@@ -49,7 +49,11 @@ export default function YogaPage() {
     <div>
       <div className="yoga">
         <h1>Yoga</h1>
-        <Categories />
+        {/* <Categories /> */}
+        <button>Beginner</button>
+        <button>Intermediate</button>
+        <button>Expert</button>
+        
         <p>Find your inner zen from anywhere.</p>
       </div>
       <div className="yoga-saerchbar">
