@@ -130,14 +130,22 @@ export default function HomePage() {
         <p>We hope you have a good day</p>
       </section>
       <section className="highlight-section">
-        <div>
+        <div
+          className="yoga-cards"
+          style={{
+            backgroundImage: `url(${highlightYogaPoses[0].image_url})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            width: "150px",
+            height: "180px",
+          }}
+        >
           {highlightYogaPoses.map((yoga) => (
             <Link
               key={yoga.id}
               to={`/yoga/${slugify(yoga.name, { lower: true })}/${yoga.id}`}
             >
               <div>
-                <img src="" alt="yoga_bgimage" />
                 <h2>{yoga.name}</h2>
                 <p>{yoga.difficulty}</p>
                 <p>{yoga.duration}</p>
@@ -145,7 +153,16 @@ export default function HomePage() {
             </Link>
           ))}
         </div>
-        <div>
+        <div
+          className="yoga-cards"
+          style={{
+            backgroundImage: `url(${highlightMeditations[0].image_url})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            width: "150px",
+            height: "180px",
+          }}
+        >
           {highlightMeditations.map((meditation) => (
             <Link
               key={meditation.id}
@@ -154,7 +171,6 @@ export default function HomePage() {
               }`}
             >
               <div>
-                <img src="" alt="meditation_bgimage" />
                 <h2>{meditation.name}</h2>
                 <p>{meditation.meditation_categories?.name}</p>
                 <p>{meditation.duration}</p>
@@ -163,13 +179,18 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-      <section className="searchbar">
-        <form onSubmit={handleSearch}>
-          <div className="search-container">
-            <input ref={inputRef} type="text" placeholder="Zen Search" />
+      <section>
+        <div className="yoga-saerchbar">
+          <form onSubmit={handleSearch}>
+            <input
+              className="yoga-input"
+              ref={inputRef}
+              type="text"
+              placeholder="Zen Search"
+            />
             {searchText && <button onClick={handleReset}>X</button>}
-          </div>
-        </form>
+          </form>
+        </div>
       </section>
       <section className="yoga-section">
         <h4>Recomended Yoga for you</h4>
@@ -181,7 +202,15 @@ export default function HomePage() {
                 allYoga.id
               }`}
             >
-              <div>
+              <div
+                style={{
+                  backgroundImage: `url(${allYoga.image_url})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  width: "145px",
+                  height: "195px",
+                }}
+              >
                 <img src="" alt="yoga_bgimage" />
                 <h2>{allYoga.name}</h2>
                 <p>{allYoga.difficulty}</p>
@@ -211,24 +240,6 @@ export default function HomePage() {
             </Link>
           ))}
         </div>
-      </section>
-      <section className="test-links">
-        {" "}
-        <li>
-          <Link to="/firstpage">First Site</Link>{" "}
-        </li>{" "}
-        <li>
-          <Link to="/login">Login Site</Link>{" "}
-        </li>{" "}
-        <li>
-          <Link to="/signup">Signup Site</Link>{" "}
-        </li>{" "}
-        <li>
-          <Link to="/welcome">Welcome Site</Link>{" "}
-        </li>{" "}
-        <li>
-          <Link to="/reminders">Reminder Site</Link>{" "}
-        </li>{" "}
       </section>
     </div>
   );

@@ -5,66 +5,70 @@ import ReactPlayer from "react-player"
 import { useState } from "react"
 
 
+
 export default function MeditationDetailPage(){
     const { id } = useParams()
     const [isPlaying, setIsPlaying] = useState(false)
 
-    const queryClient = useQueryClient()
+    const queryClient = useQueryClient();  
 
-    const singleMeditationQuery = useQuery({
-        queryKey: ["supabase", "meditation", id],
-        queryFn: async () =>{
-            if(!id){
-                return null
-            }
-        const result = await supabase
+  const singleMeditationQuery = useQuery({
+    queryKey: ["supabase", "meditation", id],
+    queryFn: async () => {
+      if (!id) {
+        return null;
+      }
+      const result = await supabase
         .from("meditation")
-        .select(`
+        .select(
+          `
             *,
             meditation_categories(
             name),
             favorites(
             id
             )
-            `)
+            `
+        )
         .eq("id", id)
-        .single()
-          if(result.error){
-              throw result.error
-          }
-          return result.data
-        },
-      })
+        .single();
+      if (result.error) {
+        throw result.error;
+      }
+      return result.data;
+    },
+  });
 
-    if(singleMeditationQuery.isPending){
-        return "...loading Meditation"
-    }
-    if(singleMeditationQuery.isError || !singleMeditationQuery.data){
-        return "...can't fetch Meditation!"
-    }
+  if (singleMeditationQuery.isPending) {
+    return "...loading Meditation";
+  }
+  if (singleMeditationQuery.isError || !singleMeditationQuery.data) {
+    return "...can't fetch Meditation!";
+  }
 
-    const handleFavoriteClick = async () => {
-        if(!id){
-            console.error("No ID found!")
-            return
-        }
-        if(meditationTechnique.favorites.length > 0){
-            await supabase.from("favorites").delete().eq("meditation_id", id)
-        } else {
-            await supabase.from("favorites").insert({meditation_id: id})
-        }
-        queryClient.invalidateQueries({queryKey: ["supabase", "meditation"]})
+  const handleFavoriteClick = async () => {
+    if (!id) {
+      console.error("No ID found!");
+      return;
     }
+    if (meditationTechnique.favorites.length > 0) {
+      await supabase.from("favorites").delete().eq("meditation_id", id);
+    } else {
+      await supabase.from("favorites").insert({ meditation_id: id });
+    }
+    queryClient.invalidateQueries({ queryKey: ["supabase", "meditation"] });
+  };
 
-    const handlePlayPause = () => {
+
+   const handlePlayPause = () => {
         setIsPlaying(!isPlaying)
     }
 
-    const meditationTechnique = singleMeditationQuery.data
-
-    return(
-        <div>
-            <div>
+  const meditationTechnique = singleMeditationQuery.data;
+    
+  return (
+    <div>
+           <div>
                 <div>
                     <Link to={"/meditation"}>Zurück Pfeil</Link>
                     <button onClick={handleFavoriteClick}>
@@ -95,10 +99,8 @@ export default function MeditationDetailPage(){
                     <p>{meditationTechnique.name}</p>  
                     <p>{meditationTechnique.duration}</p>
                     </div>
-                   
-                    
-                </div>
-            </div>
         </div>
-    )
+      </div>
+    </div>
+  );
 }

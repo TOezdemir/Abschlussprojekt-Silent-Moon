@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap");
+
 /* Allgemeine Stile */
 * {
   margin: 0;
@@ -98,6 +100,7 @@ body {
   justify-content: left;
   align-items: left;
   margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 /*!Logo*/
@@ -105,9 +108,29 @@ body {
 .logo {
   letter-spacing: 5px;
   padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+/*!Category*/
+
+.categories {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.categories-box {
+  background-color: #a1dfb1;
+  padding: 25px 30px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  cursor: pointer;
 }
 
 /* Phone-Rahmen */
+
 .phone-frame {
   width: 400px; /* Breite des Rahmens, z.B. iPhone */
   height: 800px; /* Höhe des Rahmens */
@@ -117,12 +140,13 @@ body {
   overflow: hidden; /* Inhalt, der aus dem Rahmen herausragt, ausblenden */
   position: relative; /* Wichtiger Bezugspunkt für Positionierung */
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
-  background-image: url("src/assets/img/namaste.png");
+  background-color: #7ac08b;
+  /* background-image: url("src/assets/img/fp.mp4");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   max-width: 100%;
-  max-height: 100%;
+  max-height: 100%; */
 }
 
 /* Layout mit Grid */
@@ -134,7 +158,7 @@ body {
     "footer ";
   grid-template-rows: auto 1fr auto;
   height: 100%; /* Vollbildhöhe */
-  max-width: 400px;
+  max-width: 500px;
 }
 
 /* Header */
@@ -142,15 +166,17 @@ body {
   grid-area: header;
   color: rgb(255, 255, 255);
   background-color: none;
-  padding: 1rem;
+  padding: 2.5em;
   text-align: center;
   font-size: 0.5rem;
+  background-color: #15775b;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Schlagschatten nach unten */
 }
 
 /* Main Content */
 .content {
   grid-area: content;
-  padding: 3rem;
+  padding: 2rem;
   background-color: none;
   overflow-y: auto;
   align-items: center;
@@ -191,12 +217,13 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
 }
 
 .fp-signup-btn {
   background-color: #ff8800;
   color: white;
-  padding: 10px 30px;
+  padding: 15px 30px;
   margin: 8px 0;
   border: none;
   border-radius: 5px;
@@ -213,13 +240,14 @@ body {
 .fp-guest-btn {
   background-color: #ff8800;
   color: white;
-  padding: 10px 30px;
+  padding: 15px 30px;
   margin: 8px 0;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   margin-top: 0.1em;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  width: 100%;
 }
 
 .fp-guest-btn:hover {
@@ -327,11 +355,14 @@ body {
 .time {
   margin: 1em 0;
   padding: 3em 5em;
-  background-color: #15775b5c;
   border: 1px solid #15775b;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
   border-radius: 10px;
   color: white;
+  background-image: url("src/assets/img/random-player-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .choose-days {
@@ -420,6 +451,172 @@ body {
   margin-bottom: 1em;
 }
 
+/* Yoga Page css */
+
+.yoga h1 {
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.yoga p {
+  margin-top: 2em;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.yoga-categories {
+  margin-bottom: 1em;
+}
+
+.yoga-saerchbar {
+  text-align: center;
+}
+
+.yoga-input {
+  width: 100%;
+  padding: 1rem 0.5rem;
+  font-size: small;
+  border: 1px solid #73ba86;
+  box-shadow: 0 0 8px rgba(129, 206, 151, 0.3);
+  border-radius: 5px;
+  outline: none;
+  transition: all 0.3s ease;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+.random-player {
+  margin: 1em 0;
+  padding: 2em 2em;
+  width: 100%;
+  border: 1px solid #15775b;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 10px;
+  color: white;
+  margin-bottom: 2em;
+  background-image: url("src/assets/img/random-player-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.yoga-videos {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2em;
+  justify-content: center;
+}
+
+.yoga-cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 1em;
+  width: 100%;
+  height: fit-content;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  margin: 1em 0;
+}
+
+.yoga-cards h2 {
+  font-size: medium;
+  color: white;
+}
+
+/* Meditation Page css */
+
+.meditation {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.meditation h1 {
+  margin-bottom: 1em;
+}
+
+.meditation p {
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.meditation-cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 1em;
+  width: 100%;
+  height: fit-content;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  margin: 1em 0;
+}
+
+.meditation-cards h2 {
+  font-size: medium;
+  color: white;
+}
+
+.card-section {
+  margin-bottom: 5em;
+}
+
+/*Yoga Detail Page css */
+
+.yoga-dp-info h1 {
+  margin: 1em 0;
+  font-size: 1.5rem;
+}
+
+.difficulty {
+  margin: 1em 0;
+  font-size: medium;
+  font-style: italic;
+}
+
+.description {
+  margin: 1em 0;
+  font-size: medium;
+}
+
+.back-fav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2em;
+}
+
+.back {
+  text-decoration: none;
+  font-size: small;
+  color: #15775b;
+}
+
+.fav-btn {
+  background-color: white;
+  color: #15775b;
+  padding: 5px 6.5px;
+  border: 1px solid #15775b;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 1em;
+  transition: color 0.3s ease;
+  box-shadow: 0px 0px 10px 0px rgba(4, 90, 21, 0.75);
+}
+
+/*Meditation Detail Page css */
+
+.back-fav-meditation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2em;
+  margin-bottom: 6em;
+}
+
 /* Allgemeines Styling für die Navbar */
 ul {
   list-style: none;
@@ -455,7 +652,7 @@ li a {
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  gap: 2rem;
+  gap: 2.7rem;
 }
 
 .nav-links img {
@@ -508,8 +705,6 @@ li a {
 }
 
 /*Components*/
-
-@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap");
 
 img {
   max-width: 100%;
