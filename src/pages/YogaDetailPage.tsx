@@ -1,12 +1,10 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query"
-import { supabase } from "../lib/supabaseClient"
-import { Link, useParams } from "react-router-dom"
-import ReactPlayer from "react-player"
-import { useState } from "react"
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { supabase } from "../lib/supabaseClient";
+import { Link, useParams } from "react-router-dom";
+import ReactPlayer from "react-player";
 
-export default function YogaDetailPage(){
-    const { id } = useParams()
-    const [isPlaying, setIsPlaying] = useState(false)
+export default function YogaDetailPage() {
+  const { id } = useParams();
 
   const queryClient = useQueryClient();
 
@@ -54,38 +52,46 @@ export default function YogaDetailPage(){
     queryClient.invalidateQueries({ queryKey: ["supabase", "yoga"] });
   };
 
-    const handlePlayPause = () => {
-        setIsPlaying(!isPlaying)
-    }
+  const yogaPose = singleYogaQuery.data;
 
-    const yogaPose = singleYogaQuery.data
-
-    return(
-        <div>
-            <div key={yogaPose.id}>
-                <div>
-                    <Link to={"/yoga"}>Zurück Pfeil</Link>
-                    <button onClick={handleFavoriteClick}>
-                        {yogaPose.favorites.length > 0 ? "❤️" : "♡"}</button>
-                    <button onClick={handlePlayPause}>
-                    <ReactPlayer
-                    url={yogaPose.video_url}
-                    controls={false}
-                    loop={true}
-                    playing={isPlaying}
-                    />  
-                    </button>
-                    
-                </div>
-                <div>
-                    Hier wird das Video abgespielt!
-                </div>
-                <div>
-                    <h1>{yogaPose.name}</h1>
-                    <p>{yogaPose.difficulty}</p>
-                    <p>{yogaPose.description}</p>
-                </div>
-            </div>
+  return (
+    <div>
+      <div key={yogaPose.id}>
+        <div
+          className="yoga-dp"
+          style={{
+            backgroundImage: `url(${yogaPose.video_url})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            width: "100%",
+            height: "200px",
+          }}
+        >
+          {/* <ReactPlayer
+            url={yogaPose.video_url}
+            controls={false}
+            loop={true}
+            playing={true}
+            /> */}
         </div>
+        <div className="yoga-dp-info">
+          <h1>{yogaPose.name}</h1>
+          <p className="difficulty">{yogaPose.difficulty}</p>
+          <p className="description">{yogaPose.description}</p>
+        </div>
+        <div className="back-fav">
+          <Link className="back" to={"/yoga"}>
+            <img
+              src="/src/assets/img/arrow-left-circle-3.svg"
+              alt=""
+              style={{ width: "30px", height: "30px" }}
+            />
+          </Link>
+          <button className="fav-btn" onClick={handleFavoriteClick}>
+            {yogaPose.favorites.length > 0 ? "❤️" : "♡"}
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
