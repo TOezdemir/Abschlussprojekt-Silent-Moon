@@ -1,12 +1,13 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../lib/supabaseClient";
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
 import { useState } from "react";
 
 export default function MeditationDetailPage() {
   const { id } = useParams();
   const [isPlaying, setIsPlaying] = useState(false);
+  const navigate = useNavigate()
 
   const queryClient = useQueryClient();
 
@@ -102,13 +103,13 @@ export default function MeditationDetailPage() {
               />
             </button>
             <div className="back-fav">
-              <Link className="back" to={"/meditation"}>
+              <button className="back" onClick={() => navigate(-1)}>
                 <img
                   src="/src/assets/img/arrow-left-circle-3.svg"
                   alt=""
                   style={{ width: "30px", height: "30px" }}
                 />
-              </Link>
+              </button>
               <button className="fav-btn" onClick={handleFavoriteClick}>
                 {meditationTechnique.favorites.length > 0 ? "❤️" : "♡"}
               </button>
