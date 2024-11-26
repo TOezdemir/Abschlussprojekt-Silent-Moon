@@ -170,7 +170,8 @@ export type Database = {
           category_id: string | null
           created_at: string
           description: string
-          difficulty: string
+          difficulty: Database["public"]["Enums"]["yoga_difficulty"]
+          difficulty_id: string
           duration: string | null
           id: string
           image_url: string
@@ -181,7 +182,8 @@ export type Database = {
           category_id?: string | null
           created_at?: string
           description: string
-          difficulty: string
+          difficulty?: Database["public"]["Enums"]["yoga_difficulty"]
+          difficulty_id: string
           duration?: string | null
           id?: string
           image_url: string
@@ -192,7 +194,8 @@ export type Database = {
           category_id?: string | null
           created_at?: string
           description?: string
-          difficulty?: string
+          difficulty?: Database["public"]["Enums"]["yoga_difficulty"]
+          difficulty_id?: string
           duration?: string | null
           id?: string
           image_url?: string
@@ -346,7 +349,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      yoga_difficulty: "beginner" | "intermediate" | "expert"
     }
     CompositeTypes: {
       [_ in never]: never
