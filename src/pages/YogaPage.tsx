@@ -61,14 +61,18 @@ export default function YogaPage() {
         <p>Find your inner zen from anywhere.</p>
       </div>
       <div className="yoga-saerchbar">
-        <form onSubmit={handleSearch}>
+        <form className="zen-search-btn" onSubmit={handleSearch}>
           <input
             className="yoga-input"
             ref={inputRef}
-            type="search"
+            type="text"
             placeholder="search for yoga videos"
           />
-          {searchText && <button onClick={handleReset}>X</button>}
+          {searchText && (
+            <button className="input-btn" onClick={handleReset}>
+              X
+            </button>
+          )}
         </form>
       </div>
       <div className="random-player">
