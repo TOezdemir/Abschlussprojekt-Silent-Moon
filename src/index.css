@@ -433,6 +433,20 @@ body {
 
 /* Home Page css */
 
+.home {
+  margin-bottom: 6em;
+}
+
+.highlight-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  font-size: small;
+  gap: 2em;
+}
+
 .home-headline h2 {
   margin-bottom: 1em;
 }
@@ -564,6 +578,10 @@ body {
 
 /*Yoga Detail Page css */
 
+.yoga-dp-page {
+  margin-bottom: 7em;
+}
+
 .yoga-dp-info h1 {
   margin: 1em 0;
   font-size: 1.5rem;
@@ -615,6 +633,27 @@ body {
   align-items: center;
   margin-top: 2em;
   margin-bottom: 6em;
+}
+
+.play-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #15775b;
+  color: white;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 1em;
+  width: 100%;
+  transition: color 0.3s ease;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  margin-top: 2em;
+}
+
+.play-btn button {
+  margin-right: 2em;
 }
 
 /* Allgemeines Styling für die Navbar */

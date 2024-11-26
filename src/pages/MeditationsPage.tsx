@@ -75,33 +75,33 @@ export default function MeditationsPage() {
       <div className="random-player">
         <p>Lerne Meditation kennen / Daily Random Affirmations</p>
       </div>
-      <div className="card-section">
-        <div className="yoga-videos">
-          {allMeditations.map((allMeditation) => (
-            <Link
-              key={allMeditation.id}
-              to={`/meditation/${slugify(allMeditation.name, {
-                lower: true,
-              })}/${allMeditation.id}`}
+      {/* <div className="card-section"> */}
+      <div className="yoga-videos">
+        {allMeditations.map((allMeditation) => (
+          <Link
+            key={allMeditation.id}
+            to={`/meditation/${slugify(allMeditation.name, {
+              lower: true,
+            })}/${allMeditation.id}`}
+          >
+            <div
+              className="meditation-cards"
+              style={{
+                backgroundImage: `url(${allMeditation.image_url})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                width: "145px",
+                height: "195px",
+              }}
             >
-              <div
-                className="meditation-cards"
-                style={{
-                  backgroundImage: `url(${allMeditation.image_url})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  width: "145px",
-                  height: "195px",
-                }}
-              >
-                <h2>{allMeditation.name}</h2>
-                {/* <p>{allMeditation.meditation_categories?.name}</p> */}
-              </div>
-            </Link>
-          ))}
-        </div>
+              <h2>{allMeditation.name}</h2>
+              {/* <p>{allMeditation.meditation_categories?.name}</p> */}
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
+    // </div>
   );
 }
 

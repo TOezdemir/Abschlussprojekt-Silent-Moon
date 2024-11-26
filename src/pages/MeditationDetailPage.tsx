@@ -74,6 +74,7 @@ export default function MeditationDetailPage() {
             backgroundPosition: "center",
             width: "100%",
             height: "200px",
+            borderRadius: "10px",
           }}
         >
           {/* <img src={meditationTechnique.image_url!} alt="meditation_cover" /> */}
@@ -85,22 +86,32 @@ export default function MeditationDetailPage() {
           </p>
           <p className="description">{meditationTechnique.description}</p>
           <div>
-            <button onClick={handlePlayPause}>
-              <ReactPlayer
-                url={meditationTechnique.audio_url}
-                playing={isPlaying}
-                width="100px"
-                height="100px"
-                style={{ display: "block" }}
-                config={{
-                  file: {
-                    attributes: {
-                      controlsList: "nodownload",
+            <div className="play-btn">
+              <button onClick={handlePlayPause}>
+                <ReactPlayer
+                  url={meditationTechnique.audio_url}
+                  playing={isPlaying}
+                  width="30px"
+                  height="30px"
+                  style={{
+                    display: "block",
+                    borderRadius: "5px",
+                    backgroundImage: "url(/src/assets/img/play-2.svg)",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                  config={{
+                    file: {
+                      attributes: {
+                        controlsList: "nodownload",
+                      },
                     },
-                  },
-                }}
-              />
-            </button>
+                  }}
+                />
+              </button>
+              <p>{meditationTechnique.name}</p>
+              <p>{meditationTechnique.duration}</p>
+            </div>
             <div className="back-fav">
               <Link className="back" to={"/meditation"}>
                 <img
@@ -113,8 +124,6 @@ export default function MeditationDetailPage() {
                 {meditationTechnique.favorites.length > 0 ? "❤️" : "♡"}
               </button>
             </div>
-            <p>{meditationTechnique.name}</p>
-            <p>{meditationTechnique.duration}</p>
           </div>
         </div>
       </div>

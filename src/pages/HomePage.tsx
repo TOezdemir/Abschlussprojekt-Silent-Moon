@@ -127,7 +127,7 @@ export default function HomePage() {
     <div className="home">
       <section className="home-headline">
         <h2>Good morning Leon</h2>
-        <p>We hope you have a good day</p>
+        <p style={{ fontWeight: "bold" }}>We hope you have a good day</p>
       </section>
       <section className="highlight-section">
         <div
@@ -156,7 +156,7 @@ export default function HomePage() {
         <div
           className="yoga-cards"
           style={{
-            backgroundImage: `url(${highlightMeditations[0].image_url})`,
+            // backgroundImage: `url(${highlightMeditations[0].image_url})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             width: "150px",
@@ -203,6 +203,7 @@ export default function HomePage() {
               }`}
             >
               <div
+                className="yoga-cards"
                 style={{
                   backgroundImage: `url(${allYoga.image_url})`,
                   backgroundSize: "cover",
@@ -211,7 +212,7 @@ export default function HomePage() {
                   height: "195px",
                 }}
               >
-                <img src="" alt="yoga_bgimage" />
+                {/* <img src="" alt="yoga_bgimage" /> */}
                 <h2>{allYoga.name}</h2>
                 <p>{allYoga.difficulty}</p>
                 <p>{allYoga.duration}</p>
@@ -223,7 +224,16 @@ export default function HomePage() {
 
       <section className="meditation-section">
         <h4>Recommended Meditations for you</h4>
-        <div>
+        <div
+          className="yoga-cards"
+          style={{
+            // backgroundImage: `url(${allMeditations[0].image_url})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            width: "145px",
+            height: "195px",
+          }}
+        >
           {allMeditations.map((allMeditation) => (
             <Link
               key={allMeditation.id}

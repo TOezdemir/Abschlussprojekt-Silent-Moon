@@ -55,7 +55,7 @@ export default function YogaDetailPage() {
   const yogaPose = singleYogaQuery.data;
 
   return (
-    <div>
+    <div className="yoga-dp-page">
       <div key={yogaPose.id}>
         <div
           className="yoga-dp"
@@ -64,15 +64,16 @@ export default function YogaDetailPage() {
             backgroundSize: "cover",
             backgroundPosition: "center",
             width: "100%",
-            height: "200px",
+            height: "400px",
+            borderRadius: "10px",
           }}
         >
-          {/* <ReactPlayer
-            url={yogaPose.video_url}
+          <ReactPlayer
+            // url={yogaPose.video_url}
             controls={false}
             loop={true}
             playing={true}
-            /> */}
+          />
         </div>
         <div className="yoga-dp-info">
           <h1>{yogaPose.name}</h1>
