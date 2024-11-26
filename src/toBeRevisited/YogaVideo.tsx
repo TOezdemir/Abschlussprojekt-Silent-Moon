@@ -72,78 +72,78 @@
 
 
 
-import { useEffect, useState } from "react";
-import { supabase } from "../lib/supabaseClient";
-import { Link } from "react-router-dom";
-import slugify from "slugify";
-import ReactPlayer from "react-player";
+// import { useEffect, useState } from "react";
+// import { supabase } from "../lib/supabaseClient";
+// import { Link } from "react-router-dom";
+// import slugify from "slugify";
+// import ReactPlayer from "react-player";
 
-type YogaVideo = {
-  id: string; 
-  name: string; 
-  description: string | null;
-  url: string; 
-};
+// type YogaVideo = {
+//   id: string; 
+//   name: string; 
+//   description: string | null;
+//   url: string; 
+// };
 
-export default function YogaVideos() {
-  const [yogaVideos, setYogaVideos] = useState<YogaVideo[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+// export default function YogaVideos() {
+//   const [yogaVideos, setYogaVideos] = useState<YogaVideo[]>([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState<string | null>(null);
 
   
-  const getYogaVideos = async () => {
-    try {
-      const { data, error } = await supabase
-        .from("yoga_videos") 
-        .select("*"); 
+//   const getYogaVideos = async () => {
+//     try {
+//       const { data, error } = await supabase
+//         .from("yoga_videos") 
+//         .select("*"); 
 
-      if (error) {
-        throw new Error(error.message);
-      }
+//       if (error) {
+//         throw new Error(error.message);
+//       }
 
-      setYogaVideos(data || []); 
-    } catch (err) {
-      setError("Fehler");
-    } finally {
-      setLoading(false);
-    }
-  };
+//       setYogaVideos(data || []); 
+//     } catch (err) {
+//       setError("Fehler");
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
 
  
-  useEffect(() => {
-    getYogaVideos();
-  }, []);
+//   useEffect(() => {
+//     getYogaVideos();
+//   }, []);
 
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+//   if (loading) {
+//     return <div>Loading...</div>;
+//   }
 
 
-  if (error) {
-    return <div>{error}</div>;
-  }
+//   if (error) {
+//     return <div>{error}</div>;
+//   }
 
 
-  return (
-    <div>
-      <h1>Yoga Videos</h1>
-      {yogaVideos.map((video) => (
-        <div key={video.id}>
-          <Link to={`/yoga-video/${slugify(video.name, { lower: true })}/${video.id}`}>
-            <h2>{video.name}</h2>
-            <p>{video.description}</p>
-            {video.url && (
-              <div>
-                <ReactPlayer url={video.url} controls width="100%" height="auto" />
-              </div>
-            )}
-          </Link>
-        </div>
-      ))}
-    </div>
-  );
-}
+//   return (
+//     <div>
+//       <h1>Yoga Videos</h1>
+//       {yogaVideos.map((video) => (
+//         <div key={video.id}>
+//           <Link to={`/yoga-video/${slugify(video.name, { lower: true })}/${video.id}`}>
+//             <h2>{video.name}</h2>
+//             <p>{video.description}</p>
+//             {video.url && (
+//               <div>
+//                 <ReactPlayer url={video.url} controls width="100%" height="auto" />
+//               </div>
+//             )}
+//           </Link>
+//         </div>
+//       ))}
+//     </div>
+//   );
+// }
 
 
 

@@ -7,10 +7,10 @@ import HomePage from "./pages/HomePage";
 import YogaDetailPage from "./pages/YogaDetailPage";
 import MeditationDetailPage from "./pages/MeditationDetailPage";
 import YogaPage from "./pages/YogaPage";
-import YogaMantra from "./toBeRevisited/YogaMantra";
-import YogaPiano from "./toBeRevisited/YogaPiano";
-import YogaBinaural from "./toBeRevisited/YogaBinaural";
-import YogaVideo from "./toBeRevisited/YogaVideo";
+// import YogaMantra from "./toBeRevisited/YogaMantra";
+// import YogaPiano from "./toBeRevisited/YogaPiano";
+// import YogaBinaural from "./toBeRevisited/YogaBinaural";
+// import YogaVideo from "./toBeRevisited/YogaVideo";
 import MeditationsPage from "./pages/MeditationsPage";
 import MusicPage from "./pages/MusicPage";
 import ProfilePage from "./pages/ProfilePage";
@@ -67,22 +67,22 @@ const router = createBrowserRouter([
         path: "/music",
         element: <MusicPage />,
       },
-      {
-        path: "/yogabinaural",
-        element: <YogaBinaural />,
-      },
-      {
-        path: "/yogapiano",
-        element: <YogaPiano />,
-      },
-      {
-        path: "/yogamantra",
-        element: <YogaMantra />,
-      },
-      {
-        path: "/yogavideo",
-        element: <YogaVideo />,
-      },
+      // {
+      //   path: "/yogabinaural",
+      //   element: <YogaBinaural />,
+      // },
+      // {
+      //   path: "/yogapiano",
+      //   element: <YogaPiano />,
+      // },
+      // {
+      //   path: "/yogamantra",
+      //   element: <YogaMantra />,
+      // },
+      // {
+      //   path: "/yogavideo",
+      //   element: <YogaVideo />,
+      // },
       {
         path: "/firstpage",
         element: <FirstPage />,
