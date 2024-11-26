@@ -62,14 +62,18 @@ export default function MeditationsPage() {
         </p>
       </div>
       <div className="yoga-saerchbar">
-        <form onSubmit={handleSearch}>
+        <form className="zen-search-btn" onSubmit={handleSearch}>
           <input
             className="yoga-input"
             ref={inputRef}
             type="search"
             placeholder="search for meditation "
           />
-          {searchText && <button onClick={handleReset}>X</button>}
+          {searchText && (
+            <button className="input-btn" onClick={handleReset}>
+              X
+            </button>
+          )}
         </form>
       </div>
       <div className="random-player">

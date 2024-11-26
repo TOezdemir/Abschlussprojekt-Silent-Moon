@@ -65,7 +65,7 @@ export default function MeditationDetailPage() {
 
   return (
     <div>
-      <div>
+      <div className="meditation-dp">
         <div
           className="yoga-dp"
           style={{

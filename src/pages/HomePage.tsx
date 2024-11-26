@@ -181,14 +181,18 @@ export default function HomePage() {
       </section>
       <section>
         <div className="yoga-saerchbar">
-          <form onSubmit={handleSearch}>
+          <form className="zen-search-btn" onSubmit={handleSearch}>
             <input
               className="yoga-input"
               ref={inputRef}
               type="text"
               placeholder="Zen Search"
             />
-            {searchText && <button onClick={handleReset}>X</button>}
+            {searchText && (
+              <button className="input-btn" onClick={handleReset}>
+                X
+              </button>
+            )}
           </form>
         </div>
       </section>
