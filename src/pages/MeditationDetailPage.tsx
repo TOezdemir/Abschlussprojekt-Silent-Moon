@@ -1,30 +1,16 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { supabase } from "../lib/supabaseClient";
-import { Link, useParams } from "react-router-dom";
+import { useQuery, useQueryClient } from "@tanstack/react-query"
+import { supabase } from "../lib/supabaseClient"
+import { Link, useParams } from "react-router-dom"
+import ReactPlayer from "react-player"
+import { useState } from "react"
 
-// interface MeditaionDetailProps {
-//     meditation: {
-//         audio_url: string | null;
-//         category_id: string | null;
-//         created_at: string;
-//         description: string;
-//         duration: number | null;
-//         id: string;
-//         image_url: string | null;
-//         name: string;
-//         video_url: string | null;
-//         meditation_categories: {
-//             id: string
-//             name: string
-//             description: string
-//         } | null;
-//     }
-// }
 
-export default function MeditationDetailPage() {
-  const { id } = useParams();
 
-  const queryClient = useQueryClient();
+export default function MeditationDetailPage(){
+    const { id } = useParams()
+    const [isPlaying, setIsPlaying] = useState(false)
+
+    const queryClient = useQueryClient();  
 
   const singleMeditationQuery = useQuery({
     queryKey: ["supabase", "meditation", id],
@@ -73,34 +59,46 @@ export default function MeditationDetailPage() {
     queryClient.invalidateQueries({ queryKey: ["supabase", "meditation"] });
   };
 
-  const meditationTechnique = singleMeditationQuery.data;
 
+   const handlePlayPause = () => {
+        setIsPlaying(!isPlaying)
+    }
+
+  const meditationTechnique = singleMeditationQuery.data;
+    
   return (
     <div>
-      <div>
-        <div></div>
-        <div>
-          <img src={meditationTechnique.image_url!} alt="meditation_cover" />
-        </div>
-        <div className="yoga-dp-info">
-          <h1>{meditationTechnique.name}</h1>
-          <p className="difficulty">
-            {meditationTechnique.meditation_categories?.name}
-          </p>
-          <p className="description">{meditationTechnique.description}</p>
-          <p>Hier ein Player mit hinterlegter Audiodatei</p>
-        </div>
-        <div className="back-fav-meditation">
-          <Link className="back" to={"/meditation"}>
-            <img
-              src="/src/assets/img/arrow-left-circle-3.svg"
-              alt=""
-              style={{ width: "30px", height: "30px" }}
-            />
-          </Link>
-          <button className="fav-btn" onClick={handleFavoriteClick}>
-            {meditationTechnique.favorites.length > 0 ? "❤️" : "♡"}
-          </button>
+           <div>
+                <div>
+                    <Link to={"/meditation"}>Zurück Pfeil</Link>
+                    <button onClick={handleFavoriteClick}>
+                        {meditationTechnique.favorites.length > 0 ? "❤️" : "♡"}</button>
+                </div>
+                <div>
+                    <img src={meditationTechnique.image_url!} alt="meditation_cover" /> 
+                </div>
+                <div>
+                    <h1>{meditationTechnique.name}</h1>
+                    <p>{meditationTechnique.meditation_categories?.name}</p>
+                    <p>{meditationTechnique.description}</p>
+                    <div>
+                       <button onClick={handlePlayPause}>
+                        <ReactPlayer 
+                            url={meditationTechnique.audio_url}
+                            playing={isPlaying}
+                            width="100px"
+                            height="100px"
+                            style={{ display: 'block' }}
+                            config={{ file: { 
+                                attributes: {
+                                    controlsList: 'nodownload'
+                                }
+                            }}}
+                        />
+                    </button>
+                    <p>{meditationTechnique.name}</p>  
+                    <p>{meditationTechnique.duration}</p>
+                    </div>
         </div>
       </div>
     </div>
