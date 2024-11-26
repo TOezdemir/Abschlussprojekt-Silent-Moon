@@ -62,45 +62,49 @@ export default function MeditationsPage() {
         </p>
       </div>
       <div className="yoga-saerchbar">
-        <form onSubmit={handleSearch}>
+        <form className="zen-search-btn" onSubmit={handleSearch}>
           <input
             className="yoga-input"
             ref={inputRef}
             type="search"
             placeholder="search for meditation "
           />
-          {searchText && <button onClick={handleReset}>X</button>}
+          {searchText && (
+            <button className="input-btn" onClick={handleReset}>
+              X
+            </button>
+          )}
         </form>
       </div>
       <div className="random-player">
         <p>Lerne Meditation kennen / Daily Random Affirmations</p>
       </div>
-      <div className="card-section">
-        <div className="yoga-videos">
-          {allMeditations.map((allMeditation) => (
-            <Link
-              key={allMeditation.id}
-              to={`/meditation/${slugify(allMeditation.name, {
-                lower: true,
-              })}/${allMeditation.id}`}
+      {/* <div className="card-section"> */}
+      <div className="yoga-videos">
+        {allMeditations.map((allMeditation) => (
+          <Link
+            key={allMeditation.id}
+            to={`/meditation/${slugify(allMeditation.name, {
+              lower: true,
+            })}/${allMeditation.id}`}
+          >
+            <div
+              className="meditation-cards"
+              style={{
+                backgroundImage: `url(${allMeditation.image_url})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                width: "145px",
+                height: "195px",
+              }}
             >
-              <div
-                className="meditation-cards"
-                style={{
-                  backgroundImage: `url(${allMeditation.image_url})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  width: "145px",
-                  height: "195px",
-                }}
-              >
-                <h2>{allMeditation.name}</h2>
-                {/* <p>{allMeditation.meditation_categories?.name}</p> */}
-              </div>
-            </Link>
-          ))}
-        </div>
+              <h2>{allMeditation.name}</h2>
+              {/* <p>{allMeditation.meditation_categories?.name}</p> */}
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
+    // </div>
   );
 }

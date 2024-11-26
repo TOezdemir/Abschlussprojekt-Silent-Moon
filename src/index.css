@@ -141,12 +141,12 @@ body {
   position: relative; /* Wichtiger Bezugspunkt für Positionierung */
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
   background-color: #7ac08b;
-  /* background-image: url("src/assets/img/fp.mp4");
+  background-image: url("src/assets/img/app-bg.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   max-width: 100%;
-  max-height: 100%; */
+  max-height: 100%;
 }
 
 /* Layout mit Grid */
@@ -433,6 +433,20 @@ body {
 
 /* Home Page css */
 
+.home {
+  margin-bottom: 10em;
+}
+
+.highlight-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  font-size: small;
+  gap: 2em;
+}
+
 .home-headline h2 {
   margin-bottom: 1em;
 }
@@ -453,6 +467,13 @@ body {
 
 /* Yoga Page css */
 
+.zen-search-btn {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 0.1em;
+}
+
 .yoga h1 {
   margin-bottom: 1em;
   text-align: center;
@@ -469,11 +490,17 @@ body {
 }
 
 .yoga-saerchbar {
-  text-align: center;
+  display: flex;
+  gap: 0.5em; /* Abstand zwischen Input und Button */
+  width: 100%;
 }
 
 .yoga-input {
   width: 100%;
+  margin-bottom: 1em;
+  margin-top: 1em;
+
+  flex: 1; /* Füllt den verfügbaren Platz aus */
   padding: 1rem 0.5rem;
   font-size: small;
   border: 1px solid #73ba86;
@@ -481,8 +508,19 @@ body {
   border-radius: 5px;
   outline: none;
   transition: all 0.3s ease;
-  margin-bottom: 1em;
-  margin-top: 1em;
+  margin: 0; /* Entfernt unnötige Margins */
+}
+
+.input-btn {
+  padding: 1rem 1.3rem;
+  font-size: small;
+  border: 1px solid;
+  background: #ffffff;
+  color: #73ba86;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px rgba(129, 206, 151, 0.3);
 }
 
 .random-player {
@@ -504,8 +542,9 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 2em;
+  gap: 1em;
   justify-content: center;
+  margin-bottom: 5em;
 }
 
 .yoga-cards {
@@ -517,7 +556,7 @@ body {
   height: fit-content;
   border-radius: 10px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
-  margin: 1em 0;
+  margin: 0.5em 0;
 }
 
 .yoga-cards h2 {
@@ -550,7 +589,7 @@ body {
   height: fit-content;
   border-radius: 10px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
-  margin: 1em 0;
+  margin: 0.5em 0;
 }
 
 .meditation-cards h2 {
@@ -559,10 +598,13 @@ body {
 }
 
 .card-section {
-  margin-bottom: 5em;
+  margin-bottom: 7em;
 }
-
 /*Yoga Detail Page css */
+
+.yoga-dp-page {
+  margin-bottom: 7em;
+}
 
 .yoga-dp-info h1 {
   margin: 1em 0;
@@ -608,6 +650,10 @@ body {
 
 /*Meditation Detail Page css */
 
+.meditation-dp {
+  margin-bottom: 7em;
+}
+
 .back-fav-meditation {
   display: flex;
   flex-direction: row;
@@ -615,6 +661,27 @@ body {
   align-items: center;
   margin-top: 2em;
   margin-bottom: 6em;
+}
+
+.play-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #15775b;
+  color: white;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 1em;
+  width: 100%;
+  transition: color 0.3s ease;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  margin-top: 2em;
+}
+
+.play-btn button {
+  margin-right: 2em;
 }
 
 /* Allgemeines Styling für die Navbar */

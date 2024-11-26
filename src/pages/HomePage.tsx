@@ -157,7 +157,7 @@ export default function HomePage() {
     <div className="home">
       <section className="home-headline">
         <h2>Hey {firstNameQuery.data?.first_name}!</h2>
-        <p>On the lookout for a new rush of vibes?</p>
+        <p style={{ fontWeight: "bold" }}>We hope you have a good day</p>
       </section>
       <section className="highlight-section">
         {highlightYogaQuery.data.length > 0 && (
@@ -215,14 +215,18 @@ export default function HomePage() {
       </section>
       <section>
         <div className="yoga-saerchbar">
-          <form onSubmit={handleSearch}>
+          <form className="zen-search-btn" onSubmit={handleSearch}>
             <input
               className="yoga-input"
               ref={inputRef}
               type="text"
               placeholder="Zen Search"
             />
-            {searchText && <button onClick={handleReset}>X</button>}
+            {searchText && (
+              <button className="input-btn" onClick={handleReset}>
+                X
+              </button>
+            )}
           </form>
         </div>
       </section>
@@ -237,6 +241,7 @@ export default function HomePage() {
               }`}
             >
               <div
+                className="yoga-cards"
                 style={{
                   backgroundImage: `url(${allYoga.image_url})`,
                   backgroundSize: "cover",
@@ -245,6 +250,7 @@ export default function HomePage() {
                   height: "195px",
                 }}
               >
+                {/* <img src="" alt="yoga_bgimage" /> */}
                 <h2>{allYoga.name}</h2>
                 <p>{allYoga.difficulty}</p>
                 <p>{allYoga.duration}</p>
@@ -256,7 +262,16 @@ export default function HomePage() {
 
       <section className="meditation-section">
         <h4>Recommended Meditations for you</h4>
-        <div>
+        <div
+          className="yoga-cards"
+          style={{
+            // backgroundImage: `url(${allMeditations[0].image_url})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            width: "145px",
+            height: "195px",
+          }}
+        >
           {allMeditations.map((allMeditation) => (
             <Link
               key={allMeditation.id}
