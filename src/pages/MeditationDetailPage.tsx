@@ -4,25 +4,6 @@ import { Link, useParams } from "react-router-dom"
 import ReactPlayer from "react-player"
 import { useState } from "react"
 
-// interface MeditaionDetailProps {
-//     meditation: {
-//         audio_url: string | null;
-//         category_id: string | null;
-//         created_at: string;
-//         description: string;
-//         duration: number | null;
-//         id: string;
-//         image_url: string | null;
-//         name: string;
-//         video_url: string | null;
-//         meditation_categories: {
-//             id: string
-//             name: string
-//             description: string
-//         } | null;
-//     }
-// }
-
 
 export default function MeditationDetailPage(){
     const { id } = useParams()

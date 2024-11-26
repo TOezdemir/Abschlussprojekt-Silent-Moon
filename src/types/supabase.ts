@@ -149,17 +149,17 @@ export type Database = {
       }
       profiles: {
         Row: {
-          first_name: string | null
+          first_name: string
           id: string
           last_name: string | null
         }
         Insert: {
-          first_name?: string | null
+          first_name: string
           id: string
           last_name?: string | null
         }
         Update: {
-          first_name?: string | null
+          first_name?: string
           id?: string
           last_name?: string | null
         }

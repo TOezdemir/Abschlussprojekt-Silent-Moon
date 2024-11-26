@@ -18,6 +18,7 @@ import Layout from "./components/Layout";
 import FirstPage from "./pages/FirstPage";
 import { UserContextProvider } from "./context/userContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ProtectedRoutes from "./ui/ProtectedRoute";
 
 const client = new QueryClient();
 
@@ -67,10 +68,6 @@ const router = createBrowserRouter([
         element: <MusicPage />,
       },
       {
-        path: "/profile",
-        element: <ProfilePage />,
-      },
-      {
         path: "/yogabinaural",
         element: <YogaBinaural />,
       },
@@ -90,6 +87,14 @@ const router = createBrowserRouter([
         path: "/firstpage",
         element: <FirstPage />,
       },
+      {
+        path: "/profile",
+        element: <ProtectedRoutes/>,
+        children: [{
+          path: "",
+          element: <ProfilePage/>
+        }]
+      }
     ],
   },
 ]);
