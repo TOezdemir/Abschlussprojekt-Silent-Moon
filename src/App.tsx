@@ -28,6 +28,10 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
+        path: "/home",
+        element: <HomePage />,
+      },
+      {
         path: "/login",
         element: <LoginPage />,
       },
@@ -42,10 +46,6 @@ const router = createBrowserRouter([
       {
         path: "/reminders",
         element: <RemindersPage />,
-      },
-      {
-        path: "/home",
-        element: <HomePage />,
       },
       {
         path: "/yoga/:name/:id",
@@ -88,10 +88,9 @@ const router = createBrowserRouter([
         element: <FirstPage />,
       },
       {
-        path: "/profile",
         element: <ProtectedRoutes/>,
         children: [{
-          path: "",
+          path: "/profile",
           element: <ProfilePage/>
         }]
       }

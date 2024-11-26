@@ -1,11 +1,11 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../lib/supabaseClient";
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
 
 export default function YogaDetailPage() {
   const { id } = useParams();
-
+  const navigate = useNavigate()
   const queryClient = useQueryClient();
 
   const singleYogaQuery = useQuery({
@@ -74,6 +74,7 @@ export default function YogaDetailPage() {
             loop={true}
             playing={true}
           />
+
         </div>
         <div className="yoga-dp-info">
           <h1>{yogaPose.name}</h1>
@@ -81,13 +82,13 @@ export default function YogaDetailPage() {
           <p className="description">{yogaPose.description}</p>
         </div>
         <div className="back-fav">
-          <Link className="back" to={"/yoga"}>
+            <button className="back" onClick={() => navigate(-1)}>
             <img
               src="/src/assets/img/arrow-left-circle-3.svg"
               alt=""
               style={{ width: "30px", height: "30px" }}
             />
-          </Link>
+            </button>
           <button className="fav-btn" onClick={handleFavoriteClick}>
             {yogaPose.favorites.length > 0 ? "❤️" : "♡"}
           </button>

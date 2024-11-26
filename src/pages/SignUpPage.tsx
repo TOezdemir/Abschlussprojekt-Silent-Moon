@@ -2,8 +2,6 @@ import { useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 import { useUserContext } from "../context/userContext";
 import { useNavigate } from "react-router-dom";
-// import ReactPlayer from "react-player";
-import React from "react";
 
 export default function RegistrationPage() {
   const [email, setEmail] = useState("");
@@ -73,14 +71,13 @@ export default function RegistrationPage() {
           value={lastname}
           onChange={(e) => setLastname(e.target.value)}
         />
+        <button className="default-btn" type="submit">
+          REGISTER
+        </button>  
       </form>
-      <button className="default-btn" type="submit">
-        REGISTER
-      </button>
+
 
       {error && <p style={{ color: "red" }}>{error}</p>}
-
-      {/* <ReactPlayer url="https://www.youtube.com/watch?v=LXb3EKWsInQ" /> */}
     </div>
   );
 }
