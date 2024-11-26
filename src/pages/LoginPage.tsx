@@ -17,7 +17,7 @@ export default function LoginPage() {
       alert(result.error.message);
     } else {
       setUser(result.data.user);
-      navigate("/");
+      navigate("/home");
     }
   };
 

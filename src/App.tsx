@@ -7,9 +7,9 @@ import HomePage from "./pages/HomePage";
 import YogaDetailPage from "./pages/YogaDetailPage";
 import MeditationDetailPage from "./pages/MeditationDetailPage";
 import YogaPage from "./pages/YogaPage";
-// // import YogaMantra from "./toBeRevisited/YogaMantra";
+// import YogaMantra from "./toBeRevisited/YogaMantra";
 // import YogaPiano from "./toBeRevisited/YogaPiano";
-// // import YogaBinaural from "./toBeRevisited/YogaBinaural";
+// import YogaBinaural from "./toBeRevisited/YogaBinaural";
 // import YogaVideo from "./toBeRevisited/YogaVideo";
 import MeditationsPage from "./pages/MeditationsPage";
 import MusicPage from "./pages/MusicPage";
@@ -28,6 +28,10 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
+        path: "/home",
+        element: <HomePage />,
+      },
+      {
         path: "/login",
         element: <LoginPage />,
       },
@@ -42,10 +46,6 @@ const router = createBrowserRouter([
       {
         path: "/reminders",
         element: <RemindersPage />,
-      },
-      {
-        path: "/home",
-        element: <HomePage />,
       },
       {
         path: "/yoga/:name/:id",

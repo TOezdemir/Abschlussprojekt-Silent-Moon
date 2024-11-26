@@ -1,15 +1,34 @@
-// import Searchbar from "../components/Searchbar";
+
 import { useQuery } from "@tanstack/react-query";
 import { ElementRef, useRef, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 import slugify from "slugify";
 import { Link } from "react-router-dom";
-// import RecommendedYoga from "../components/RecommendedYoga";
-// import RecommendedMeditation from "../components/RecommendedMeditation";
+import { useUserContext } from "../context/userContext";
 
 export default function HomePage() {
   const [searchText, setSearchText] = useState("");
   const inputRef = useRef<ElementRef<"input">>(null);
+  const { user } = useUserContext()
+
+  // Abfrage für Vornamen
+  const firstNameQuery = useQuery({
+    queryKey: ["supabase", "profiles", user?.id],
+    queryFn: async () =>{
+      if(!user?.id){
+        return null
+      }
+      const result = await supabase
+        .from("profiles")
+        .select("first_name")
+        .eq("id", user!.id)
+        .single()
+      if(result.error){
+        throw result.error
+      }
+      return result.data
+    },
+  })
 
   const highlightYogaQuery = useQuery({
     queryKey: ["supabase", "yoga", searchText],
@@ -81,6 +100,10 @@ export default function HomePage() {
     },
   });
 
+  if(highlightYogaQuery.isLoading || highlightMeditationQuery.isLoading){
+    return "... loading"
+  }
+
   if (highlightYogaQuery.isPending) {
     return "...loading Yoga";
   }
@@ -106,6 +129,13 @@ export default function HomePage() {
     return "...cant fetch Meditation!";
   }
 
+  if(firstNameQuery.isPending){
+    return "... loading name"
+  }
+  if(firstNameQuery.isError || !firstNameQuery.data){
+    return "... can't fetch name!"
+  }
+
   const handleSearch: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     const value = inputRef.current?.value || "";
@@ -126,10 +156,11 @@ export default function HomePage() {
   return (
     <div className="home">
       <section className="home-headline">
-        <h2>Good morning Leon</h2>
-        <p>We hope you have a good day</p>
+        <h2>Hey {firstNameQuery.data?.first_name}!</h2>
+        <p>On the lookout for a new rush of vibes?</p>
       </section>
       <section className="highlight-section">
+        {highlightYogaQuery.data.length > 0 && (
         <div
           className="yoga-cards"
           style={{
@@ -153,10 +184,12 @@ export default function HomePage() {
             </Link>
           ))}
         </div>
+        )}
+        {highlightMeditationQuery.data.length > 0 && (
         <div
           className="yoga-cards"
           style={{
-            backgroundImage: `url(${highlightMeditations[0].image_url})`,
+            backgroundImage: `url(${highlightMeditations[0]!.image_url})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             width: "150px",
@@ -178,6 +211,7 @@ export default function HomePage() {
             </Link>
           ))}
         </div>
+        )}
       </section>
       <section>
         <div className="yoga-saerchbar">

@@ -99,38 +99,8 @@ export default function YogaPage() {
       </div>
     </div>
   );
-}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
 // import { useQuery } from "@tanstack/react-query";
 // import { ElementRef, useRef, useState } from "react";
 // import { supabase } from "../lib/supabaseClient";
