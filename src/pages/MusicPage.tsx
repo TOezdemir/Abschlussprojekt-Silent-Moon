@@ -10,8 +10,8 @@ import ReactPlayer from "react-player";
 interface Music {
   id: string;
   name: string;
-  thumbnail: string | null;
-  url: string | null;
+  thumbnail: string
+  url: string
 }
 
 export default function MusicPage() {
@@ -19,19 +19,18 @@ export default function MusicPage() {
   const [category, setCategory] = useState<string>("mantra");
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const allMusicQuery = useQuery<Music[]>({
+  const allMusicQuery = useQuery<Music[], Error>({
     queryKey: ["supabase", "music", category, searchText],
     queryFn: async () => {
-      let query = supabase
-        .from(`yoga_category_${category}`)
+      const result =  await supabase
+        .from(`yoga_category_${category}` as keyof typeof supabase.from)
         .select("*")
         .ilike("name", `%${searchText}%`);
 
-      const result = await query;
       if (result.error) {
         throw result.error;
       }
-      return result.data;
+      return result.data as Music[]
     },
     enabled: !!category,
   });

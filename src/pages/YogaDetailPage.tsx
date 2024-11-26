@@ -73,6 +73,7 @@ export default function YogaDetailPage() {
             controls={false}
             loop={true}
             playing={true}
+            className="yoga-dp"
           />
 
         </div>
