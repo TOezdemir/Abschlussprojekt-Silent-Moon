@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "../lib/supabaseClient";
 import { Link } from "react-router-dom";
 import { useUserContext } from "../context/userContext";
+import slugify from "slugify";
 
 export default function ProfilePage() {
     const { user } = useUserContext();
@@ -14,7 +15,6 @@ export default function ProfilePage() {
                 .select("first_name")
                 .eq("id", user!.id)
                 .single()
-            
             if(firstNameResult.error){
                 throw firstNameResult.error
             }
@@ -87,7 +87,7 @@ export default function ProfilePage() {
       <h2>Yoga</h2>
       <div>
         {yogaFavorites?.map((favorite) => (
-          <Link key={favorite.yoga_id} to={`/yoga/${favorite.yoga_id}}`}>
+          <Link key={favorite.yoga_id} to={`/yoga/${slugify(favorite.yoga.name, { lower: true })}/${favorite.yoga_id}`}>
             <div>
               <img src={favorite.yoga.image_url} alt="yoga_bgimage" />
               <h2>{favorite.yoga.name}</h2>
@@ -100,11 +100,11 @@ export default function ProfilePage() {
       <h2>Meditations</h2>
       <div>
         {meditationFavorites?.map((favorite) =>(
-            <Link key={favorite.meditation_id} to={`/meditation/${favorite.meditation_id}`}>
+            <Link key={favorite.meditation_id} to={`/meditation/${slugify(favorite.meditation.name, {lower: true})}/${favorite.meditation_id}`}>
                 <div>
                     <img src={favorite.meditation.image_url} alt="meditation_bgimage" />
                     <h2>{favorite.meditation.name}</h2>
-                    {/* <p>{favorite.meditation.category_id.}</p> */}
+                    {/* <p>{favorite.meditation.description}</p> */}
                 </div>
             </Link>
         ))}
