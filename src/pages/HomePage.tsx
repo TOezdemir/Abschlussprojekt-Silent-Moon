@@ -13,7 +13,7 @@ export default function HomePage() {
 
   // Abfrage für Vornamen
   const firstNameQuery = useQuery({
-    queryKey: ["supabase", "profiles", user!.id],
+    queryKey: ["supabase", "profiles", user?.id],
     queryFn: async () =>{
       if(!user?.id){
         return null
@@ -100,6 +100,10 @@ export default function HomePage() {
     },
   });
 
+  if(highlightYogaQuery.isLoading || highlightMeditationQuery.isLoading){
+    return "... loading"
+  }
+
   if (highlightYogaQuery.isPending) {
     return "...loading Yoga";
   }
@@ -156,6 +160,7 @@ export default function HomePage() {
         <p>On the lookout for a new rush of vibes?</p>
       </section>
       <section className="highlight-section">
+        {highlightYogaQuery.data.length > 0 && (
         <div
           className="yoga-cards"
           style={{
@@ -179,10 +184,12 @@ export default function HomePage() {
             </Link>
           ))}
         </div>
+        )}
+        {highlightMeditationQuery.data.length > 0 && (
         <div
           className="yoga-cards"
           style={{
-            backgroundImage: `url(${highlightMeditations[0].image_url})`,
+            backgroundImage: `url(${highlightMeditations[0]!.image_url})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             width: "150px",
@@ -204,6 +211,7 @@ export default function HomePage() {
             </Link>
           ))}
         </div>
+        )}
       </section>
       <section>
         <div className="yoga-saerchbar">
