@@ -31,13 +31,13 @@ export default function HomePage() {
   })
 
   const highlightYogaQuery = useQuery({
-    queryKey: ["supabase", "yoga", searchText],
+    queryKey: ["supabase", "yoga"],
     queryFn: async () => {
       const result = await supabase
         .from("yoga")
         .select("*")
         .limit(1)
-        .ilike("name", `%${searchText}%`);
+        // .ilike("name", `%${searchText}%`);
 
       if (result.error) {
         throw result.error;
@@ -47,7 +47,7 @@ export default function HomePage() {
   });
 
   const highlightMeditationQuery = useQuery({
-    queryKey: ["supabase", "meditation", searchText],
+    queryKey: ["supabase", "meditation"],
     queryFn: async () => {
       const result = await supabase
         .from("meditation")
@@ -58,7 +58,7 @@ export default function HomePage() {
         name)`
         )
         .limit(1)
-        .ilike("name", `%${searchText}%`);
+        // .ilike("name", `%${searchText}%`);
 
       if (result.error) {
         throw result.error;
@@ -205,7 +205,7 @@ export default function HomePage() {
             >
               <div>
                 <h2>{meditation.name}</h2>
-                <p>{meditation.meditation_categories?.name}</p>
+                {/* <p>{meditation.meditation_categories?.name}</p> */}
                 <p>{meditation.duration}</p>
               </div>
             </Link>
@@ -245,7 +245,6 @@ export default function HomePage() {
                   height: "195px",
                 }}
               >
-                <img src="" alt="yoga_bgimage" />
                 <h2>{allYoga.name}</h2>
                 <p>{allYoga.difficulty}</p>
                 <p>{allYoga.duration}</p>
@@ -266,9 +265,9 @@ export default function HomePage() {
               })}/${allMeditation.id}`}
             >
               <div>
-                <img src="" alt="meditation_bgimage" />
+                <img src={allMeditation.image_url} alt="meditation_bgimage" />
                 <h2>{allMeditation.name}</h2>
-                <p>{allMeditation.meditation_categories?.name}</p>
+                {/* <p>{allMeditation.meditation_categories?.name}</p> */}
                 <p>{allMeditation.duration}</p>
               </div>
             </Link>
