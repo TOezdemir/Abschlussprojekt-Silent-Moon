@@ -70,10 +70,9 @@ export default function MusicPage() {
       </div>
 
       <div className="music-buttons">
-      <button onClick={() => handleCategoryChange("mantra")}>Mantra</button>
+        <button onClick={() => handleCategoryChange("mantra")}>Mantra</button>
         <button onClick={() => handleCategoryChange("piano")}>Piano</button>
         <button onClick={() => handleCategoryChange("binaural")}>Binaural</button>
-      
       </div>
 
       <div className="music-searchbar">
