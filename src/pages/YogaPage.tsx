@@ -12,7 +12,10 @@ export default function YogaPage() {
   const allYogaQuery = useQuery({
     queryKey: ["supabase", "yoga", searchText, difficulty],
     queryFn: async () => {
-      let query = supabase.from("yoga").select("*").ilike("name", `%${searchText}%`);
+      let query = supabase
+      .from("yoga")
+      .select("*")
+      .ilike("name", `%${searchText}%`);
       
       if (difficulty) {
         query = query.eq("difficulty", difficulty);
@@ -54,11 +57,11 @@ export default function YogaPage() {
     <div>
       <div className="yoga">
         <h1>Yoga</h1>
+        <p>Find your inner zen from anywhere.</p>
         <button onClick={() => handleFilter("beginner")}>Beginner</button>
         <button onClick={() => handleFilter("intermediate")}>Intermediate</button>
         <button onClick={() => handleFilter("expert")}>Expert</button>
         <button onClick={() => handleFilter(null)}>Show All</button>
-        <p>Find your inner zen from anywhere.</p>
       </div>
       <div className="yoga-saerchbar">
         <form onSubmit={handleSearch}>
@@ -99,7 +102,7 @@ export default function YogaPage() {
       </div>
     </div>
   );
-
+}
   
 // import { useQuery } from "@tanstack/react-query";
 // import { ElementRef, useRef, useState } from "react";
