@@ -65,21 +65,20 @@ export default function MeditationDetailPage() {
   const meditationTechnique = singleMeditationQuery.data;
 
   return (
-    <div>
-      <div className="meditation-dp">
-        <div
-          className="yoga-dp"
-          style={{
-            backgroundImage: `url(${meditationTechnique.image_url})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            width: "100%",
-            height: "200px",
-            borderRadius: "10px",
-          }}
-        >
-          {/* <img src={meditationTechnique.image_url!} alt="meditation_cover" /> */}
-        </div>
+    <div className="meditation-dp">
+      <div
+        className="yoga-dp"
+        style={{
+          backgroundImage: `url(${meditationTechnique.image_url})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          width: "100%",
+          height: "250px",
+        }}
+      >
+        {/* <img src={meditationTechnique.image_url!} alt="meditation_cover" /> */}
+      </div>
+      <div className="content-margin">
         <div className="yoga-dp-info">
           <h1>{meditationTechnique.name}</h1>
           <p className="difficulty">

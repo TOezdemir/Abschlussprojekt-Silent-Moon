@@ -68,7 +68,7 @@ export default function YogaPage() {
   const allYogaPoses = allYogaQuery.data;
 
   return (
-    <div>
+    <div className="content-margin">
       <div className="yoga">
         <h1>Yoga</h1>
         <div className="categories">

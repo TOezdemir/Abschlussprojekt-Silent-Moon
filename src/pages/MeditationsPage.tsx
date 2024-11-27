@@ -65,7 +65,7 @@ export default function MeditationsPage() {
   const allMeditations = allMeditationQuery.data;
 
   return (
-    <div>
+    <div className="content-margin">
       <div className="meditation">
         <h1>Meditate</h1>
         <p>

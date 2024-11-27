@@ -65,7 +65,7 @@ export default function MusicPage() {
   const allMusicTracks = allMusicQuery.data;
 
   return (
-    <div>
+    <div className="content-margin">
       <div className="music">
         <h1>Yoga Music</h1>
         <p>find your inner rhythm and peace</p>

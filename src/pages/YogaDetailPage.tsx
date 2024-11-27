@@ -65,7 +65,6 @@ export default function YogaDetailPage() {
             backgroundPosition: "center",
             width: "100%",
             height: "400px",
-            borderRadius: "10px",
           }}
         >
           <ReactPlayer
@@ -75,18 +74,20 @@ export default function YogaDetailPage() {
             playing={true}
           />
         </div>
-        <div className="yoga-dp-info">
-          <h1>{yogaPose.name}</h1>
-          <p className="difficulty">{yogaPose.difficulty}</p>
-          <p className="description">{yogaPose.description}</p>
-        </div>
-        <div className="back-fav">
-          <button className="back" onClick={() => navigate(-1)}>
-            <img src="/src/assets/img/arrow-left-circle-3.svg" alt="back" />
-          </button>
-          <button className="fav-btn" onClick={handleFavoriteClick}>
-            {yogaPose.favorites.length > 0 ? "❤️" : "♡"}
-          </button>
+        <div className="content-margin">
+          <div className="yoga-dp-info">
+            <h1>{yogaPose.name}</h1>
+            <p className="difficulty">{yogaPose.difficulty}</p>
+            <p className="description">{yogaPose.description}</p>
+          </div>
+          <div className="back-fav">
+            <button className="back" onClick={() => navigate(-1)}>
+              <img src="/src/assets/img/arrow-left-circle-3.svg" alt="back" />
+            </button>
+            <button className="fav-btn" onClick={handleFavoriteClick}>
+              {yogaPose.favorites.length > 0 ? "❤️" : "♡"}
+            </button>
+          </div>
         </div>
       </div>
     </div>
