@@ -13,9 +13,9 @@ export default function HomePage() {
   // Abfrage für Vornamen
   const firstNameQuery = useQuery({
     queryKey: ["supabase", "profiles", user?.id],
-    queryFn: async () => {
-      if (!user?.id) {
-        return null;
+    queryFn: async () =>{
+      if(!user?.id){
+        return {first_name: " "}
       }
       const result = await supabase
         .from("profiles")
@@ -30,13 +30,13 @@ export default function HomePage() {
   });
 
   const highlightYogaQuery = useQuery({
-    queryKey: ["supabase", "yoga", searchText],
+    queryKey: ["supabase", "yoga"],
     queryFn: async () => {
       const result = await supabase
         .from("yoga")
         .select("*")
         .limit(1)
-        .ilike("name", `%${searchText}%`);
+        // .ilike("name", `%${searchText}%`);
 
       if (result.error) {
         throw result.error;
@@ -46,7 +46,7 @@ export default function HomePage() {
   });
 
   const highlightMeditationQuery = useQuery({
-    queryKey: ["supabase", "meditation", searchText],
+    queryKey: ["supabase", "meditation"],
     queryFn: async () => {
       const result = await supabase
         .from("meditation")
@@ -57,7 +57,7 @@ export default function HomePage() {
         name)`
         )
         .limit(1)
-        .ilike("name", `%${searchText}%`);
+        // .ilike("name", `%${searchText}%`);
 
       if (result.error) {
         throw result.error;
@@ -155,7 +155,7 @@ export default function HomePage() {
   return (
     <div className="home">
       <section className="home-headline">
-        <h2>Hey {firstNameQuery.data?.first_name}!</h2>
+        <h2>Hey { user?.user_metadata?.first_name ?? firstNameQuery.data?.first_name}!</h2>
         <p style={{ fontWeight: "bold" }}>We hope you have a good day</p>
       </section>
       <section className="highlight-section">

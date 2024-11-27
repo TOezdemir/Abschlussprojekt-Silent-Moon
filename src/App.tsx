@@ -7,10 +7,6 @@ import HomePage from "./pages/HomePage";
 import YogaDetailPage from "./pages/YogaDetailPage";
 import MeditationDetailPage from "./pages/MeditationDetailPage";
 import YogaPage from "./pages/YogaPage";
-// import YogaMantra from "./toBeRevisited/YogaMantra";
-// import YogaPiano from "./toBeRevisited/YogaPiano";
-// import YogaBinaural from "./toBeRevisited/YogaBinaural";
-// import YogaVideo from "./toBeRevisited/YogaVideo";
 import MeditationsPage from "./pages/MeditationsPage";
 import MusicPage from "./pages/MusicPage";
 import ProfilePage from "./pages/ProfilePage";
@@ -27,10 +23,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <Layout />,
     children: [
-      {
-        path: "/home",
-        element: <HomePage />,
-      },
+      // {
+      //   path: "/home",
+      //   element: <HomePage />,
+      // },
       {
         path: "/login",
         element: <LoginPage />,
@@ -48,42 +44,6 @@ const router = createBrowserRouter([
         element: <RemindersPage />,
       },
       {
-        path: "/yoga/:name/:id",
-        element: <YogaDetailPage/>,
-      },
-      {
-        path: "/meditation/:name/:id",
-        element: <MeditationDetailPage/>,
-      },
-      {
-        path: "/yoga",
-        element: <YogaPage />,
-      },
-      {
-        path: "/meditation",
-        element: <MeditationsPage />,
-      },
-      {
-        path: "/music",
-        element: <MusicPage />,
-      },
-      // {
-      //   path: "/yogabinaural",
-      //   element: <YogaBinaural />,
-      // },
-      // {
-      //   path: "/yogapiano",
-      //   element: <YogaPiano />,
-      // },
-      // {
-      //   path: "/yogamantra",
-      //   element: <YogaMantra />,
-      // },
-      // {
-      //   path: "/yogavideo",
-      //   element: <YogaVideo />,
-      // },
-      {
         path: "/firstpage",
         element: <FirstPage />,
       },
@@ -92,7 +52,32 @@ const router = createBrowserRouter([
         children: [{
           path: "/profile",
           element: <ProfilePage/>
-        }]
+        },
+        {
+          path: "/home",
+          element: <HomePage/>
+        },
+        {
+          path: "/yoga",
+          element: <YogaPage/>
+        },
+        {
+          path: "/yoga/:name/:id",
+          element: <YogaDetailPage/>,
+        },
+        {
+          path: "/meditation",
+          element: <MeditationsPage />,
+        },
+        {
+          path: "/meditation/:name/:id",
+          element: <MeditationDetailPage/>,
+        },
+        {
+          path: "/music",
+          element: <MusicPage />,
+        },
+        ]
       }
     ],
   },

@@ -16,7 +16,6 @@ export default function YogaPage() {
         .from("yoga")
         .select("*")
         .ilike("name", `%${searchText}%`);
-
       if (difficulty) {
         query = query.eq("difficulty", difficulty);
       }

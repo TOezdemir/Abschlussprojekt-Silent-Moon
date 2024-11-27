@@ -1,6 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useUserContext } from "../context/userContext";
 
 function FirstPage() {
+  const { handleGuestLogin } = useUserContext()
+  const navigate = useNavigate()
+
+  const handleGuestLoginAndNavigate = async() => {
+    await handleGuestLogin()
+    navigate("/home")
+  }
+
   return (
     <div className="first-page">
       <div className="fp-headline">
@@ -15,7 +24,7 @@ function FirstPage() {
           <button className="fp-signup-btn">SIGN UP</button>
         </Link>
         <Link to="/welcome">
-          <button className="fp-guest-btn">LOGIN FOR GUESTS</button>
+          <button className="fp-guest-btn" onClick={handleGuestLoginAndNavigate}>LOGIN FOR GUESTS</button>
         </Link>
       </div>
       <p>

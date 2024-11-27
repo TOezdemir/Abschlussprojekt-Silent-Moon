@@ -3,7 +3,6 @@ import { ElementRef, useRef, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 import slugify from "slugify";
 import { Link } from "react-router-dom";
-import Categories from "../components/Categories";
 
 export default function MeditationsPage() {
   const [searchText, setSearchText] = useState("");
@@ -54,7 +53,6 @@ export default function MeditationsPage() {
     <div>
       <div className="meditation">
         <h1>Meditate</h1>
-        {/* <Categories /> */}
         <p>
           Audio-only meditation techniques <br />
           to help you minimize your screen time <br />

@@ -7,10 +7,10 @@ import "./MusicPage.css";
 import ReactPlayer from "react-player";
 
 interface Music {
-  id: string;
-  name: string;
-  thumbnail: string | null;
-  url: string | null;
+  id: string
+  name: string
+  thumbnail: string
+  url: string
 }
 
 export default function MusicPage() {
@@ -18,19 +18,18 @@ export default function MusicPage() {
   const [category, setCategory] = useState<string>("mantra");
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const allMusicQuery = useQuery<Music[]>({
+  const allMusicQuery = useQuery<Music[], Error>({
     queryKey: ["supabase", "music", category, searchText],
-    queryFn: async (): Promise<Music[]> => {
-      let query = supabase
-        .from(`yoga_category_${category}`)
+    queryFn: async () => {
+      const result =  await supabase
+        .from(`yoga_category_${category}` as keyof typeof supabase.from)
         .select("*")
         .ilike("name", `%${searchText}%`);
 
-      const result = await query;
       if (result.error) {
         throw result.error;
       }
-      return result.data;
+      return result.data as Music[]
     },
     enabled: !!category,
   });
@@ -66,9 +65,8 @@ export default function MusicPage() {
     <div>
       <div className="music">
         <h1>Yoga Music</h1>
-        <p>Find your inner rhythm and peace.</p>
+        <p>find your inner rhythm and peace</p>
       </div>
-
       <div className="categories">
         <button
           className="categories-box"
@@ -178,4 +176,3 @@ export default function MusicPage() {
       </div>
     </div>
   );
-}
