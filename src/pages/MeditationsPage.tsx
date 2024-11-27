@@ -85,6 +85,7 @@ export default function MeditationsPage() {
             to={`/meditation/${slugify(allMeditation.name, {
               lower: true,
             })}/${allMeditation.id}`}
+            style={{ textDecoration: "none" }}
           >
             <div
               className="meditation-cards"

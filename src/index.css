@@ -122,8 +122,9 @@ body {
 }
 
 .categories-box {
-  background-color: #a1dfb1;
-  padding: 25px 30px;
+  background-color: #a8cbbf;
+  padding: 25px 28px;
+  border: 1px solid #15775b;
   border-radius: 10px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
   cursor: pointer;
@@ -169,7 +170,7 @@ body {
   padding: 2.5em;
   text-align: center;
   font-size: 0.5rem;
-  background-color: #15775b;
+  background-color: #428053;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Schlagschatten nach unten */
 }
 
@@ -431,6 +432,12 @@ body {
   text-decoration: underline;
 }
 
+/* Profile Page css */
+
+.profile {
+  text-align: center;
+}
+
 /* Home Page css */
 
 .home {
@@ -463,6 +470,13 @@ body {
 .meditation-section h4 {
   margin-top: 1em;
   margin-bottom: 1em;
+}
+
+.card-text-align-hp {
+  text-align: center;
+  align-content: center;
+  color: white;
+  font-size: small;
 }
 
 /* Yoga Page css */
@@ -508,11 +522,13 @@ body {
   border-radius: 5px;
   outline: none;
   transition: all 0.3s ease;
-  margin: 0; /* Entfernt unnötige Margins */
+  /* margin: 0; Entfernt unnötige Margins */
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  margin: 1em 0;
 }
 
 .input-btn {
-  padding: 1rem 1.3rem;
+  padding: 0.5rem 1.3rem;
   font-size: small;
   border: 1px solid;
   background: #ffffff;
@@ -521,6 +537,8 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 0 8px rgba(129, 206, 151, 0.3);
+  margin: 1em 0;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }
 
 .random-player {
@@ -560,8 +578,10 @@ body {
 }
 
 .yoga-cards h2 {
-  font-size: medium;
+  font-size: small;
   color: white;
+  text-align: center;
+  align-content: center;
 }
 
 /* Meditation Page css */
@@ -595,6 +615,8 @@ body {
 .meditation-cards h2 {
   font-size: medium;
   color: white;
+  text-align: center;
+  align-content: center;
 }
 
 .card-section {
@@ -631,15 +653,28 @@ body {
 }
 
 .back {
-  text-decoration: none;
-  font-size: small;
-  color: #15775b;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.back img {
+  display: block;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+  width: 30px;
+  height: 30px;
 }
 
 .fav-btn {
   background-color: white;
   color: #15775b;
-  padding: 5px 6.5px;
+  padding: 6px 6px;
   border: 1px solid #15775b;
   border-radius: 5px;
   cursor: pointer;
@@ -668,7 +703,7 @@ body {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  background-color: #15775b;
+  background-color: #428053;
   color: white;
   padding: 14px 30px;
   border: none;
@@ -684,6 +719,32 @@ body {
   margin-right: 2em;
 }
 
+/* Music Page css */
+
+.music {
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.music h1 {
+  margin-bottom: 1em;
+}
+
+.music p {
+  margin-bottom: 2em;
+}
+
+.music-list {
+  margin-top: 2em;
+}
+
+.music-saerchbar {
+  display: flex;
+  gap: 0.5em;
+  width: 100%;
+  margin-top: 1em;
+}
+
 /* Allgemeines Styling für die Navbar */
 ul {
   list-style: none;
@@ -695,21 +756,21 @@ ul {
 
 li {
   display: flex;
-  flex-direction: column; /* Stellt sicher, dass die Bilder oben und die Links darunter sind */
-  align-items: center; /* Zentriert die Inhalte horizontal */
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 }
 
 li img {
-  width: 20px; /* Größe der Icons anpassen */
-  height: 20px; /* Größe der Icons anpassen */
-  margin-bottom: 0.5rem; /* Abstand zwischen Icon und Link */
+  width: 20px;
+  height: 20px;
+  margin-bottom: 0.5rem;
 }
 
 li a {
   text-decoration: none;
-  color: #000000; /* Farbe der Links */
-  font-size: 1rem; /* Schriftgröße anpassen */
+  color: #000000;
+  font-size: 1rem;
 }
 
 /* Navbar am unteren Rand */
@@ -761,7 +822,7 @@ li a {
   width: 100%;
   max-width: 400px;
   grid-area: footer;
-  background-color: #15775b;
+  background-color: #428053;
   box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1); /* Schlagschatten nach oben */
   position: absolute; /* Innerhalb des Phone-Rahmens fixieren */
   color: white;

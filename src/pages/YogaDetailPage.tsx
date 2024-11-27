@@ -5,7 +5,7 @@ import ReactPlayer from "react-player";
 
 export default function YogaDetailPage() {
   const { id } = useParams();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const singleYogaQuery = useQuery({
@@ -75,7 +75,6 @@ export default function YogaDetailPage() {
             playing={true}
             className="yoga-dp"
           />
-
         </div>
         <div className="yoga-dp-info">
           <h1>{yogaPose.name}</h1>
@@ -83,13 +82,9 @@ export default function YogaDetailPage() {
           <p className="description">{yogaPose.description}</p>
         </div>
         <div className="back-fav">
-            <button className="back" onClick={() => navigate(-1)}>
-            <img
-              src="/src/assets/img/arrow-left-circle-3.svg"
-              alt=""
-              style={{ width: "30px", height: "30px" }}
-            />
-            </button>
+          <button className="back" onClick={() => navigate(-1)}>
+            <img src="/src/assets/img/arrow-left-circle-3.svg" alt="back" />
+          </button>
           <button className="fav-btn" onClick={handleFavoriteClick}>
             {yogaPose.favorites.length > 0 ? "❤️" : "♡"}
           </button>

@@ -7,7 +7,7 @@ import { useState } from "react";
 export default function MeditationDetailPage() {
   const { id } = useParams();
   const [isPlaying, setIsPlaying] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const queryClient = useQueryClient();
 
@@ -88,7 +88,20 @@ export default function MeditationDetailPage() {
           <p className="description">{meditationTechnique.description}</p>
           <div>
             <div className="play-btn">
-              <button onClick={handlePlayPause}>
+              <button
+                onClick={handlePlayPause}
+                style={{
+                  display: "inline-flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "30px",
+                  height: "30px",
+                  border: "none",
+                  background: "transparent",
+                  padding: "0",
+                  cursor: "pointer",
+                }}
+              >
                 <ReactPlayer
                   url={meditationTechnique.audio_url}
                   playing={isPlaying}

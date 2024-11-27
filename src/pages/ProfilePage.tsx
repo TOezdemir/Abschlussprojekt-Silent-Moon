@@ -6,10 +6,10 @@ import slugify from "slugify";
 import { ElementRef, useEffect, useRef, useState } from "react";
 
 export default function ProfilePage() {
-    const { user, setUser } = useUserContext();
-    const [searchText, setSearchText] = useState("")
-    const inputRef = useRef<ElementRef<"input">>(null)
-    const navigate = useNavigate()
+  const { user, setUser } = useUserContext();
+  const [searchText, setSearchText] = useState("");
+  const inputRef = useRef<ElementRef<"input">>(null);
+  const navigate = useNavigate();
 
     useEffect(() =>{
         if(!user){
@@ -35,16 +35,17 @@ export default function ProfilePage() {
         },
       })
 
-    const favoritesQuery = useQuery({
+  const favoritesQuery = useQuery({
     queryKey: ["supabase", "favorites", searchText],
     queryFn: async () => {
       if (!user?.id) {
         return null;
-    } 
-    // Hier Yoga Favs
-    const yogaResult = await supabase
+      }
+      // Hier Yoga Favs
+      const yogaResult = await supabase
         .from("favorites")
-        .select(`
+        .select(
+          `
             yoga_id,
             yoga!inner(*)
         `)
@@ -64,13 +65,13 @@ export default function ProfilePage() {
       if (yogaResult.error) {
         throw yogaResult.error;
       }
-      if(meditationResult.error){
-        throw meditationResult.error
+      if (meditationResult.error) {
+        throw meditationResult.error;
       }
       return {
         yoga: yogaResult.data,
-        meditation: meditationResult.data
-      }
+        meditation: meditationResult.data,
+      };
     },
   });
 
@@ -80,82 +81,155 @@ export default function ProfilePage() {
   if (favoritesQuery.isError || !favoritesQuery.data) {
     return "...can't fetch Favorites!";
   }
-    
 
-
-  if(firstNameQuery.isPending){
-    return "... loading Name"
+  if (firstNameQuery.isPending) {
+    return "... loading Name";
   }
-  if(firstNameQuery.isError || !firstNameQuery.data){
-    return "... can't fetch Name!"
+  if (firstNameQuery.isError || !firstNameQuery.data) {
+    return "... can't fetch Name!";
   }
-
-
 
   const handleSearch: React.FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault()
-    const value = inputRef.current?.value || ""
-    setSearchText(value)
-  }
+    e.preventDefault();
+    const value = inputRef.current?.value || "";
+    setSearchText(value);
+  };
 
   const handleReset = () => {
-    inputRef.current!.value = ""
-    setSearchText("")
-  }
+    inputRef.current!.value = "";
+    setSearchText("");
+  };
 
-  const handleLogout = async () =>{
-    const { error } = await supabase.auth.signOut()
-    if(error){
-        console.error("Can't log out:", error)
+  const handleLogout = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error("Can't log out:", error);
     } else {
-        setUser(null)
+      setUser(null);
     }
-  }
+  };
 
-  const yogaFavorites = favoritesQuery.data.yoga
-  const meditationFavorites = favoritesQuery.data.meditation
+  const yogaFavorites = favoritesQuery.data.yoga;
+  const meditationFavorites = favoritesQuery.data.meditation;
 
   return (
     <div>
-      <div>
+      <div className="profile">
         <h1>{firstNameQuery.data.first_name}</h1>
-        <button onClick={handleLogout} className="back">Logout</button>
+        <button
+          style={{ color: "white", marginTop: "1em", fontWeight: "bold" }}
+          onClick={handleLogout}
+          className="back"
+        >
+          Logout
+        </button>
       </div>
       <div>
-        <div>
-            <form onSubmit={handleSearch}>
-                <input 
-                className="yoga-input"
-                ref ={inputRef}
-                placeholder="Search in Favourites..."
-                type="text" />
-                {searchText && <button onClick={handleReset}>X</button>}
-            </form>
+        <div className="yoga-saerchbar">
+          <form
+            className="zen-search-btn"
+            onSubmit={handleSearch}
+            style={{ margin: "1em 0" }}
+          >
+            <input
+              className="yoga-input"
+              ref={inputRef}
+              placeholder="Search in Favourites..."
+              type="text"
+            />
+            {searchText && (
+              <button className="input-btn" onClick={handleReset}>
+                X
+              </button>
+            )}
+          </form>
         </div>
       </div>
-      <h2>Favourite Yoga Poses and Sessions</h2>
-      <div>
+      <h2 style={{ fontSize: "medium" }}>Favourite Yoga Poses and Sessions</h2>
+      <div
+        style={{
+          margin: "2em 0",
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "1em",
+        }}
+      >
         {yogaFavorites?.map((favorite) => (
-          <Link key={favorite.yoga_id} to={`/yoga/${slugify(favorite.yoga.name, { lower: true })}/${favorite.yoga_id}`}>
-            <div>
-              <img src={favorite.yoga.image_url} alt="yoga_bgimage" />
-              <h2>{favorite.yoga.name}</h2>
-              <p>{favorite.yoga.difficulty}</p>
-              <p>{favorite.yoga.duration}</p>
+          <Link
+            key={favorite.yoga_id}
+            to={`/yoga/${slugify(favorite.yoga.name, { lower: true })}/${
+              favorite.yoga_id
+            }`}
+            style={{ textDecoration: "none" }}
+          >
+            <div
+              className="yoga-cards"
+              style={{
+                backgroundImage: `url(${favorite.yoga.image_url})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                width: "145px",
+                height: "145px",
+                color: "white",
+              }}
+            >
+              {/* <img src={favorite.yoga.image_url} alt="yoga_bgimage" /> */}
+              <h2 style={{ textAlign: "left", marginBottom: "4em" }}>
+                {favorite.yoga.name}
+              </h2>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <p
+                  style={{
+                    textAlign: "left",
+                    fontSize: "small",
+                    marginBottom: "0.5em",
+                  }}
+                >
+                  {favorite.yoga.difficulty}
+                </p>
+                <p style={{ textAlign: "left", fontSize: "small" }}>
+                  {favorite.yoga.duration}
+                </p>
+              </div>
             </div>
           </Link>
         ))}
       </div>
-      <h2>Favourite Meditations</h2>
-      <div>
-        {meditationFavorites?.map((favorite) =>(
-            <Link key={favorite.meditation_id} to={`/meditation/${slugify(favorite.meditation.name, {lower: true})}/${favorite.meditation_id}`}>
-                <div>
-                    <img src={favorite.meditation.image_url} alt="meditation_bgimage" />
-                    <h2>{favorite.meditation.name}</h2>
-                    {/* <p>{favorite.meditation.description}</p> */}
-                </div>
-            </Link>
+      <h2 style={{ marginBottom: "2em", fontSize: "medium" }}>
+        Favourite Meditations
+      </h2>
+      <div
+        className="meditation-cards"
+        style={{
+          backgroundImage: `url(${meditationFavorites[0].meditation.image_url})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          width: "145px",
+          height: "195px",
+        }}
+      >
+        {meditationFavorites?.map((favorite) => (
+          <Link
+            key={favorite.meditation_id}
+            to={`/meditation/${slugify(favorite.meditation.name, {
+              lower: true,
+            })}/${favorite.meditation_id}`}
+            style={{ textDecoration: "none" }}
+          >
+            <div style={{ marginBottom: "10em" }}>
+              {/* <img
+                src={favorite.meditation.image_url}
+                alt="meditation_bgimage"
+              /> */}
+              <h2>{favorite.meditation.name}</h2>
+              {/* <p>{favorite.meditation.description}</p> */}
+            </div>
+          </Link>
         ))}
       </div>
     </div>

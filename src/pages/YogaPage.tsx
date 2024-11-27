@@ -13,10 +13,9 @@ export default function YogaPage() {
     queryKey: ["supabase", "yoga", searchText, difficulty],
     queryFn: async () => {
       let query = supabase
-      .from("yoga")
-      .select("*")
-      .ilike("name", `%${searchText}%`);
-      
+        .from("yoga")
+        .select("*")
+        .ilike("name", `%${searchText}%`);
       if (difficulty) {
         query = query.eq("difficulty", difficulty);
       }
@@ -57,11 +56,55 @@ export default function YogaPage() {
     <div>
       <div className="yoga">
         <h1>Yoga</h1>
+        <div className="categories">
+          <button
+            style={{ color: "white", fontWeight: "bold" }}
+            className="categories-box"
+            onClick={() => handleFilter(null)}
+          >
+            All
+          </button>
+          <button
+            style={{
+              backgroundImage: `url("src/assets/img/filter2.png")`,
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+              color: "white",
+              fontWeight: "bold",
+            }}
+            className="categories-box"
+            onClick={() => handleFilter("beginner")}
+          >
+            ✦
+          </button>
+          <button
+            style={{
+              backgroundImage: `url("src/assets/img/filter1.png")`,
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+              color: "white",
+              fontWeight: "bold",
+            }}
+            className="categories-box"
+            onClick={() => handleFilter("intermediate")}
+          >
+            ✦✦
+          </button>
+          <button
+            style={{
+              backgroundImage: `url("src/assets/img/filter3.png")`,
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+              color: "white",
+              fontWeight: "bold",
+            }}
+            className="categories-box"
+            onClick={() => handleFilter("expert")}
+          >
+            ✦✦✦
+          </button>
+        </div>
         <p>Find your inner zen from anywhere.</p>
-        <button onClick={() => handleFilter("beginner")}>Beginner</button>
-        <button onClick={() => handleFilter("intermediate")}>Intermediate</button>
-        <button onClick={() => handleFilter("expert")}>Expert</button>
-        <button onClick={() => handleFilter(null)}>Show All</button>
       </div>
       <div className="yoga-saerchbar">
         <form className="zen-search-btn" onSubmit={handleSearch}>
@@ -86,7 +129,10 @@ export default function YogaPage() {
           {allYogaPoses.map((allYoga) => (
             <Link
               key={allYoga.id}
-              to={`/yoga/${slugify(allYoga.name, { lower: true })}/${allYoga.id}`}
+              to={`/yoga/${slugify(allYoga.name, { lower: true })}/${
+                allYoga.id
+              }`}
+              style={{ textDecoration: "none" }}
             >
               <div
                 className="yoga-cards"
@@ -107,7 +153,7 @@ export default function YogaPage() {
     </div>
   );
 }
-  
+
 // import { useQuery } from "@tanstack/react-query";
 // import { ElementRef, useRef, useState } from "react";
 // import { supabase } from "../lib/supabaseClient";
@@ -163,7 +209,7 @@ export default function YogaPage() {
 //         <button>Beginner</button>
 //         <button>Intermediate</button>
 //         <button>Expert</button>
-        
+
 //         <p>Find your inner zen from anywhere.</p>
 //       </div>
 //       <div className="yoga-saerchbar">
