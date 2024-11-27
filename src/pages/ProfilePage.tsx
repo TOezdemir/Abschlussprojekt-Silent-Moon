@@ -203,35 +203,32 @@ export default function ProfilePage() {
       <h2 style={{ marginBottom: "2em", fontSize: "medium" }}>
         Favourite Meditations
       </h2>
-      <div
-        className="meditation-cards"
-        style={{
-          backgroundImage: `url(${meditationFavorites[0].meditation.image_url})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          width: "145px",
-          height: "195px",
-        }}
-      >
-        {meditationFavorites?.map((favorite) => (
-          <Link
-            key={favorite.meditation_id}
-            to={`/meditation/${slugify(favorite.meditation.name, {
-              lower: true,
-            })}/${favorite.meditation_id}`}
-            style={{ textDecoration: "none" }}
-          >
-            <div style={{ marginBottom: "10em" }}>
-              {/* <img
-                src={favorite.meditation.image_url}
-                alt="meditation_bgimage"
-              /> */}
-              <h2>{favorite.meditation.name}</h2>
-              {/* <p>{favorite.meditation.description}</p> */}
-            </div>
-          </Link>
-        ))}
-      </div>
+      {meditationFavorites?.length > 0 ? ( 
+        <div
+          className="meditation-cards"
+          style={{
+            backgroundImage: `url(${meditationFavorites[0].meditation.image_url})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            width: "145px",
+            height: "195px",
+          }}
+        >
+          {meditationFavorites?.map((favorite) => (
+            <Link
+              key={favorite.meditation_id}
+              to={`/meditation/${slugify(favorite.meditation.name, {
+                lower: true,
+              })}/${favorite.meditation_id}`}
+              style={{ textDecoration: "none" }}
+            >
+              <div style={{ marginBottom: "10em" }}>
+                <h2>{favorite.meditation.name}</h2>
+              </div>
+            </Link>
+          ))}
+        </div>
+      ) : ("")}
     </div>
   );
 }
