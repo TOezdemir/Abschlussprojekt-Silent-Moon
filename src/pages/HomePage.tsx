@@ -148,7 +148,7 @@ export default function HomePage() {
   const highlightMeditations = highlightMeditationQuery.data;
   const allYogaPoses = allYogaQuery.data;
   const allMeditations = allMeditationQuery.data;
-
+  console.log(allMeditations)
   return (
     <div className="home">
       <section className="home-headline">
@@ -262,26 +262,7 @@ export default function HomePage() {
                   height: "145px",
                 }}
               >
-                {/* <img src="" alt="yoga_bgimage" /> */}
                 <h2 style={{ textAlign: "center" }}>{allYoga.name}</h2>
-                {/* <p
-                  style={{
-                    color: "white",
-                    textAlign: "center",
-                    fontSize: "small",
-                  }}
-                >
-                  {allYoga.difficulty}
-                </p> */}
-                {/* <p
-                  style={{
-                    marginTop: "0.5em",
-                    color: "white",
-                    fontSize: "small",
-                  }}
-                >
-                  {allYoga.duration}
-                </p> */}
               </div>
             </Link>
           ))}
@@ -292,26 +273,20 @@ export default function HomePage() {
         <h4 style={{ marginBottom: "2em", marginTop: "2em" }}>
           Recommended Meditations for you
         </h4>
-        <div
-          className="yoga-cards"
-          style={{
-            backgroundImage: `url(${allMeditations[0].image_url})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            width: "145px",
-            height: "195px",
-          }}
-        >
+        <div>
           {allMeditations.map((allMeditation) => (
             <Link
+              className="yoga-cards"
               key={allMeditation.id}
               to={`/meditation/${slugify(allMeditation.name, {
                 lower: true,
               })}/${allMeditation.id}`}
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: "none", backgroundImage: `url(${allMeditation.image_url})`,backgroundSize: "cover",
+              backgroundPosition: "center",
+              width: "145px",
+              height: "195px", }}
             >
               <div className="card-text-align-hp">
-                {/* <img src="" alt="meditation_bgimage" /> */}
                 <h2 style={{ marginBottom: "7em" }}>{allMeditation.name}</h2>
                 <p>{allMeditation.meditation_categories?.name}</p>
                 <p style={{ marginTop: "0.5em" }}>{allMeditation.duration}</p>

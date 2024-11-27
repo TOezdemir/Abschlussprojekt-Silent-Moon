@@ -204,23 +204,18 @@ export default function ProfilePage() {
         Favourite Meditations
       </h2>
       {meditationFavorites?.length > 0 ? ( 
-        <div
-          className="meditation-cards"
-          style={{
-            backgroundImage: `url(${meditationFavorites[0].meditation.image_url})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            width: "145px",
-            height: "195px",
-          }}
-        >
+        <div>
           {meditationFavorites?.map((favorite) => (
             <Link
+              className="meditation-cards"
               key={favorite.meditation_id}
               to={`/meditation/${slugify(favorite.meditation.name, {
                 lower: true,
               })}/${favorite.meditation_id}`}
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: "none", backgroundImage: `url(${favorite.meditation.image_url})`, backgroundSize: "cover",
+              backgroundPosition: "center",
+              width: "145px",
+              height: "195px", }}
             >
               <div style={{ marginBottom: "10em" }}>
                 <h2>{favorite.meditation.name}</h2>
