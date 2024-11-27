@@ -65,7 +65,7 @@ export default function MusicPage() {
     <div>
       <div className="music">
         <h1>Yoga Music</h1>
-        <p>Find your inner rhythm and peace.</p>
+        <p>find your inner rhythm and peace</p>
       </div>
 
       <div className="music-buttons">
