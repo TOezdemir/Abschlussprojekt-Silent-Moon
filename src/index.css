@@ -19,6 +19,10 @@ body {
   background-color: #a1dfb1;
 }
 
+main::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+}
+
 /* default styling */
 
 /*!Buttons*/

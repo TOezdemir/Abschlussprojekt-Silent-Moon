@@ -15,7 +15,7 @@ export default function MusicPage() {
   const [searchText, setSearchText] = useState("");
   const [category, setCategory] = useState<string>("mantra");
   const inputRef = useRef<HTMLInputElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState< string | null>(null);
 
   const allMusicQuery = useQuery<Music[], Error>({
     queryKey: ["supabase", "music", category, searchText],
@@ -58,8 +58,14 @@ export default function MusicPage() {
     inputRef.current!.value = "";
   };
 
-  const handlePlayPause = () => {
-    setIsPlaying(!isPlaying);
+  const handlePlayPause = (musicId: string) => {
+    setIsPlaying((prevState) =>{
+      if(prevState === musicId){
+        return null
+      } else {
+        return musicId
+      }
+    });
   };
 
   const allMusicTracks = allMusicQuery.data;
@@ -137,20 +143,12 @@ export default function MusicPage() {
               alignItems: "center",
               flexDirection: "row",
             }}
+            key={music.id}
           >
-            {/* <img
-              src="/src/assets/img/play-2.svg"
-              alt="Play"
-              style={{
-                width: "30px",
-                height: "30px",
-                marginRight: "10px",
-              }}
-            /> */}
-            <button className="back" onClick={handlePlayPause}>
+            <button className="back" onClick={() => handlePlayPause(music.id)}>
               <ReactPlayer
                 url={music.url}
-                playing={isPlaying}
+                playing={isPlaying === music.id}
                 controls={false}
                 width="0"
                 height="0"
@@ -159,15 +157,16 @@ export default function MusicPage() {
                   display: "none",
                 }}
               />
+              {isPlaying === music.id ? "Pause" :
               <img
-                src="/src/assets/img/play-2.svg"
+                src="/src/assets/img/play-2.svg" 
                 alt="Play"
                 style={{
                   width: "30px",
                   height: "30px",
                   marginRight: "10px",
                 }}
-              />
+              />}
             </button>
             <h2
               className="music-title"
