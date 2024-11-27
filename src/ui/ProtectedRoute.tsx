@@ -2,13 +2,13 @@ import { Navigate, Outlet } from "react-router-dom";
 import { useUserContext } from "../context/userContext";
 
 export default function ProtectedRoutes(){
-    const {user, isLoading, isGuest} = useUserContext()
+    const {user, isLoading} = useUserContext()
 
     if(isLoading){
         return null
     }
 
-    if(user || isGuest){
+    if(user){
         return <Outlet />
     }
     return <Navigate to="/FirstPage"/>

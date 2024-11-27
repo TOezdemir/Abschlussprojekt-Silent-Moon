@@ -13,17 +13,20 @@ export default function ProfilePage() {
 
     useEffect(() =>{
         if(!user){
-            navigate("/login")
+            navigate("/firstpage")
         }
     }, [user, navigate])
 
     const firstNameQuery = useQuery({
-        queryKey: ["supabase", "profiles", user!.id],
+        queryKey: ["supabase", "profiles", user?.id],
         queryFn: async () => {
+          if(!user?.id){
+            return {first_name: ""}
+          }
             const firstNameResult = await supabase
                 .from("profiles")
                 .select("first_name")
-                .eq("id", user!.id)
+                .eq("id", user.id)
                 .single()
             if(firstNameResult.error){
                 throw firstNameResult.error
@@ -45,7 +48,7 @@ export default function ProfilePage() {
             yoga_id,
             yoga!inner(*)
         `)
-        .eq("user_id", user.id)
+        .eq("user_id", user?.id)
         .ilike("yoga.name", `%${searchText}%`)
     
     // Hier Meditation Favs
@@ -55,7 +58,7 @@ export default function ProfilePage() {
                 meditation_id,
                 meditation!inner(*)
                 `)
-            .eq("user_id", user.id)
+            .eq("user_id", user?.id)
             .ilike("meditation.name", `%${searchText}%`)
 
       if (yogaResult.error) {

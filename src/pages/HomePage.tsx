@@ -16,7 +16,7 @@ export default function HomePage() {
     queryKey: ["supabase", "profiles", user?.id],
     queryFn: async () =>{
       if(!user?.id){
-        return null
+        return {first_name: "Maxi"}
       }
       const result = await supabase
         .from("profiles")
@@ -156,7 +156,7 @@ export default function HomePage() {
   return (
     <div className="home">
       <section className="home-headline">
-        <h2>Hey {firstNameQuery.data?.first_name}!</h2>
+        <h2>Hey { firstNameQuery.data?.first_name}!</h2>
         <p style={{ fontWeight: "bold" }}>We hope you have a good day</p>
       </section>
       <section className="highlight-section">

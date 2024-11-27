@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import type { User } from "@supabase/supabase-js";
 import { supabase } from "../lib/supabaseClient";
-import { useNavigate } from "react-router-dom";
 
 interface UserContext {
   user: User | null;
@@ -22,25 +21,15 @@ export const UserContextProvider = ({
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true)
   const [isGuest, setIsGuest] = useState(true)
-  const navigate = useNavigate()
 
   const handleGuestLogin = async () =>{
-    const {error, data} = await supabase.auth.signInAnonymously()
+    const {error, data} = await supabase.auth.signInAnonymously({options: {data: { first_name: "Maxi", last_name: "Muxi" }}})
     if (error) {
       console.error("Error with guest login:", error)
     } else {
-      const {error: profileError } = await supabase
-      .from("profiles")
-      .insert({
-        id: data.user!.id,
-        first_name: "Gast",
-      })
-      if(profileError){
-        console.error("Error while saving guest profile:", profileError)
-      }
+      setIsGuest(true)
+      setUser(data.user)
     }
-    setIsGuest(true)
-    navigate("/home")
   }
 
   useEffect(() => {
