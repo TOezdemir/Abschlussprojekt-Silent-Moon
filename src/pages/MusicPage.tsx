@@ -157,7 +157,17 @@ export default function MusicPage() {
                   display: "none",
                 }}
               />
-              {isPlaying === music.id ? "Pause" :
+              {isPlaying === music.id ? 
+              
+              <img
+                src="/src/assets/img/icons8-pause-50.png" 
+                alt="Play"
+                style={{
+                  width: "30px",
+                  height: "30px",
+                  marginRight: "10px",
+                }}
+              /> :
               <img
                 src="/src/assets/img/play-2.svg" 
                 alt="Play"
