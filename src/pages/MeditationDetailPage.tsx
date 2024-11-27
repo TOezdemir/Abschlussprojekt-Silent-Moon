@@ -109,9 +109,9 @@ export default function MeditationDetailPage() {
                   style={{
                     display: "block",
                     borderRadius: "5px",
-                    backgroundImage: "url(/src/assets/img/play-2.svg)",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
+                    backgroundImage:  isPlaying ? "url(/src/assets/img/icons8-pause-50.png)" : "url(/src/assets/img/play-2.svg)",
                   }}
                   config={{
                     file: {
