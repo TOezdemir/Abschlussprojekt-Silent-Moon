@@ -148,7 +148,7 @@ export default function HomePage() {
   const highlightMeditations = highlightMeditationQuery.data;
   const allYogaPoses = allYogaQuery.data;
   const allMeditations = allMeditationQuery.data;
-  console.log(allMeditations)
+  console.log(allMeditations);
   return (
     <div className="content-margin">
       <div className="home">
@@ -233,7 +233,7 @@ export default function HomePage() {
             </form>
           </div>
         </section>
-      <section className="yoga-section">
+        <section className="yoga-section">
           <h4>Recomended Yoga for you</h4>
           <div
             style={{
@@ -263,40 +263,51 @@ export default function HomePage() {
                     width: "145px",
                     height: "145px",
                   }}
-                > 
+                >
                   <h2 style={{ textAlign: "center" }}>{allYoga.name}</h2>
                 </div>
               </Link>
             ))}
-        </div>
-      </section>
-      <section className="meditation-section">
-        <h4 style={{ marginBottom: "2em", marginTop: "2em" }}>
-          Recommended Meditations for you
-        </h4>
-        <div>
-          {allMeditations.map((allMeditation) => (
-            <Link
-              className="yoga-cards"
-              key={allMeditation.id}
-              to={`/meditation/${slugify(allMeditation.name, {
-                lower: true,
-              })}/${allMeditation.id}`}
-              style={{ textDecoration: "none", backgroundImage: `url(${allMeditation.image_url})`,backgroundSize: "cover",
-              backgroundPosition: "center",
-              width: "145px",
-              height: "195px", }}
+          </div>
+        </section>
+        <section className="meditation-section">
+          <h4 style={{ marginBottom: "2em", marginTop: "2em" }}>
+            Recommended Meditations for you
+          </h4>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              flexWrap: "wrap",
+              gap: "1em",
+            }}
+          >
+            {allMeditations.map((allMeditation) => (
+              <Link
+                className="yoga-cards"
+                key={allMeditation.id}
+                to={`/meditation/${slugify(allMeditation.name, {
+                  lower: true,
+                })}/${allMeditation.id}`}
+                style={{
+                  textDecoration: "none",
+                  backgroundImage: `url(${allMeditation.image_url})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  width: "145px",
+                  height: "195px",
+                }}
               >
-              <div className="card-text-align-hp">
-                <h2 style={{ marginBottom: "7em" }}>{allMeditation.name}</h2>
-                <p>{allMeditation.meditation_categories?.name}</p>
-                <p style={{ marginTop: "0.5em" }}>{allMeditation.duration}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
+                <div className="card-text-align-hp">
+                  <h2 style={{ marginBottom: "7em" }}>{allMeditation.name}</h2>
+                  <p>{allMeditation.meditation_categories?.name}</p>
+                  <p style={{ marginTop: "0.5em" }}>{allMeditation.duration}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
       </div>
     </div>
-  )
+  );
 }

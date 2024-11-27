@@ -68,13 +68,13 @@ export default function YogaDetailPage() {
           }}
         >
           <ReactPlayer
-            className= "react-video-player"
+            className="react-video-player"
             url={yogaPose.video_url}
             controls={false}
             loop={true}
             playing={true}
             width="100%"
-            height= "100%"
+            height="100%"
           />
         </div>
         <div className="content-margin">
@@ -87,8 +87,42 @@ export default function YogaDetailPage() {
             <button className="back" onClick={() => navigate(-1)}>
               <img src="/src/assets/img/arrow-left-circle-3.svg" alt="back" />
             </button>
-            <button className="fav-btn" onClick={handleFavoriteClick}>
+            {/* <button className="fav-btn" onClick={handleFavoriteClick}>
               {yogaPose.favorites.length > 0 ? "❤️" : "♡"}
+            </button> */}
+            <button
+              className="fav-btn"
+              onClick={handleFavoriteClick}
+              style={{
+                backgroundColor: "transparent",
+                border: "none",
+                padding: "0",
+                display: "inline-flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {yogaPose.favorites.length > 0 ? (
+                <img
+                  src="/src/assets/img/full-heart.png" // Bild für "Favorit"
+                  alt="Remove from favorites"
+                  style={{
+                    width: "25px",
+                    height: "25px",
+                    backgroundColor: "none",
+                  }}
+                />
+              ) : (
+                <img
+                  src="/src/assets/img/empty-heart.png" // Bild für "Nicht Favorit"
+                  alt="Add to favorites"
+                  style={{
+                    width: "25px",
+                    height: "25px",
+                    backgroundColor: "none",
+                  }}
+                />
+              )}
             </button>
           </div>
         </div>
