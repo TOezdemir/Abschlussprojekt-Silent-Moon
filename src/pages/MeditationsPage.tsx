@@ -54,7 +54,7 @@ export default function MeditationsPage() {
     <div>
       <div className="meditation">
         <h1>Meditate</h1>
-        <Categories />
+        {/* <Categories /> */}
         <p>
           Audio-only meditation techniques <br />
           to help you minimize your screen time <br />
@@ -87,6 +87,7 @@ export default function MeditationsPage() {
             to={`/meditation/${slugify(allMeditation.name, {
               lower: true,
             })}/${allMeditation.id}`}
+            style={{ textDecoration: "none" }}
           >
             <div
               className="meditation-cards"

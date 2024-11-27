@@ -3,9 +3,8 @@ import { useRef, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 import slugify from "slugify";
 import { Link } from "react-router-dom";
-import './MusicPage.css';
+import "./MusicPage.css";
 import ReactPlayer from "react-player";
-
 
 interface Music {
   id: string;
@@ -21,7 +20,7 @@ export default function MusicPage() {
 
   const allMusicQuery = useQuery<Music[]>({
     queryKey: ["supabase", "music", category, searchText],
-    queryFn: async () => {
+    queryFn: async (): Promise<Music[]> => {
       let query = supabase
         .from(`yoga_category_${category}`)
         .select("*")
@@ -70,22 +69,61 @@ export default function MusicPage() {
         <p>Find your inner rhythm and peace.</p>
       </div>
 
-      <div className="music-buttons">
-      <button onClick={() => handleCategoryChange("mantra")}>Mantra</button>
-        <button onClick={() => handleCategoryChange("piano")}>Piano</button>
-        <button onClick={() => handleCategoryChange("binaural")}>Binaural</button>
-      
+      <div className="categories">
+        <button
+          className="categories-box"
+          onClick={() => handleCategoryChange("mantra")}
+          style={{
+            backgroundImage: `url("src/assets/img/filter2.png")`,
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            color: "white",
+            fontWeight: "bold",
+          }}
+        >
+          Mantra
+        </button>
+        <button
+          className="categories-box"
+          onClick={() => handleCategoryChange("piano")}
+          style={{
+            backgroundImage: `url("src/assets/img/filter1.png")`,
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            color: "white",
+            fontWeight: "bold",
+          }}
+        >
+          Piano
+        </button>
+        <button
+          className="categories-box"
+          onClick={() => handleCategoryChange("binaural")}
+          style={{
+            backgroundImage: `url("src/assets/img/filter3.png")`,
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            color: "white",
+            fontWeight: "bold",
+          }}
+        >
+          Binaural
+        </button>
       </div>
 
-      <div className="music-searchbar">
-        <form onSubmit={handleSearch}>
+      <div className="music-saerchbar">
+        <form className="zen-search-btn" onSubmit={handleSearch}>
           <input
-            className="music-input"
+            className="yoga-input"
             ref={inputRef}
             type="search"
             placeholder="Search for music"
           />
-          {searchText && <button onClick={handleReset}>X</button>}
+          {searchText && (
+            <button className="input-btn" onClick={handleReset}>
+              X
+            </button>
+          )}
         </form>
       </div>
 
@@ -99,11 +137,11 @@ export default function MusicPage() {
             <div className="music-item">
               <div
                 className="music-thumbnail"
-                style={{
-                  backgroundImage: `url(${music.thumbnail})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
+                //   style={{
+                //     backgroundImage: `url(${music.thumbnail})`,
+                //     backgroundSize: "cover",
+                //     backgroundPosition: "center",
+                //   }}
               />
               <h2 className="music-title">{music.name}</h2>
               <ReactPlayer
@@ -121,13 +159,3 @@ export default function MusicPage() {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
