@@ -156,7 +156,7 @@ export default function HomePage() {
   return (
     <div className="home">
       <section className="home-headline">
-        <h2>Hey { firstNameQuery.data?.first_name}!</h2>
+        <h2>Hey { user?.user_metadata?.first_name ?? firstNameQuery.data?.first_name}!</h2>
         <p style={{ fontWeight: "bold" }}>We hope you have a good day</p>
       </section>
       <section className="highlight-section">
