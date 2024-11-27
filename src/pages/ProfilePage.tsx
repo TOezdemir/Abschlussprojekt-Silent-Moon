@@ -11,29 +11,29 @@ export default function ProfilePage() {
   const inputRef = useRef<ElementRef<"input">>(null);
   const navigate = useNavigate();
 
-    useEffect(() =>{
-        if(!user){
-            navigate("/firstpage")
-        }
-    }, [user, navigate])
+  useEffect(() => {
+    if (!user) {
+      navigate("/firstpage");
+    }
+  }, [user, navigate]);
 
-    const firstNameQuery = useQuery({
-        queryKey: ["supabase", "profiles", user?.id],
-        queryFn: async () => {
-          if(!user?.id){
-            return {first_name: ""}
-          }
-            const firstNameResult = await supabase
-                .from("profiles")
-                .select("first_name")
-                .eq("id", user.id)
-                .single()
-            if(firstNameResult.error){
-                throw firstNameResult.error
-            }
-            return firstNameResult.data
-        },
-      })
+  const firstNameQuery = useQuery({
+    queryKey: ["supabase", "profiles", user?.id],
+    queryFn: async () => {
+      if (!user?.id) {
+        return { first_name: "" };
+      }
+      const firstNameResult = await supabase
+        .from("profiles")
+        .select("first_name")
+        .eq("id", user.id)
+        .single();
+      if (firstNameResult.error) {
+        throw firstNameResult.error;
+      }
+      return firstNameResult.data;
+    },
+  });
 
   const favoritesQuery = useQuery({
     queryKey: ["supabase", "favorites", searchText],
@@ -48,19 +48,22 @@ export default function ProfilePage() {
           `
             yoga_id,
             yoga!inner(*)
-        `)
+        `
+        )
         .eq("user_id", user?.id)
-        .ilike("yoga.name", `%${searchText}%`)
-    
-    // Hier Meditation Favs
-    const meditationResult = await supabase
-            .from("favorites")
-            .select(`
+        .ilike("yoga.name", `%${searchText}%`);
+
+      // Hier Meditation Favs
+      const meditationResult = await supabase
+        .from("favorites")
+        .select(
+          `
                 meditation_id,
                 meditation!inner(*)
-                `)
-            .eq("user_id", user?.id)
-            .ilike("meditation.name", `%${searchText}%`)
+                `
+        )
+        .eq("user_id", user?.id)
+        .ilike("meditation.name", `%${searchText}%`);
 
       if (yogaResult.error) {
         throw yogaResult.error;

@@ -177,11 +177,15 @@ body {
 /* Main Content */
 .content {
   grid-area: content;
-  padding: 2rem;
+  /* padding: 2rem; */
   background-color: none;
   overflow-y: auto;
   align-items: center;
   overflow-y: auto; /* Scrollen innerhalb des Phone-Frames aktivieren */
+}
+
+.content-margin {
+  margin: 2em 2em;
 }
 
 /* First Page css */
@@ -672,15 +676,14 @@ body {
 }
 
 .fav-btn {
-  background-color: white;
-  color: #15775b;
-  padding: 6px 6px;
-  border: 1px solid #15775b;
-  border-radius: 5px;
+  background-color: none;
+  color: #ffffff;
+  padding: 6px 7px;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
   cursor: pointer;
   margin-top: 1em;
   transition: color 0.3s ease;
-  box-shadow: 0px 0px 10px 0px rgba(4, 90, 21, 0.75);
 }
 
 /*Meditation Detail Page css */
