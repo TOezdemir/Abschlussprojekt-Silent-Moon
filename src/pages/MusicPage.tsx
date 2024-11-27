@@ -5,10 +5,10 @@ import "./MusicPage.css";
 import ReactPlayer from "react-player";
 
 interface Music {
-  id: string
-  name: string
-  thumbnail: string
-  url: string
+  id: string;
+  name: string;
+  thumbnail: string;
+  url: string;
 }
 
 export default function MusicPage() {
@@ -20,7 +20,7 @@ export default function MusicPage() {
   const allMusicQuery = useQuery<Music[], Error>({
     queryKey: ["supabase", "music", category, searchText],
     queryFn: async () => {
-      const result =  await supabase
+      const result = await supabase
         .from(`yoga_category_${category}` as keyof typeof supabase.from)
         .select("*")
         .ilike("name", `%${searchText}%`);
@@ -28,7 +28,7 @@ export default function MusicPage() {
       if (result.error) {
         throw result.error;
       }
-      return result.data as Music[]
+      return result.data as Music[];
     },
     enabled: !!category,
   });
@@ -128,39 +128,27 @@ export default function MusicPage() {
         </form>
       </div>
 
-      <div className="music-list">
+      <div className="music-list" style={{ marginBottom: "6em" }}>
         {allMusicTracks?.map((music) => (
-            <div
-              className="music-item"
+          <div
+            className="music-item"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "row",
+            }}
+          >
+            {/* <img
+              src="/src/assets/img/play-2.svg"
+              alt="Play"
               style={{
-                display: "flex",
-                alignItems: "center",
-                flexDirection: "row",
+                width: "30px",
+                height: "30px",
+                marginRight: "10px",
               }}
-            >
-              <img
-                src="/src/assets/img/play-2.svg"
-                alt="Play"
-                style={{
-                  width: "30px",
-                  height: "30px",
-                  marginRight: "10px",
-                }}
-              />
-              <h2
-                className="music-title"
-                style={{
-                  flex: "1",
-                  textAlign: "center",
-                  margin: "0",
-                }}
-              >
-                {music.name}{" "}
-              </h2>
-              <button
-              onClick={handlePlayPause}
-              >
-                <ReactPlayer
+            /> */}
+            <button className="back" onClick={handlePlayPause}>
+              <ReactPlayer
                 url={music.url}
                 playing={isPlaying}
                 controls={false}
@@ -170,10 +158,28 @@ export default function MusicPage() {
                 style={{
                   display: "none",
                 }}
-              /> 
-              PLAY
-              </button>
-            </div>
+              />
+              <img
+                src="/src/assets/img/play-2.svg"
+                alt="Play"
+                style={{
+                  width: "30px",
+                  height: "30px",
+                  marginRight: "10px",
+                }}
+              />
+            </button>
+            <h2
+              className="music-title"
+              style={{
+                flex: "1",
+                textAlign: "center",
+                margin: "0",
+              }}
+            >
+              {music.name}{" "}
+            </h2>
+          </div>
         ))}
       </div>
     </div>
