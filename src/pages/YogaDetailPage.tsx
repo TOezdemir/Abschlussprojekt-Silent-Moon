@@ -68,10 +68,13 @@ export default function YogaDetailPage() {
           }}
         >
           <ReactPlayer
+            className= "react-video-player"
             url={yogaPose.video_url}
             controls={false}
             loop={true}
             playing={true}
+            width="100%"
+            height= "100%"
           />
         </div>
         <div className="content-margin">

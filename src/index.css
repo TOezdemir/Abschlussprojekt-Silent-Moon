@@ -1024,3 +1024,8 @@ html {
 }
 
 */
+
+
+.react-video-player > video{
+  object-fit: cover;
+}
