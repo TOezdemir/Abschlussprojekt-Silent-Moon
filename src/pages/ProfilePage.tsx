@@ -116,55 +116,116 @@ export default function ProfilePage() {
     <div>
       <div className="profile">
         <h1>{firstNameQuery.data.first_name}</h1>
-        <button onClick={handleLogout} className="back">
+        <button
+          style={{ color: "white", marginTop: "1em", fontWeight: "bold" }}
+          onClick={handleLogout}
+          className="back"
+        >
           Logout
         </button>
       </div>
       <div>
-        <div>
-          <form onSubmit={handleSearch}>
+        <div className="yoga-saerchbar">
+          <form
+            className="zen-search-btn"
+            onSubmit={handleSearch}
+            style={{ margin: "1em 0" }}
+          >
             <input
               className="yoga-input"
               ref={inputRef}
               placeholder="Search in Favourites..."
               type="text"
             />
-            {searchText && <button onClick={handleReset}>X</button>}
+            {searchText && (
+              <button className="input-btn" onClick={handleReset}>
+                X
+              </button>
+            )}
           </form>
         </div>
       </div>
-      <h2>Favourite Yoga Poses and Sessions</h2>
-      <div>
+      <h2 style={{ fontSize: "medium" }}>Favourite Yoga Poses and Sessions</h2>
+      <div
+        style={{
+          margin: "2em 0",
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "1em",
+        }}
+      >
         {yogaFavorites?.map((favorite) => (
           <Link
             key={favorite.yoga_id}
             to={`/yoga/${slugify(favorite.yoga.name, { lower: true })}/${
               favorite.yoga_id
             }`}
+            style={{ textDecoration: "none" }}
           >
-            <div>
-              <img src={favorite.yoga.image_url} alt="yoga_bgimage" />
-              <h2>{favorite.yoga.name}</h2>
-              <p>{favorite.yoga.difficulty}</p>
-              <p>{favorite.yoga.duration}</p>
+            <div
+              className="yoga-cards"
+              style={{
+                backgroundImage: `url(${favorite.yoga.image_url})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                width: "145px",
+                height: "145px",
+                color: "white",
+              }}
+            >
+              {/* <img src={favorite.yoga.image_url} alt="yoga_bgimage" /> */}
+              <h2 style={{ textAlign: "left", marginBottom: "4em" }}>
+                {favorite.yoga.name}
+              </h2>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <p
+                  style={{
+                    textAlign: "left",
+                    fontSize: "small",
+                    marginBottom: "0.5em",
+                  }}
+                >
+                  {favorite.yoga.difficulty}
+                </p>
+                <p style={{ textAlign: "left", fontSize: "small" }}>
+                  {favorite.yoga.duration}
+                </p>
+              </div>
             </div>
           </Link>
         ))}
       </div>
-      <h2>Favourite Meditations</h2>
-      <div>
+      <h2 style={{ marginBottom: "2em", fontSize: "medium" }}>
+        Favourite Meditations
+      </h2>
+      <div
+        className="meditation-cards"
+        style={{
+          backgroundImage: `url(${meditationFavorites[0].meditation.image_url})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          width: "145px",
+          height: "195px",
+        }}
+      >
         {meditationFavorites?.map((favorite) => (
           <Link
             key={favorite.meditation_id}
             to={`/meditation/${slugify(favorite.meditation.name, {
               lower: true,
             })}/${favorite.meditation_id}`}
+            style={{ textDecoration: "none" }}
           >
-            <div>
-              <img
+            <div style={{ marginBottom: "10em" }}>
+              {/* <img
                 src={favorite.meditation.image_url}
                 alt="meditation_bgimage"
-              />
+              /> */}
               <h2>{favorite.meditation.name}</h2>
               {/* <p>{favorite.meditation.description}</p> */}
             </div>

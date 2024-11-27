@@ -134,23 +134,43 @@ export default function MusicPage() {
             to={`/music/${slugify(music.name, { lower: true })}/${music.id}`}
             className="music-link"
           >
-            <div className="music-item">
-              <div
-                className="music-thumbnail"
-                //   style={{
-                //     backgroundImage: `url(${music.thumbnail})`,
-                //     backgroundSize: "cover",
-                //     backgroundPosition: "center",
-                //   }}
+            <div
+              className="music-item"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                flexDirection: "row",
+              }}
+            >
+              <img
+                src="/src/assets/img/play-2.svg"
+                alt="Play"
+                style={{
+                  width: "30px",
+                  height: "30px",
+                  marginRight: "10px",
+                }}
               />
-              <h2 className="music-title">{music.name}</h2>
+              <h2
+                className="music-title"
+                style={{
+                  flex: "1",
+                  textAlign: "center",
+                  margin: "0",
+                }}
+              >
+                {music.name}{" "}
+              </h2>
               <ReactPlayer
                 url={music.url}
                 playing={false}
                 controls={true}
-                width="100%"
-                height="50px"
+                width="0"
+                height="0"
                 className="music-player"
+                style={{
+                  display: "none",
+                }}
               />
             </div>
           </Link>

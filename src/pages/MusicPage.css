@@ -5,20 +5,20 @@
 }
 
 .music-item {
-  border: 1px solid #ddd;
+  border: 1px solid #ffffff53;
   border-radius: 5px;
   padding: 20px;
   width: 350px;
-  height: 100px;
+  height: 70px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-
-  background-image: url("src/assets/img/random-player-bg.png");
+  background-color: #42805374;
+  color: white;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  margin-bottom: 0.3em;
 }
 
 /* .music-thumbnail {
