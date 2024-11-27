@@ -254,7 +254,16 @@ export default function HomePage() {
                   textDecoration: "none",
                 }}
               >
-                <div> 
+                <div
+                  className="yoga-cards"
+                  style={{
+                    backgroundImage: `url(${allYoga.image_url})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    width: "145px",
+                    height: "145px",
+                  }}
+                > 
                   <h2 style={{ textAlign: "center" }}>{allYoga.name}</h2>
                 </div>
               </Link>
