@@ -122,6 +122,7 @@ export default function MeditationDetailPage() {
                   }}
                 />
               </button>
+
               <p>{meditationTechnique.name}</p>
               <p>{meditationTechnique.duration}</p>
             </div>
@@ -133,8 +134,42 @@ export default function MeditationDetailPage() {
                   style={{ width: "30px", height: "30px" }}
                 />
               </button>
-              <button className="fav-btn" onClick={handleFavoriteClick}>
+              {/* <button className="fav-btn" onClick={handleFavoriteClick}>
                 {meditationTechnique.favorites.length > 0 ? "❤️" : "♡"}
+              </button> */}
+              <button
+                className="fav-btn"
+                onClick={handleFavoriteClick}
+                style={{
+                  backgroundColor: "transparent",
+                  border: "none",
+                  padding: "0",
+                  display: "inline-flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                {meditationTechnique.favorites.length > 0 ? (
+                  <img
+                    src="/src/assets/img/full-heart.png" // Bild für "Favorit"
+                    alt="Remove from favorites"
+                    style={{
+                      width: "25px",
+                      height: "25px",
+                      backgroundColor: "none",
+                    }}
+                  />
+                ) : (
+                  <img
+                    src="/src/assets/img/empty-heart.png" // Bild für "Nicht Favorit"
+                    alt="Add to favorites"
+                    style={{
+                      width: "25px",
+                      height: "25px",
+                      backgroundColor: "none",
+                    }}
+                  />
+                )}
               </button>
             </div>
           </div>
