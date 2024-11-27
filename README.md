@@ -1,20 +1,23 @@
-# xxx app
-<div style="display: flex; justify-content: center;">
-  <img src="./xxxxxxx" alt="xxxxxxx Logo" height="200">
-</div>
-## Your Yoga & Meditation App
+## ZEN app
+ Your Yoga & Meditation App
+
+
 
 ## About Us
 
-Welcome to the calm and relaxing world of the xxx app. We offer self-created content on the topics of meditation and yoga. In our app, you will find tutorial content on both core topics, accompanied by explanatory clips and the perfect sounds/music to enhance your experience. So, take a moment to unwind and let our app help you escape the stress of everyday life.
+Welcome to the calm and relaxing world of the ZEN app. We offer self-created content on the topics of meditation and yoga. In our app, you will find tutorial content on both core topics, accompanied by explanatory clips and the perfect sounds/music to enhance your experience. So, take a moment to unwind and let our app help you escape the stress of everyday life.
 
 This app was conceived as the 1-week final project by Victoria Glass, Tolgay Özdemir, and Kami Shari, as part of a 6-month Web Development course at the Supercode Bootcamp in Düsseldorf/Germany.
 
+
+
 ## Demo
 
-You can view a live demo of the XXXXXXXX app at URL XXXXXXXXXXXX.
+You can view a live demo of the ZEN app at [https://zen-die-yoga-amsnk7md4-tolga-ozdemirs-projects.vercel.app/FirstPage].
 
-## xxxxxx app uses the following technologies:
+
+
+## ZEN app uses the following technologies:
 
 - **Frontend**: Typescript, React, HTML, CSS
 - **Backend**: Supabase, Node.js 
@@ -22,20 +25,18 @@ You can view a live demo of the XXXXXXXX app at URL XXXXXXXXXXXX.
 - **Design Tools**: Figma, Canva
 - **Project Management**: Trello
 
-
 <div style="text-align: center;">
     <img src="./public/tech_logos/typescript-logo.jpg" alt="Typescript Logo" width="150" />
     <img src="./public/tech_logos/react-logo.png" alt="React Logo" width="150" />
     <img src="./public/tech_logos/supabase-logo.png" alt="Supabase Logo" width="150" />
     <img src="./public/tech_logos/html-css-logo.png" alt="HTML & CSS Logo" width="150" />
-
 </div>
 
 
 
 ## Features
 
-The xxxxxxxxxxxxx app has the following features:
+The ZEN app has the following features:
 
 - **User Registration**: Users can create accounts to personalize their experience.
 - **Video & Playlist Exploration**: Users can browse a collection of yoga & meditation videos and sounds.
@@ -47,29 +48,35 @@ The xxxxxxxxxxxxx app has the following features:
 
 ## Third-Party Libraries & Tools
 
-The xxxxxx app uses the following third-party libraries:
+The ZEN app uses the following third-party libraries:
 
 - `react-router-dom` - DOM bindings for React Router.
-- `react-player` - React Video & Music Player. ??????
-
-
+- `react-player` - React Video & Music Player.
 
 
 
 ## Getting Started
 
-To run the xxxxxxxxxxx app on your local machine, follow these steps:
+To run the ZEN app on your local machine, follow these steps:
+
+
 
 1. **Clone this repository:**
+
    ```bash
    git clone git@github.com:TOezdemir/Abschlussprojekt-Silent-Moon.git
    ```
 
+
+
 2. **Install dependencies:**
+
    Install the frontend dependencies by running:
    ```bash
    npm install
    ```
+
+
 
 3. **Start the app:**
    Run the following command to start the application:
@@ -78,11 +85,14 @@ To run the xxxxxxxxxxx app on your local machine, follow these steps:
    ```
 
 
+
 ## License
 
 This project is licensed under the MIT License.
 
 The MIT License is a permissive free software license that allows you to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software. It also allows others to do the same.
+
+
 
 ## Project Members
 
