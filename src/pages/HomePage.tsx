@@ -16,7 +16,7 @@ export default function HomePage() {
     queryKey: ["supabase", "profiles", user?.id],
     queryFn: async () =>{
       if(!user?.id){
-        return {first_name: "Maxi"}
+        return {first_name: " "}
       }
       const result = await supabase
         .from("profiles")
