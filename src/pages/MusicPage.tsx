@@ -1,8 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useRef, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
-import slugify from "slugify";
-import { Link } from "react-router-dom";
 import "./MusicPage.css";
 import ReactPlayer from "react-player";
 
@@ -17,6 +15,7 @@ export default function MusicPage() {
   const [searchText, setSearchText] = useState("");
   const [category, setCategory] = useState<string>("mantra");
   const inputRef = useRef<HTMLInputElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const allMusicQuery = useQuery<Music[], Error>({
     queryKey: ["supabase", "music", category, searchText],
@@ -57,6 +56,10 @@ export default function MusicPage() {
     setCategory(newCategory);
     setSearchText("");
     inputRef.current!.value = "";
+  };
+
+  const handlePlayPause = () => {
+    setIsPlaying(!isPlaying);
   };
 
   const allMusicTracks = allMusicQuery.data;
@@ -127,11 +130,6 @@ export default function MusicPage() {
 
       <div className="music-list">
         {allMusicTracks?.map((music) => (
-          <Link
-            key={music.id}
-            to={`/music/${slugify(music.name, { lower: true })}/${music.id}`}
-            className="music-link"
-          >
             <div
               className="music-item"
               style={{
@@ -159,20 +157,25 @@ export default function MusicPage() {
               >
                 {music.name}{" "}
               </h2>
-              <ReactPlayer
+              <button
+              onClick={handlePlayPause}
+              >
+                <ReactPlayer
                 url={music.url}
-                playing={false}
-                controls={true}
+                playing={isPlaying}
+                controls={false}
                 width="0"
                 height="0"
                 className="music-player"
                 style={{
                   display: "none",
                 }}
-              />
+              /> 
+              PLAY
+              </button>
             </div>
-          </Link>
         ))}
       </div>
     </div>
   );
+}
