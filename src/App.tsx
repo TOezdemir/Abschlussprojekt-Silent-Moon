@@ -43,26 +43,6 @@ const router = createBrowserRouter([
         path: "/reminders",
         element: <RemindersPage />,
       },
-      // {
-      //   path: "/yoga/:name/:id",
-      //   element: <YogaDetailPage/>,
-      // },
-      // {
-      //   path: "/meditation/:name/:id",
-      //   element: <MeditationDetailPage/>,
-      // },
-      // {
-      //   path: "/yoga",
-      //   element: <YogaPage />,
-      // },
-      // {
-      //   path: "/meditation",
-      //   element: <MeditationsPage />,
-      // },
-      // {
-      //   path: "/music",
-      //   element: <MusicPage />,
-      // },
       {
         path: "/firstpage",
         element: <FirstPage />,

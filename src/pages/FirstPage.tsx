@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useUserContext } from "../context/userContext";
 
 function FirstPage() {
+  const { handleGuestLogin } = useUserContext()
   return (
     <div className="first-page">
       <div className="fp-headline">
@@ -15,7 +17,7 @@ function FirstPage() {
           <button className="fp-signup-btn">SIGN UP</button>
         </Link>
         <Link to="/welcome">
-          <button className="fp-guest-btn">LOGIN FOR GUESTS</button>
+          <button className="fp-guest-btn" onClick={handleGuestLogin}>LOGIN FOR GUESTS</button>
         </Link>
       </div>
       <p>
