@@ -6,10 +6,9 @@ import { Link } from "react-router-dom";
 import './MusicPage.css';
 import ReactPlayer from "react-player";
 
-
 interface Music {
-  id: string;
-  name: string;
+  id: string
+  name: string
   thumbnail: string
   url: string
 }
@@ -119,13 +118,3 @@ export default function MusicPage() {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
