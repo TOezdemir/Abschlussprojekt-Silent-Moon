@@ -69,7 +69,7 @@ export default function YogaDetailPage() {
           }}
         >
           <ReactPlayer
-            url={yogaPose.video_url}
+            // url={yogaPose.video_url}
             controls={false}
             loop={true}
             playing={true}

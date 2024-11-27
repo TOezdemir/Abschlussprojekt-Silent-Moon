@@ -13,9 +13,9 @@ export default function HomePage() {
   // Abfrage für Vornamen
   const firstNameQuery = useQuery({
     queryKey: ["supabase", "profiles", user?.id],
-    queryFn: async () =>{
-      if(!user?.id){
-        return {first_name: " "}
+    queryFn: async () => {
+      if (!user?.id) {
+        return { first_name: " " };
       }
       const result = await supabase
         .from("profiles")
@@ -32,11 +32,8 @@ export default function HomePage() {
   const highlightYogaQuery = useQuery({
     queryKey: ["supabase", "yoga"],
     queryFn: async () => {
-      const result = await supabase
-        .from("yoga")
-        .select("*")
-        .limit(1)
-        // .ilike("name", `%${searchText}%`);
+      const result = await supabase.from("yoga").select("*").limit(1);
+      // .ilike("name", `%${searchText}%`);
 
       if (result.error) {
         throw result.error;
@@ -56,8 +53,8 @@ export default function HomePage() {
         meditation_categories(
         name)`
         )
-        .limit(1)
-        // .ilike("name", `%${searchText}%`);
+        .limit(1);
+      // .ilike("name", `%${searchText}%`);
 
       if (result.error) {
         throw result.error;
@@ -155,7 +152,10 @@ export default function HomePage() {
   return (
     <div className="home">
       <section className="home-headline">
-        <h2>Hey { user?.user_metadata?.first_name ?? firstNameQuery.data?.first_name}!</h2>
+        <h2>
+          Hey{" "}
+          {user?.user_metadata?.first_name ?? firstNameQuery.data?.first_name}!
+        </h2>
         <p style={{ fontWeight: "bold" }}>We hope you have a good day</p>
       </section>
       <section className="highlight-section">
@@ -233,14 +233,24 @@ export default function HomePage() {
       </section>
       <section className="yoga-section">
         <h4>Recomended Yoga for you</h4>
-        <div style={{ marginTop: "2em" }}>
+        <div
+          style={{
+            marginTop: "2em",
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            gap: "1em",
+          }}
+        >
           {allYogaPoses.map((allYoga) => (
             <Link
               key={allYoga.id}
               to={`/yoga/${slugify(allYoga.name, { lower: true })}/${
                 allYoga.id
               }`}
-              style={{ textDecoration: "none" }}
+              style={{
+                textDecoration: "none",
+              }}
             >
               <div
                 className="yoga-cards"
@@ -249,21 +259,21 @@ export default function HomePage() {
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   width: "145px",
-                  height: "195px",
+                  height: "145px",
                 }}
               >
                 {/* <img src="" alt="yoga_bgimage" /> */}
-                <h2 style={{ marginBottom: "7em" }}>{allYoga.name}</h2>
-                <p
+                <h2 style={{ textAlign: "center" }}>{allYoga.name}</h2>
+                {/* <p
                   style={{
                     color: "white",
-                    alignItems: "center",
+                    textAlign: "center",
                     fontSize: "small",
                   }}
                 >
                   {allYoga.difficulty}
-                </p>
-                <p
+                </p> */}
+                {/* <p
                   style={{
                     marginTop: "0.5em",
                     color: "white",
@@ -271,7 +281,7 @@ export default function HomePage() {
                   }}
                 >
                   {allYoga.duration}
-                </p>
+                </p> */}
               </div>
             </Link>
           ))}

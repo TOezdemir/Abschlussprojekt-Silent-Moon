@@ -58,7 +58,11 @@ export default function YogaPage() {
         <h1>Yoga</h1>
         <div className="categories">
           <button
-            style={{ color: "white", fontWeight: "bold" }}
+            style={{
+              color: "white",
+              fontWeight: "bold",
+              backgroundColor: "#B6D8B0",
+            }}
             className="categories-box"
             onClick={() => handleFilter(null)}
           >
