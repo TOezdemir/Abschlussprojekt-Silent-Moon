@@ -50,6 +50,21 @@ export default function YogaPage() {
     setDifficulty(level);
   };
 
+  const affirmations = [
+    "I breathe in calmness and exhale tension.",
+    "I am grounded and centered.",
+    "My mind is still, my heart is open.",
+    "I am grateful for this moment.",
+    "I am strong, flexible, and resilient.",
+    "Peace resides within me.",
+    "I am connected to my inner wisdom.",
+    "I release all that no longer serves me.",
+    "I am filled with love and light.",
+    "I am at peace with myself and the world around me.",
+  ];
+
+  const randomAffirmation = affirmations[Math.floor(Math.random() * affirmations.length)];
+
   const allYogaPoses = allYogaQuery.data;
 
   return (
@@ -126,7 +141,7 @@ export default function YogaPage() {
         </form>
       </div>
       <div className="random-player">
-        <p>Daily Random Affirmations, watch the videos now!</p>
+        <p>{randomAffirmation}</p>
       </div>
       <div>
         <div className="yoga-videos">

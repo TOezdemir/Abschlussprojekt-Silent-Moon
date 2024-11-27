@@ -47,6 +47,21 @@ export default function MeditationsPage() {
     setSearchText("");
   };
 
+  const affirmations = [
+    "I breathe in calmness and exhale tension.",
+    "I am grounded and centered.",
+    "My mind is still, my heart is open.",
+    "I am grateful for this moment.",
+    "I am strong, flexible, and resilient.",
+    "Peace resides within me.",
+    "I am connected to my inner wisdom.",
+    "I release all that no longer serves me.",
+    "I am filled with love and light.",
+    "I am at peace with myself and the world around me.",
+  ];
+  
+  const randomAffirmation = affirmations[Math.floor(Math.random() * affirmations.length)];
+
   const allMeditations = allMeditationQuery.data;
 
   return (
@@ -75,7 +90,7 @@ export default function MeditationsPage() {
         </form>
       </div>
       <div className="random-player">
-        <p>Lerne Meditation kennen / Daily Random Affirmations</p>
+        <p>{randomAffirmation}</p>
       </div>
       {/* <div className="card-section"> */}
       <div className="yoga-videos">

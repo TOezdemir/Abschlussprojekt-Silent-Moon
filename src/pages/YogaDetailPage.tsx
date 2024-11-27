@@ -56,7 +56,7 @@ export default function YogaDetailPage() {
 
   return (
     <div className="yoga-dp-page">
-      <div key={yogaPose.id}>
+      <div>
         <div
           className="yoga-dp"
           style={{
@@ -69,11 +69,10 @@ export default function YogaDetailPage() {
           }}
         >
           <ReactPlayer
-            // url={yogaPose.video_url}
+            url={yogaPose.video_url}
             controls={false}
             loop={true}
             playing={true}
-            className="yoga-dp"
           />
         </div>
         <div className="yoga-dp-info">
