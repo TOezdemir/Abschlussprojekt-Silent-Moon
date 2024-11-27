@@ -1,8 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
-// import WelcomePage from "./pages/WelcomePage";
-// import RemindersPage from "./pages/RemindersPage";
 import HomePage from "./pages/HomePage";
 import YogaDetailPage from "./pages/YogaDetailPage";
 import MeditationDetailPage from "./pages/MeditationDetailPage";
@@ -24,7 +22,7 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: "/firstpage",
+        path: "/",
         element: <FirstPage />,
       },
       {
@@ -35,14 +33,6 @@ const router = createBrowserRouter([
         path: "/signup",
         element: <SignUpPage />,
       },
-      // {
-      //   path: "/welcome",
-      //   element: <WelcomePage />,
-      // },
-      // {
-      //   path: "/reminders",
-      //   element: <RemindersPage />,
-      // },
       {
         element: <ProtectedRoutes/>,
         children: [{

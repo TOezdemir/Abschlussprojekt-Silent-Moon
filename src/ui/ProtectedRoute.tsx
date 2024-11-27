@@ -11,6 +11,6 @@ export default function ProtectedRoutes(){
     if(user){
         return <Outlet />
     }
-    return <Navigate to="/FirstPage"/>
+    return <Navigate to="/"/>
 
 }

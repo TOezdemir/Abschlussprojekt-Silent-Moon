@@ -13,7 +13,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     if (!user) {
-      navigate("/firstpage");
+      navigate("/");
     }
   }, [user, navigate]);
 
@@ -176,7 +176,6 @@ export default function ProfilePage() {
                 color: "white",
               }}
             >
-              {/* <img src={favorite.yoga.image_url} alt="yoga_bgimage" /> */}
               <h2 style={{ textAlign: "left", marginBottom: "4em" }}>
                 {favorite.yoga.name}
               </h2>
