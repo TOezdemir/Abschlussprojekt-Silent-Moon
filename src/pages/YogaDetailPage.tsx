@@ -5,7 +5,7 @@ import ReactPlayer from "react-player";
 
 export default function YogaDetailPage() {
   const { id } = useParams();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const singleYogaQuery = useQuery({
@@ -55,8 +55,8 @@ export default function YogaDetailPage() {
   const yogaPose = singleYogaQuery.data;
 
   return (
-    <div>
-      <div key={yogaPose.id}>
+    <div className="yoga-dp-page">
+      <div>
         <div
           className="yoga-dp"
           style={{
@@ -64,32 +64,67 @@ export default function YogaDetailPage() {
             backgroundSize: "cover",
             backgroundPosition: "center",
             width: "100%",
-            height: "200px",
+            height: "400px",
           }}
         >
           <ReactPlayer
+            className="react-video-player"
             url={yogaPose.video_url}
             controls={false}
             loop={true}
             playing={true}
-            />
+            width="100%"
+            height="100%"
+          />
         </div>
-        <div className="yoga-dp-info">
-          <h1>{yogaPose.name}</h1>
-          <p className="difficulty">{yogaPose.difficulty}</p>
-          <p className="description">{yogaPose.description}</p>
-        </div>
-        <div className="back-fav">
+        <div className="content-margin">
+          <div className="yoga-dp-info">
+            <h1>{yogaPose.name}</h1>
+            <p className="difficulty">{yogaPose.difficulty}</p>
+            <p className="description">{yogaPose.description}</p>
+          </div>
+          <div className="back-fav">
             <button className="back" onClick={() => navigate(-1)}>
-            <img
-              src="/src/assets/img/arrow-left-circle-3.svg"
-              alt=""
-              style={{ width: "30px", height: "30px" }}
-            />
+              <img src="/src/assets/img/arrow-left-circle-3.svg" alt="back" />
             </button>
-          <button className="fav-btn" onClick={handleFavoriteClick}>
-            {yogaPose.favorites.length > 0 ? "❤️" : "♡"}
-          </button>
+            {/* <button className="fav-btn" onClick={handleFavoriteClick}>
+              {yogaPose.favorites.length > 0 ? "❤️" : "♡"}
+            </button> */}
+            <button
+              className="fav-btn"
+              onClick={handleFavoriteClick}
+              style={{
+                backgroundColor: "transparent",
+                border: "none",
+                padding: "0",
+                display: "inline-flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {yogaPose.favorites.length > 0 ? (
+                <img
+                  src="/src/assets/img/full-heart.png" // Bild für "Favorit"
+                  alt="Remove from favorites"
+                  style={{
+                    width: "25px",
+                    height: "25px",
+                    backgroundColor: "none",
+                  }}
+                />
+              ) : (
+                <img
+                  src="/src/assets/img/empty-heart.png" // Bild für "Nicht Favorit"
+                  alt="Add to favorites"
+                  style={{
+                    width: "25px",
+                    height: "25px",
+                    backgroundColor: "none",
+                  }}
+                />
+              )}
+            </button>
+          </div>
         </div>
       </div>
     </div>

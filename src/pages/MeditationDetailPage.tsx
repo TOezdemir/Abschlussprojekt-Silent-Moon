@@ -7,7 +7,7 @@ import { useState } from "react";
 export default function MeditationDetailPage() {
   const { id } = useParams();
   const [isPlaying, setIsPlaying] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const queryClient = useQueryClient();
 
@@ -65,20 +65,20 @@ export default function MeditationDetailPage() {
   const meditationTechnique = singleMeditationQuery.data;
 
   return (
-    <div>
-      <div>
-        <div
-          className="yoga-dp"
-          style={{
-            backgroundImage: `url(${meditationTechnique.image_url})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            width: "100%",
-            height: "200px",
-          }}
-        >
-          {/* <img src={meditationTechnique.image_url!} alt="meditation_cover" /> */}
-        </div>
+    <div className="meditation-dp">
+      <div
+        className="yoga-dp"
+        style={{
+          backgroundImage: `url(${meditationTechnique.image_url})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          width: "100%",
+          height: "250px",
+        }}
+      >
+        {/* <img src={meditationTechnique.image_url!} alt="meditation_cover" /> */}
+      </div>
+      <div className="content-margin">
         <div className="yoga-dp-info">
           <h1>{meditationTechnique.name}</h1>
           <p className="difficulty">
@@ -86,22 +86,46 @@ export default function MeditationDetailPage() {
           </p>
           <p className="description">{meditationTechnique.description}</p>
           <div>
-            <button onClick={handlePlayPause}>
-              <ReactPlayer
-                url={meditationTechnique.audio_url}
-                playing={isPlaying}
-                width="100px"
-                height="100px"
-                style={{ display: "block" }}
-                config={{
-                  file: {
-                    attributes: {
-                      controlsList: "nodownload",
-                    },
-                  },
+            <div className="play-btn">
+              <button
+                onClick={handlePlayPause}
+                style={{
+                  display: "inline-flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "30px",
+                  height: "30px",
+                  border: "none",
+                  background: "transparent",
+                  padding: "0",
+                  cursor: "pointer",
                 }}
-              />
-            </button>
+              >
+                <ReactPlayer
+                  url={meditationTechnique.audio_url}
+                  playing={isPlaying}
+                  width="30px"
+                  height="30px"
+                  style={{
+                    display: "block",
+                    borderRadius: "5px",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundImage:  isPlaying ? "url(/src/assets/img/icons8-pause-50.png)" : "url(/src/assets/img/play-2.svg)",
+                  }}
+                  config={{
+                    file: {
+                      attributes: {
+                        controlsList: "nodownload",
+                      },
+                    },
+                  }}
+                />
+              </button>
+
+              <p>{meditationTechnique.name}</p>
+              <p>{meditationTechnique.duration}</p>
+            </div>
             <div className="back-fav">
               <button className="back" onClick={() => navigate(-1)}>
                 <img
@@ -110,12 +134,44 @@ export default function MeditationDetailPage() {
                   style={{ width: "30px", height: "30px" }}
                 />
               </button>
-              <button className="fav-btn" onClick={handleFavoriteClick}>
+              {/* <button className="fav-btn" onClick={handleFavoriteClick}>
                 {meditationTechnique.favorites.length > 0 ? "❤️" : "♡"}
+              </button> */}
+              <button
+                className="fav-btn"
+                onClick={handleFavoriteClick}
+                style={{
+                  backgroundColor: "transparent",
+                  border: "none",
+                  padding: "0",
+                  display: "inline-flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                {meditationTechnique.favorites.length > 0 ? (
+                  <img
+                    src="/src/assets/img/full-heart.png" // Bild für "Favorit"
+                    alt="Remove from favorites"
+                    style={{
+                      width: "25px",
+                      height: "25px",
+                      backgroundColor: "none",
+                    }}
+                  />
+                ) : (
+                  <img
+                    src="/src/assets/img/empty-heart.png" // Bild für "Nicht Favorit"
+                    alt="Add to favorites"
+                    style={{
+                      width: "25px",
+                      height: "25px",
+                      backgroundColor: "none",
+                    }}
+                  />
+                )}
               </button>
             </div>
-            <p>{meditationTechnique.name}</p>
-            <p>{meditationTechnique.duration}</p>
           </div>
         </div>
       </div>

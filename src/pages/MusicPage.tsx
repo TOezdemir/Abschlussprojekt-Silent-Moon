@@ -1,37 +1,34 @@
 import { useQuery } from "@tanstack/react-query";
 import { useRef, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
-import slugify from "slugify";
-import { Link } from "react-router-dom";
-import './MusicPage.css';
+import "./MusicPage.css";
 import ReactPlayer from "react-player";
-
 
 interface Music {
   id: string;
   name: string;
-  thumbnail: string | null;
-  url: string | null;
+  thumbnail: string;
+  url: string;
 }
 
 export default function MusicPage() {
   const [searchText, setSearchText] = useState("");
   const [category, setCategory] = useState<string>("mantra");
   const inputRef = useRef<HTMLInputElement>(null);
+  const [isPlaying, setIsPlaying] = useState< string | null>(null);
 
-  const allMusicQuery = useQuery<Music[]>({
+  const allMusicQuery = useQuery<Music[], Error>({
     queryKey: ["supabase", "music", category, searchText],
     queryFn: async () => {
-      let query = supabase
-        .from(`yoga_category_${category}`)
+      const result = await supabase
+        .from(`yoga_category_${category}` as keyof typeof supabase.from)
         .select("*")
         .ilike("name", `%${searchText}%`);
 
-      const result = await query;
       if (result.error) {
         throw result.error;
       }
-      return result.data;
+      return result.data as Music[];
     },
     enabled: !!category,
   });
@@ -61,73 +58,139 @@ export default function MusicPage() {
     inputRef.current!.value = "";
   };
 
+  const handlePlayPause = (musicId: string) => {
+    setIsPlaying((prevState) =>{
+      if(prevState === musicId){
+        return null
+      } else {
+        return musicId
+      }
+    });
+  };
+
   const allMusicTracks = allMusicQuery.data;
 
   return (
-    <div>
+    <div className="content-margin">
       <div className="music">
         <h1>Yoga Music</h1>
-        <p>Find your inner rhythm and peace.</p>
+        <p>find your inner rhythm and peace</p>
+      </div>
+      <div className="categories">
+        <button
+          className="categories-box"
+          onClick={() => handleCategoryChange("mantra")}
+          style={{
+            backgroundImage: `url("src/assets/img/filter2.png")`,
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            color: "white",
+            fontWeight: "bold",
+          }}
+        >
+          Mantra
+        </button>
+        <button
+          className="categories-box"
+          onClick={() => handleCategoryChange("piano")}
+          style={{
+            backgroundImage: `url("src/assets/img/filter1.png")`,
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            color: "white",
+            fontWeight: "bold",
+          }}
+        >
+          Piano
+        </button>
+        <button
+          className="categories-box"
+          onClick={() => handleCategoryChange("binaural")}
+          style={{
+            backgroundImage: `url("src/assets/img/filter3.png")`,
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            color: "white",
+            fontWeight: "bold",
+          }}
+        >
+          Binaural
+        </button>
       </div>
 
-      <div className="music-buttons">
-      <button onClick={() => handleCategoryChange("mantra")}>Mantra</button>
-        <button onClick={() => handleCategoryChange("piano")}>Piano</button>
-        <button onClick={() => handleCategoryChange("binaural")}>Binaural</button>
-      
-      </div>
-
-      <div className="music-searchbar">
-        <form onSubmit={handleSearch}>
+      <div className="music-saerchbar">
+        <form className="zen-search-btn" onSubmit={handleSearch}>
           <input
-            className="music-input"
+            className="yoga-input"
             ref={inputRef}
             type="search"
             placeholder="Search for music"
           />
-          {searchText && <button onClick={handleReset}>X</button>}
+          {searchText && (
+            <button className="input-btn" onClick={handleReset}>
+              X
+            </button>
+          )}
         </form>
       </div>
 
-      <div className="music-list">
+      <div className="music-list" style={{ marginBottom: "6em" }}>
         {allMusicTracks?.map((music) => (
-          <Link
+          <div
+            className="music-item"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "row",
+            }}
             key={music.id}
-            to={`/music/${slugify(music.name, { lower: true })}/${music.id}`}
-            className="music-link"
           >
-            <div className="music-item">
-              <div
-                className="music-thumbnail"
-                style={{
-                  backgroundImage: `url(${music.thumbnail})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              />
-              <h2 className="music-title">{music.name}</h2>
+            <button className="back" onClick={() => handlePlayPause(music.id)}>
               <ReactPlayer
                 url={music.url}
-                playing={false}
-                controls={true}
-                width="100%"
-                height="50px"
+                playing={isPlaying === music.id}
+                controls={false}
+                width="0"
+                height="0"
                 className="music-player"
+                style={{
+                  display: "none",
+                }}
               />
-            </div>
-          </Link>
+              {isPlaying === music.id ? 
+              
+              <img
+                src="/src/assets/img/icons8-pause-50.png" 
+                alt="Play"
+                style={{
+                  width: "30px",
+                  height: "30px",
+                  marginRight: "10px",
+                }}
+              /> :
+              <img
+                src="/src/assets/img/play-2.svg" 
+                alt="Play"
+                style={{
+                  width: "30px",
+                  height: "30px",
+                  marginRight: "10px",
+                }}
+              />}
+            </button>
+            <h2
+              className="music-title"
+              style={{
+                flex: "1",
+                textAlign: "center",
+                margin: "0",
+              }}
+            >
+              {music.name}{" "}
+            </h2>
+          </div>
         ))}
       </div>
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-

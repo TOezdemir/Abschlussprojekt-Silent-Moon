@@ -1,4 +1,3 @@
-
 import { useQuery } from "@tanstack/react-query";
 import { ElementRef, useRef, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
@@ -9,35 +8,32 @@ import { useUserContext } from "../context/userContext";
 export default function HomePage() {
   const [searchText, setSearchText] = useState("");
   const inputRef = useRef<ElementRef<"input">>(null);
-  const { user } = useUserContext()
+  const { user } = useUserContext();
 
   // Abfrage für Vornamen
   const firstNameQuery = useQuery({
     queryKey: ["supabase", "profiles", user?.id],
-    queryFn: async () =>{
-      if(!user?.id){
-        return null
+    queryFn: async () => {
+      if (!user?.id) {
+        return { first_name: " " };
       }
       const result = await supabase
         .from("profiles")
         .select("first_name")
         .eq("id", user!.id)
-        .single()
-      if(result.error){
-        throw result.error
+        .single();
+      if (result.error) {
+        throw result.error;
       }
-      return result.data
+      return result.data;
     },
-  })
+  });
 
   const highlightYogaQuery = useQuery({
-    queryKey: ["supabase", "yoga", searchText],
+    queryKey: ["supabase", "yoga"],
     queryFn: async () => {
-      const result = await supabase
-        .from("yoga")
-        .select("*")
-        .limit(1)
-        .ilike("name", `%${searchText}%`);
+      const result = await supabase.from("yoga").select("*").limit(1);
+      // .ilike("name", `%${searchText}%`);
 
       if (result.error) {
         throw result.error;
@@ -47,7 +43,7 @@ export default function HomePage() {
   });
 
   const highlightMeditationQuery = useQuery({
-    queryKey: ["supabase", "meditation", searchText],
+    queryKey: ["supabase", "meditation"],
     queryFn: async () => {
       const result = await supabase
         .from("meditation")
@@ -57,8 +53,8 @@ export default function HomePage() {
         meditation_categories(
         name)`
         )
-        .limit(1)
-        .ilike("name", `%${searchText}%`);
+        .limit(1);
+      // .ilike("name", `%${searchText}%`);
 
       if (result.error) {
         throw result.error;
@@ -100,8 +96,8 @@ export default function HomePage() {
     },
   });
 
-  if(highlightYogaQuery.isLoading || highlightMeditationQuery.isLoading){
-    return "... loading"
+  if (highlightYogaQuery.isLoading || highlightMeditationQuery.isLoading) {
+    return "... loading";
   }
 
   if (highlightYogaQuery.isPending) {
@@ -129,11 +125,11 @@ export default function HomePage() {
     return "...cant fetch Meditation!";
   }
 
-  if(firstNameQuery.isPending){
-    return "... loading name"
+  if (firstNameQuery.isPending) {
+    return "... loading name";
   }
-  if(firstNameQuery.isError || !firstNameQuery.data){
-    return "... can't fetch name!"
+  if (firstNameQuery.isError || !firstNameQuery.data) {
+    return "... can't fetch name!";
   }
 
   const handleSearch: React.FormEventHandler<HTMLFormElement> = (e) => {
@@ -152,129 +148,166 @@ export default function HomePage() {
   const highlightMeditations = highlightMeditationQuery.data;
   const allYogaPoses = allYogaQuery.data;
   const allMeditations = allMeditationQuery.data;
-
+  console.log(allMeditations);
   return (
-    <div className="home">
-      <section className="home-headline">
-        <h2>Hey {firstNameQuery.data?.first_name}!</h2>
-        <p>On the lookout for a new rush of vibes?</p>
-      </section>
-      <section className="highlight-section">
-        {highlightYogaQuery.data.length > 0 && (
-        <div
-          className="yoga-cards"
-          style={{
-            backgroundImage: `url(${highlightYogaPoses[0].image_url})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            width: "150px",
-            height: "180px",
-          }}
-        >
-          {highlightYogaPoses.map((yoga) => (
-            <Link
-              key={yoga.id}
-              to={`/yoga/${slugify(yoga.name, { lower: true })}/${yoga.id}`}
+    <div className="content-margin">
+      <div className="home">
+        <section className="home-headline">
+          <h2>
+            Hey{" "}
+            {user?.user_metadata?.first_name ?? firstNameQuery.data?.first_name}
+            !
+          </h2>
+          <p style={{ fontWeight: "bold" }}>We hope you have a good day</p>
+        </section>
+        <section className="highlight-section">
+          {highlightYogaQuery.data.length > 0 && (
+            <div
+              className="yoga-cards"
+              style={{
+                backgroundImage: `url(${highlightYogaPoses[0].image_url})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                width: "150px",
+                height: "180px",
+              }}
             >
-              <div>
-                <h2>{yoga.name}</h2>
-                <p>{yoga.difficulty}</p>
-                <p>{yoga.duration}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-        )}
-        {highlightMeditationQuery.data.length > 0 && (
-        <div
-          className="yoga-cards"
-          style={{
-            backgroundImage: `url(${highlightMeditations[0]!.image_url})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            width: "150px",
-            height: "180px",
-          }}
-        >
-          {highlightMeditations.map((meditation) => (
-            <Link
-              key={meditation.id}
-              to={`/meditation/${slugify(meditation.name, { lower: true })}/${
-                meditation.id
-              }`}
+              {highlightYogaPoses.map((yoga) => (
+                <Link
+                  key={yoga.id}
+                  to={`/yoga/${slugify(yoga.name, { lower: true })}/${yoga.id}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <div className="card-text-align-hp">
+                    <h2 style={{ marginBottom: "7em" }}>{yoga.name}</h2>
+                    <p>{yoga.difficulty}</p>
+                    <p style={{ marginTop: "0.5em" }}>{yoga.duration}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
+          {highlightMeditationQuery.data.length > 0 && (
+            <div
+              className="yoga-cards"
+              style={{
+                backgroundImage: `url(${highlightMeditations[0]!.image_url})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                width: "150px",
+                height: "180px",
+              }}
             >
-              <div>
-                <h2>{meditation.name}</h2>
-                <p>{meditation.meditation_categories?.name}</p>
-                <p>{meditation.duration}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-        )}
-      </section>
-      <section>
-        <div className="yoga-saerchbar">
-          <form onSubmit={handleSearch}>
-            <input
-              className="yoga-input"
-              ref={inputRef}
-              type="text"
-              placeholder="Zen Search"
-            />
-            {searchText && <button onClick={handleReset}>X</button>}
-          </form>
-        </div>
-      </section>
-      <section className="yoga-section">
-        <h4>Recomended Yoga for you</h4>
-        <div>
-          {allYogaPoses.map((allYoga) => (
-            <Link
-              key={allYoga.id}
-              to={`/yoga/${slugify(allYoga.name, { lower: true })}/${
-                allYoga.id
-              }`}
-            >
-              <div
+              {highlightMeditations.map((meditation) => (
+                <Link
+                  key={meditation.id}
+                  to={`/meditation/${slugify(meditation.name, {
+                    lower: true,
+                  })}/${meditation.id}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <div className="card-text-align-hp">
+                    <h2 style={{ marginBottom: "7em" }}>{meditation.name}</h2>
+                    <p>{meditation.meditation_categories?.name}</p>
+                    <p style={{ marginTop: "0.5em" }}>{meditation.duration}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
+        </section>
+        <section>
+          <div className="yoga-saerchbar">
+            <form className="zen-search-btn" onSubmit={handleSearch}>
+              <input
+                className="yoga-input"
+                ref={inputRef}
+                type="text"
+                placeholder="Zen Search"
+              />
+              {searchText && (
+                <button className="input-btn" onClick={handleReset}>
+                  X
+                </button>
+              )}
+            </form>
+          </div>
+        </section>
+        <section className="yoga-section">
+          <h4>Recomended Yoga for you</h4>
+          <div
+            style={{
+              marginTop: "2em",
+              display: "flex",
+              flexDirection: "row",
+              flexWrap: "wrap",
+              gap: "1em",
+            }}
+          >
+            {allYogaPoses.map((allYoga) => (
+              <Link
+                key={allYoga.id}
+                to={`/yoga/${slugify(allYoga.name, { lower: true })}/${
+                  allYoga.id
+                }`}
                 style={{
-                  backgroundImage: `url(${allYoga.image_url})`,
+                  textDecoration: "none",
+                }}
+              >
+                <div
+                  className="yoga-cards"
+                  style={{
+                    backgroundImage: `url(${allYoga.image_url})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    width: "145px",
+                    height: "145px",
+                  }}
+                >
+                  <h2 style={{ textAlign: "center" }}>{allYoga.name}</h2>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+        <section className="meditation-section">
+          <h4 style={{ marginBottom: "2em", marginTop: "2em" }}>
+            Recommended Meditations for you
+          </h4>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              flexWrap: "wrap",
+              gap: "1em",
+            }}
+          >
+            {allMeditations.map((allMeditation) => (
+              <Link
+                className="yoga-cards"
+                key={allMeditation.id}
+                to={`/meditation/${slugify(allMeditation.name, {
+                  lower: true,
+                })}/${allMeditation.id}`}
+                style={{
+                  textDecoration: "none",
+                  backgroundImage: `url(${allMeditation.image_url})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   width: "145px",
                   height: "195px",
                 }}
               >
-                <img src="" alt="yoga_bgimage" />
-                <h2>{allYoga.name}</h2>
-                <p>{allYoga.difficulty}</p>
-                <p>{allYoga.duration}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="meditation-section">
-        <h4>Recommended Meditations for you</h4>
-        <div>
-          {allMeditations.map((allMeditation) => (
-            <Link
-              key={allMeditation.id}
-              to={`/meditation/${slugify(allMeditation.name, {
-                lower: true,
-              })}/${allMeditation.id}`}
-            >
-              <div>
-                <img src="" alt="meditation_bgimage" />
-                <h2>{allMeditation.name}</h2>
-                <p>{allMeditation.meditation_categories?.name}</p>
-                <p>{allMeditation.duration}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
+                <div className="card-text-align-hp">
+                  <h2 style={{ marginBottom: "7em" }}>{allMeditation.name}</h2>
+                  <p>{allMeditation.meditation_categories?.name}</p>
+                  <p style={{ marginTop: "0.5em" }}>{allMeditation.duration}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      </div>
     </div>
   );
 }

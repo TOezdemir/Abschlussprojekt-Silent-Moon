@@ -6,9 +6,12 @@ interface UserContext {
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   isLoading: boolean;
+  isGuest: boolean
+  handleGuestLogin: () => Promise<void>
 }
 
 const UserContext = createContext<UserContext>(null!);
+
 
 export const UserContextProvider = ({
   children,
@@ -17,6 +20,18 @@ export const UserContextProvider = ({
 }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true)
+  const [isGuest, setIsGuest] = useState(true)
+
+  const handleGuestLogin = async () =>{
+    const {error, data} = await supabase.auth.signInAnonymously({options: {data: { first_name: "Maxi", last_name: "Muxi" }}})
+    if (error) {
+      console.error("Error with guest login:", error)
+    } else {
+      setIsGuest(true)
+      setUser(data.user)
+    }
+  }
+
   useEffect(() => {
     supabase.auth
     .getUser()
@@ -28,7 +43,7 @@ export const UserContextProvider = ({
     })
   }, []);
   return (
-    <UserContext.Provider value={{ user, setUser, isLoading }}>
+    <UserContext.Provider value={{ user, setUser, isLoading, isGuest, handleGuestLogin }}>
       {children}
     </UserContext.Provider>
   );

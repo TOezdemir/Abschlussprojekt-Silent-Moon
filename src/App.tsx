@@ -1,16 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
-import WelcomePage from "./pages/WelcomePage";
-import RemindersPage from "./pages/RemindersPage";
 import HomePage from "./pages/HomePage";
 import YogaDetailPage from "./pages/YogaDetailPage";
 import MeditationDetailPage from "./pages/MeditationDetailPage";
 import YogaPage from "./pages/YogaPage";
-// import YogaMantra from "./toBeRevisited/YogaMantra";
-// import YogaPiano from "./toBeRevisited/YogaPiano";
-// import YogaBinaural from "./toBeRevisited/YogaBinaural";
-// import YogaVideo from "./toBeRevisited/YogaVideo";
 import MeditationsPage from "./pages/MeditationsPage";
 import MusicPage from "./pages/MusicPage";
 import ProfilePage from "./pages/ProfilePage";
@@ -28,8 +22,8 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: "/home",
-        element: <HomePage />,
+        path: "/",
+        element: <FirstPage />,
       },
       {
         path: "/login",
@@ -40,59 +34,36 @@ const router = createBrowserRouter([
         element: <SignUpPage />,
       },
       {
-        path: "/welcome",
-        element: <WelcomePage />,
-      },
-      {
-        path: "/reminders",
-        element: <RemindersPage />,
-      },
-      {
-        path: "/yoga/:name/:id",
-        element: <YogaDetailPage/>,
-      },
-      {
-        path: "/meditation/:name/:id",
-        element: <MeditationDetailPage/>,
-      },
-      {
-        path: "/yoga",
-        element: <YogaPage />,
-      },
-      {
-        path: "/meditation",
-        element: <MeditationsPage />,
-      },
-      {
-        path: "/music",
-        element: <MusicPage />,
-      },
-      // {
-      //   path: "/yogabinaural",
-      //   element: <YogaBinaural />,
-      // },
-      // {
-      //   path: "/yogapiano",
-      //   element: <YogaPiano />,
-      // },
-      // {
-      //   path: "/yogamantra",
-      //   element: <YogaMantra />,
-      // },
-      // {
-      //   path: "/yogavideo",
-      //   element: <YogaVideo />,
-      // },
-      {
-        path: "/firstpage",
-        element: <FirstPage />,
-      },
-      {
         element: <ProtectedRoutes/>,
         children: [{
           path: "/profile",
           element: <ProfilePage/>
-        }]
+        },
+        {
+          path: "/home",
+          element: <HomePage/>
+        },
+        {
+          path: "/yoga",
+          element: <YogaPage/>
+        },
+        {
+          path: "/yoga/:name/:id",
+          element: <YogaDetailPage/>,
+        },
+        {
+          path: "/meditation",
+          element: <MeditationsPage />,
+        },
+        {
+          path: "/meditation/:name/:id",
+          element: <MeditationDetailPage/>,
+        },
+        {
+          path: "/music",
+          element: <MusicPage />,
+        },
+        ]
       }
     ],
   },

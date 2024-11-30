@@ -3,7 +3,6 @@ import { ElementRef, useRef, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 import slugify from "slugify";
 import { Link } from "react-router-dom";
-import Categories from "../components/Categories";
 
 export default function MeditationsPage() {
   const [searchText, setSearchText] = useState("");
@@ -48,13 +47,27 @@ export default function MeditationsPage() {
     setSearchText("");
   };
 
+  const affirmations = [
+    "I breathe in calmness and exhale tension.",
+    "I am grounded and centered.",
+    "My mind is still, my heart is open.",
+    "I am grateful for this moment.",
+    "I am strong, flexible, and resilient.",
+    "Peace resides within me.",
+    "I am connected to my inner wisdom.",
+    "I release all that no longer serves me.",
+    "I am filled with love and light.",
+    "I am at peace with myself and the world around me.",
+  ];
+  
+  const randomAffirmation = affirmations[Math.floor(Math.random() * affirmations.length)];
+
   const allMeditations = allMeditationQuery.data;
 
   return (
-    <div>
+    <div className="content-margin">
       <div className="meditation">
         <h1>Meditate</h1>
-        <Categories />
         <p>
           Audio-only meditation techniques <br />
           to help you minimize your screen time <br />
@@ -62,45 +75,50 @@ export default function MeditationsPage() {
         </p>
       </div>
       <div className="yoga-saerchbar">
-        <form onSubmit={handleSearch}>
+        <form className="zen-search-btn" onSubmit={handleSearch}>
           <input
             className="yoga-input"
             ref={inputRef}
             type="search"
             placeholder="search for meditation "
           />
-          {searchText && <button onClick={handleReset}>X</button>}
+          {searchText && (
+            <button className="input-btn" onClick={handleReset}>
+              X
+            </button>
+          )}
         </form>
       </div>
       <div className="random-player">
-        <p>Lerne Meditation kennen / Daily Random Affirmations</p>
+        <p>{randomAffirmation}</p>
       </div>
-      <div className="card-section">
-        <div className="yoga-videos">
-          {allMeditations.map((allMeditation) => (
-            <Link
-              key={allMeditation.id}
-              to={`/meditation/${slugify(allMeditation.name, {
-                lower: true,
-              })}/${allMeditation.id}`}
+      {/* <div className="card-section"> */}
+      <div className="yoga-videos">
+        {allMeditations.map((allMeditation) => (
+          <Link
+            key={allMeditation.id}
+            to={`/meditation/${slugify(allMeditation.name, {
+              lower: true,
+            })}/${allMeditation.id}`}
+            style={{ textDecoration: "none" }}
+          >
+            <div
+              className="meditation-cards"
+              style={{
+                backgroundImage: `url(${allMeditation.image_url})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                width: "145px",
+                height: "195px",
+              }}
             >
-              <div
-                className="meditation-cards"
-                style={{
-                  backgroundImage: `url(${allMeditation.image_url})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  width: "145px",
-                  height: "195px",
-                }}
-              >
-                <h2>{allMeditation.name}</h2>
-                {/* <p>{allMeditation.meditation_categories?.name}</p> */}
-              </div>
-            </Link>
-          ))}
-        </div>
+              <h2>{allMeditation.name}</h2>
+              {/* <p>{allMeditation.meditation_categories?.name}</p> */}
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
+    // </div>
   );
 }

@@ -13,9 +13,7 @@ This app was conceived as the 1-week final project by Victoria Glass, Tolgay Öz
 
 ## Demo
 
-You can view a live demo of the ZEN app at URL XXXXXXXXXXXX.
-
-
+You can view a live demo of the XXXXXXXX app at URL XXXXXXXXXXXX.
 
 ## ZEN app uses the following technologies:
 
@@ -52,6 +50,8 @@ The ZEN app uses the following third-party libraries:
 
 - `react-router-dom` - DOM bindings for React Router.
 - `react-player` - React Video & Music Player. ??????
+
+
 
 
 

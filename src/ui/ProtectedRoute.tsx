@@ -11,6 +11,6 @@ export default function ProtectedRoutes(){
     if(user){
         return <Outlet />
     }
-    return <Navigate to="/login"/>
+    return <Navigate to="/"/>
 
 }

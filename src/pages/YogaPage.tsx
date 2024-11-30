@@ -12,8 +12,10 @@ export default function YogaPage() {
   const allYogaQuery = useQuery({
     queryKey: ["supabase", "yoga", searchText, difficulty],
     queryFn: async () => {
-      let query = supabase.from("yoga").select("*").ilike("name", `%${searchText}%`);
-      
+      let query = supabase
+        .from("yoga")
+        .select("*")
+        .ilike("name", `%${searchText}%`);
       if (difficulty) {
         query = query.eq("difficulty", difficulty);
       }
@@ -48,38 +50,108 @@ export default function YogaPage() {
     setDifficulty(level);
   };
 
+  const affirmations = [
+    "I breathe in calmness and exhale tension.",
+    "I am grounded and centered.",
+    "My mind is still, my heart is open.",
+    "I am grateful for this moment.",
+    "I am strong, flexible, and resilient.",
+    "Peace resides within me.",
+    "I am connected to my inner wisdom.",
+    "I release all that no longer serves me.",
+    "I am filled with love and light.",
+    "I am at peace with myself and the world around me.",
+  ];
+
+  const randomAffirmation = affirmations[Math.floor(Math.random() * affirmations.length)];
+
   const allYogaPoses = allYogaQuery.data;
 
   return (
-    <div>
+    <div className="content-margin">
       <div className="yoga">
         <h1>Yoga</h1>
-        <button onClick={() => handleFilter("beginner")}>Beginner</button>
-        <button onClick={() => handleFilter("intermediate")}>Intermediate</button>
-        <button onClick={() => handleFilter("expert")}>Expert</button>
-        <button onClick={() => handleFilter(null)}>Show All</button>
+        <div className="categories">
+          <button
+            style={{
+              color: "white",
+              fontWeight: "bold",
+              backgroundColor: "#B6D8B0",
+            }}
+            className="categories-box"
+            onClick={() => handleFilter(null)}
+          >
+            All
+          </button>
+          <button
+            style={{
+              backgroundImage: `url("src/assets/img/filter2.png")`,
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+              color: "white",
+              fontWeight: "bold",
+            }}
+            className="categories-box"
+            onClick={() => handleFilter("beginner")}
+          >
+            ✦
+          </button>
+          <button
+            style={{
+              backgroundImage: `url("src/assets/img/filter1.png")`,
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+              color: "white",
+              fontWeight: "bold",
+            }}
+            className="categories-box"
+            onClick={() => handleFilter("intermediate")}
+          >
+            ✦✦
+          </button>
+          <button
+            style={{
+              backgroundImage: `url("src/assets/img/filter3.png")`,
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+              color: "white",
+              fontWeight: "bold",
+            }}
+            className="categories-box"
+            onClick={() => handleFilter("expert")}
+          >
+            ✦✦✦
+          </button>
+        </div>
         <p>Find your inner zen from anywhere.</p>
       </div>
       <div className="yoga-saerchbar">
-        <form onSubmit={handleSearch}>
+        <form className="zen-search-btn" onSubmit={handleSearch}>
           <input
             className="yoga-input"
             ref={inputRef}
-            type="search"
+            type="text"
             placeholder="search for yoga videos"
           />
-          {searchText && <button onClick={handleReset}>X</button>}
+          {searchText && (
+            <button className="input-btn" onClick={handleReset}>
+              X
+            </button>
+          )}
         </form>
       </div>
       <div className="random-player">
-        <p>Daily Random Affirmations, watch the videos now!</p>
+        <p>{randomAffirmation}</p>
       </div>
       <div>
         <div className="yoga-videos">
           {allYogaPoses.map((allYoga) => (
             <Link
               key={allYoga.id}
-              to={`/yoga/${slugify(allYoga.name, { lower: true })}/${allYoga.id}`}
+              to={`/yoga/${slugify(allYoga.name, { lower: true })}/${
+                allYoga.id
+              }`}
+              style={{ textDecoration: "none" }}
             >
               <div
                 className="yoga-cards"
@@ -99,8 +171,8 @@ export default function YogaPage() {
       </div>
     </div>
   );
+}
 
-  
 // import { useQuery } from "@tanstack/react-query";
 // import { ElementRef, useRef, useState } from "react";
 // import { supabase } from "../lib/supabaseClient";
@@ -156,7 +228,7 @@ export default function YogaPage() {
 //         <button>Beginner</button>
 //         <button>Intermediate</button>
 //         <button>Expert</button>
-        
+
 //         <p>Find your inner zen from anywhere.</p>
 //       </div>
 //       <div className="yoga-saerchbar">
