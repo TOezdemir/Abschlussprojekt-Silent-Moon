@@ -1,103 +1,92 @@
-## ZEN app
- Your Yoga & Meditation App
+# 🌙 Silent Moon – Yoga & Meditation App
 
+Eine mobile-first Wellness-App für Yoga und Meditation – entwickelt als Abschlussprojekt im Rahmen eines 6-monatigen Web-Development-Bootcamps bei Supercode, Düsseldorf.
 
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=black)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=flat&logo=supabase&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=nodedotjs&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
 
-## About Us
+---
 
-Welcome to the calm and relaxing world of the ZEN app. We offer self-created content on the topics of meditation and yoga. In our app, you will find tutorial content on both core topics, accompanied by explanatory clips and the perfect sounds/music to enhance your experience. So, take a moment to unwind and let our app help you escape the stress of everyday life.
+## 💫 Über das Projekt
 
-This app was conceived as the 1-week final project by Victoria Glass, Tolgay Özdemir, and Kami Shari, as part of a 6-month Web Development course at the Supercode Bootcamp in Düsseldorf/Germany.
+Silent Moon bietet selbst erstellte Inhalte rund um Meditation und Yoga. Nutzer können Videotutorials, Playlists und passende Klänge entdecken – und so im Alltag einen Moment zur Ruhe kommen. Das Projekt entstand in einer 1-wöchigen Teamarbeit.
 
+---
 
+## ✨ Features
 
-## Demo
+- **Registrierung & Login** – Personalisierte Nutzerprofile via Supabase Auth
+- **Video- & Playlist-Browser** – Yoga- und Meditationsvideos mit Soundbegleitung
+- **Suche** – Inhalte nach Titel durchsuchen
+- **Favoriten** – Videos zur persönlichen Favoritenliste hinzufügen
+- **Mobile-first** – vollständig responsiv, optimiert für Smartphones
 
-You can view a live demo of the ZEN app at [https://zen-die-yoga-amsnk7md4-tolga-ozdemirs-projects.vercel.app/FirstPage].
+---
 
-## ZEN app uses the following technologies:
+## 🛠️ Tech Stack
 
-- **Frontend**: Typescript, React, HTML, CSS
-- **Backend**: Supabase, Node.js 
-- **Version Control**: Git
-- **Design Tools**: Figma, Canva
-- **Project Management**: Trello
+| Bereich | Technologie |
+|---|---|
+| Frontend | React, TypeScript, HTML, CSS |
+| Backend | Node.js, Supabase |
+| Design | Figma, Canva |
+| Projektmanagement | Trello |
+| Versionsverwaltung | Git / GitHub |
 
-<div style="text-align: center;">
-    <img src="./public/tech_logos/typescript-logo.jpg" alt="Typescript Logo" width="150" />
-    <img src="./public/tech_logos/react-logo.png" alt="React Logo" width="150" />
-    <img src="./public/tech_logos/supabase-logo.png" alt="Supabase Logo" width="150" />
-    <img src="./public/tech_logos/html-css-logo.png" alt="HTML & CSS Logo" width="150" />
-</div>
+---
 
+## 🚀 Lokale Installation
 
+### 1. Repository klonen
 
-## Features
+```bash
+git clone https://github.com/TOezdemir/Abschlussprojekt-Silent-Moon.git
+cd Abschlussprojekt-Silent-Moon
+```
 
-The ZEN app has the following features:
+### 2. Abhängigkeiten installieren
 
-- **User Registration**: Users can create accounts to personalize their experience.
-- **Video & Playlist Exploration**: Users can browse a collection of yoga & meditation videos and sounds.
-- **Mobile-based**: The app is accessible on mobile with minimal loss of functionality.
-- **Search**: Users can search for videos and playlists by title.
-- **Favorites**: Users can add videos to their favorites.
+```bash
+npm install
+```
 
+### 3. Umgebungsvariablen einrichten
 
+Erstelle eine `.env`-Datei im Root-Verzeichnis und trage deine Supabase-Zugangsdaten ein:
 
-## Third-Party Libraries & Tools
+```env
+VITE_SUPABASE_URL=deine_supabase_project_url
+VITE_SUPABASE_ANON_KEY=dein_supabase_anon_key
+```
 
-The ZEN app uses the following third-party libraries:
+### 4. App starten
 
-- `react-router-dom` - DOM bindings for React Router.
-- `react-player` - React Video & Music Player. ?????
+```bash
+npm run dev
+```
 
+---
 
+## 📦 Drittanbieter-Bibliotheken
 
+- [`react-router-dom`](https://reactrouter.com/) – Routing für React
+- [`react-player`](https://github.com/cookpete/react-player) – Video- & Audio-Player-Komponente
 
+---
 
-## Getting Started
+## 👥 Team
 
-To run the ZEN app on your local machine, follow these steps:
+Created with ♥️ by:
 
+- **Victoria Glass** – [GitHub](https://github.com/AliceReturns)
+- **Tolgay Özdemir** – [GitHub](https://github.com/TOezdemir)
+- **Kami Shari** – [GitHub](https://github.com/kami-shari)
 
+---
 
-1. **Clone this repository:**
+## 📄 Lizenz
 
-   ```bash
-   git clone git@github.com:TOezdemir/Abschlussprojekt-Silent-Moon.git
-   ```
-
-
-
-2. **Install dependencies:**
-
-   Install the frontend dependencies by running:
-   ```bash
-   npm install
-   ```
-
-
-
-3. **Start the app:**
-   Run the following command to start the application:
-   ```bash
-   npm run dev
-   ```
-
-
-
-## License
-
-This project is licensed under the MIT License.
-
-The MIT License is a permissive free software license that allows you to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software. It also allows others to do the same.
-
-
-
-## Project Members
-
-Created with ♥ by:
-
-- **Victoria Glass**: [GitHub](https://github.com/AliceReturns)
-- **Tolgay Özdemir**: [GitHub](https://github.com/TOezdemir)
-- **Kami Shari**: [GitHub](https://github.com/kami-shari)
+Dieses Projekt ist unter der [MIT License](LICENSE) lizenziert.
